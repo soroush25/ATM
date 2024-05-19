@@ -14,7 +14,7 @@ import java.util.Date;
 @SuperBuilder(toBuilder = true)
 
 public class Transaction {
-    private LocalDate date;
+    private LocalDateTime date;
     private Double amount;
     private String deposit;
     private Account Account;
