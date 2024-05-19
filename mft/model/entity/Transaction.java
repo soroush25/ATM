@@ -17,6 +17,7 @@ public class Transaction {
     private Date date;
     private Double amount;
     private String deposit;
+    private Account Account;
 
     @Override
     public String toString() {
