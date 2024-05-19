@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import mft.model.entity.enums.TransactionTypes;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -17,7 +19,8 @@ public class Transaction {
     private LocalDateTime date;
     private Double amount;
     private String deposit;
-    private Account Account;
+    private LocalDateTime transactionDateAndTime;
+    private TransactionTypes transactionType;
 
     @Override
     public String toString() {

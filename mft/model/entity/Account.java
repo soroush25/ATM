@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import mft.model.entity.enums.BankAccountTypes;
+import mft.model.entity.enums.Banks;
 
 @NoArgsConstructor
 @Getter
@@ -14,7 +16,9 @@ import lombok.experimental.SuperBuilder;
 public class Account {
     private int accountNumber;
     private int balance;
-    private Customer customer;
+    private Transaction transaction;
+    private Banks bank;
+    private BankAccountTypes accountTypes;
 
     @Override
     public String toString() {
