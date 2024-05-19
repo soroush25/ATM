@@ -16,6 +16,7 @@ import mft.model.entity.enums.Banks;
 public class Account {
     private int accountNumber;
     private int balance;
+    private Customer customer;
     private Transaction transaction;
     private Banks bank;
     private BankAccountTypes accountTypes;

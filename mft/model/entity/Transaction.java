@@ -19,6 +19,7 @@ public class Transaction {
     private LocalDateTime date;
     private Double amount;
     private String deposit;
+    private Account Account;
     private LocalDateTime transactionDateAndTime;
     private TransactionTypes transactionType;
 
