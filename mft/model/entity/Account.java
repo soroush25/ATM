@@ -14,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 public class Account {
     private int accountNumber;
     private int balance;
-    private Transaction transaction;
+    private Coustomer coustomer;
 
     @Override
     public String toString() {
