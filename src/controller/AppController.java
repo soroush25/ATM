@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import src.model.da.UserDa;
+import src.model.entity.Customer;
 import src.model.entity.User;
 import src.model.entity.enums.Gender;
 import src.model.tools.Validator;
@@ -43,8 +44,7 @@ public class AppController implements Initializable {
         adminCreate.setOnAction(event -> {
             try (UserDa userDa = new UserDa()) {
                 RadioButton gender = (RadioButton) GenderToggle.getSelectedToggle();
-
-                User user = User
+                Customer customer = new Customer()
                         .builder()
                         .firstName(Validator.nameValidator(fnamefield.getText(), "Invalid Name!"))
                         .lastName(Validator.nameValidator(lnamefield.getText(), "Invalid Name!"))
@@ -52,9 +52,9 @@ public class AppController implements Initializable {
                         .gender(Gender.valueOf(gender.getText()))
                         .email(Validator.emailValidator(emailfield.getText(), "Invalid Email!"))
                         .phone(Validator.phoneValidator(phonefield.getText(), "Invalid Phone!"))
-                        .address(Validator.addressValidator(nidfield.getText(), "Invalid Address!"))
+                        .address(Validator.addressValidator(addtessfield.getText(), "Invalid Address!"))
                         .build();
-                userDa.save(user);
+                userDa.save(customer);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Saved!");
                 alert.show();
                 resetForm();
@@ -67,8 +67,7 @@ public class AppController implements Initializable {
         adminEdit.setOnAction(event -> {
             try (UserDa userDa = new UserDa()) {
                 RadioButton gender = (RadioButton) GenderToggle.getSelectedToggle();
-
-                User user = User
+                Customer customer = new Customer()
                         .builder()
                         .id(Integer.parseInt(idfield.getText()))
                         .firstName(Validator.nameValidator(fnamefield.getText(), "Invalid Name!"))
@@ -77,9 +76,9 @@ public class AppController implements Initializable {
                         .gender(Gender.valueOf(gender.getText()))
                         .email(Validator.emailValidator(emailfield.getText(), "Invalid Email!"))
                         .phone(Validator.phoneValidator(phonefield.getText(), "Invalid Phone!"))
-                        .address(Validator.addressValidator(nidfield.getText(), "Invalid Address!"))
+                        .address(Validator.addressValidator(addressfield.getText(), "Invalid Address!"))
                         .build();
-                userDa.edit(user);
+                userDa.edit(customer);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Edited!");
                 alert.show();
                 resetForm();
@@ -106,6 +105,7 @@ public class AppController implements Initializable {
             idcol.setText(String.valueOf(user.getId()));
             fnamecol.setText(user.getFirstName());
             lnamecol.setText(user.getLastName());
+            nidcol.setText(user.getNationalID());
             if (user.getGender().equals(Gender.Male)) {
                 maletoggle.setSelected(true);
             } else {
@@ -130,6 +130,7 @@ public class AppController implements Initializable {
         idfield.clear();
         fnamefield.clear();
         lnamefield.clear();
+        nidfield.clear();
         maletoggle.setSelected(true);
         emailfield.clear();
         phonefield.clear();
