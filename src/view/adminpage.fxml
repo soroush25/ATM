@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane fx:controller="src.controller.AppController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="35.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrator">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Text>
+      <Button fx:id="goMenu" layoutX="35.0" layoutY="350.0" mnemonicParsing="false" prefWidth="150.0" text="Exit" textAlignment="CENTER" />
+      <Button fx:id="adminPasscode" layoutX="35.0" layoutY="300.0" mnemonicParsing="false" prefWidth="150.0" text="Edit Account Passcode" textAlignment="CENTER" />
+      <Button fx:id="adminCreate" layoutX="35.0" layoutY="100.0" mnemonicParsing="false" prefWidth="150.0" text="Create Account" textAlignment="CENTER" />
+      <Button fx:id="adminDelete" layoutX="35.0" layoutY="200.0" mnemonicParsing="false" prefWidth="150.0" text="Delete Account" textAlignment="CENTER" />
+      <Button fx:id="adminEdit" layoutX="35.0" layoutY="150.0" mnemonicParsing="false" prefWidth="150.0" text="Edit Account" textAlignment="CENTER" />
+      <TableView fx:id="allTable" layoutX="250.0" layoutY="35.0" prefHeight="312.0" prefWidth="315.0">
+        <columns>
+          <TableColumn fx:id="adminTableID" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="adminTableName" prefWidth="90.0" text="Name" />
+            <TableColumn fx:id="adminTableBalance" prefWidth="75.0" text="Balance" />
+            <TableColumn fx:id="adminTableStatus" prefWidth="75.0" text="Status" />
+        </columns>
+      </TableView>
+      <TextField fx:id="adminSearchField" layoutX="250.0" layoutY="350.0" prefHeight="27.0" prefWidth="275.0" promptText="Search" />
+      <Button fx:id="adminSearchBtn" layoutX="527.0" layoutY="350.0" mnemonicParsing="false" text="Go!" />
+      <Button fx:id="adminBalance" layoutX="35.0" layoutY="250.0" mnemonicParsing="false" prefWidth="150.0" text="Edit Account Balance" textAlignment="CENTER" />
+   </children>
+</Pane>
