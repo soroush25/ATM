@@ -23,7 +23,7 @@ public class AdminDa implements AutoCloseable, CRUD<Customer> {
     @Override
     public Customer save(Customer customer) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "INSERT INTO CUSTOMER (id, fname, lname, nid, gender, birth_date, city, phone, email, address) VALUES (?,?,?,?,?,?,?,?,?,?)"
+                "INSERT INTO CUSTOMER (id, fname, lname, nid, gender, birth_date, city, phone, email, address, permission) VALUES (?,?,?,?,?,?,?,?,?,?,?)"
         );
         preparedStatement.setInt(1, customer.getId());
         preparedStatement.setString(2, customer.getFirstName());
@@ -35,6 +35,7 @@ public class AdminDa implements AutoCloseable, CRUD<Customer> {
         preparedStatement.setString(8, customer.getPhone());
         preparedStatement.setString(9, customer.getEmail());
         preparedStatement.setString(10, customer.getAddress());
+        preparedStatement.setString(11, customer.getPermission());
         preparedStatement.execute();
         return customer;
     }
@@ -42,7 +43,7 @@ public class AdminDa implements AutoCloseable, CRUD<Customer> {
     @Override
     public Customer edit(Customer customer) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "UPDATE CUSTOMER SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?, city = ?, phone = ?, email = ?, address = ? WHERE id = ?"
+                "UPDATE CUSTOMER SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?, city = ?, phone = ?, email = ?, address = ?, permission = ? WHERE id = ?"
         );
         preparedStatement.setString(1, customer.getFirstName());
         preparedStatement.setString(2, customer.getLastName());
@@ -53,6 +54,7 @@ public class AdminDa implements AutoCloseable, CRUD<Customer> {
         preparedStatement.setString(7, customer.getPhone());
         preparedStatement.setString(8, customer.getEmail());
         preparedStatement.setString(9, customer.getAddress());
+        preparedStatement.setString(10, customer.getPermission());
         return customer;
     }
 
