@@ -42,7 +42,7 @@ public class UserDa implements AutoCloseable, CRUD<Customer> {
     @Override
     public Customer edit(Customer customer) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "UPDATE CUSTOMER SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?, city = ?, phone = ?, email = ?, address = ?) WHERE id = ?"
+                "UPDATE CUSTOMER SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?, city = ?, phone = ?, email = ?, address = ? WHERE id = ?"
         );
         preparedStatement.setString(1, customer.getFirstName());
         preparedStatement.setString(2, customer.getLastName());
@@ -118,29 +118,32 @@ public class UserDa implements AutoCloseable, CRUD<Customer> {
         return customer;
     }
 
-//    public List<User> findByFamily(String family) throws Exception {
-//        List<Customer> customerList = new ArrayList<>();
-//
-//        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE FAMILY LIKE? ORDER BY ID");
-//        preparedStatement.setString(1, family + "%");
-//        ResultSet resultSet = preparedStatement.executeQuery();
-//
-//        while (resultSet.next()) {
-//            Customer customer = Customer
-//                    .builder()
-//                    .id(resultSet.getInt("ID"))
-//                    .name(resultSet.getString("NAME"))
-//                    .family(resultSet.getString("FAMILY"))
-//                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
-//                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
-//                    .city(City.valueOf(resultSet.getString("CITY")))
-//                    .build();
-//
-//            customerList.add(customer);
-//        }
-//
-//        return customerList;
-//    }
+    public List<Customer> findByFamily(String family) throws Exception {
+        List<Customer> customerList = new ArrayList<>();
+
+        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE lname LIKE? ORDER BY ID");
+        preparedStatement.setString(1, family + "%");
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            Customer customer = Customer
+                    .builder()
+                    .id(resultSet.getInt("ID"))
+                    .firstName(resultSet.getString("NAME"))
+                    .lastName(resultSet.getString("FAMILY"))
+                    .nationalID(resultSet.getString("NID"))
+                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
+                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
+                    .city(City.valueOf(resultSet.getString("CITY")))
+                    .phone(resultSet.getString("PHONE"))
+                    .email(resultSet.getString("EMAIL"))
+                    .address(resultSet.getString("ADDRESS"))
+                    .build();
+
+            customerList.add(customer);
+        }
+        return customerList;
+    }
 
     @Override
     public void close() throws Exception {

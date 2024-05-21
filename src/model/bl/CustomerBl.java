@@ -72,14 +72,14 @@ public class CustomerBl implements CRUD<Customer> {
         }
     }
 
-//    public List<Customer> findByFamily(String family) throws Exception {
-//        try (UserDa customerDa = new UserDa()) {
-//            List<Customer> perosnList = customerDa.findByFamily(family);
-//            if (!perosnList.isEmpty()) {
-//                return perosnList;
-//            } else {
-//                throw new NoPersonFoundException();
-//            }
-//        }
-//    }
+    public List<Customer> findByFamily(String family) throws Exception {
+        try (UserDa customerDa = new UserDa()) {
+            List<Customer> customerList = customerDa.findByFamily(family);
+            if (!customerList.isEmpty()) {
+                return customerList;
+            } else {
+                throw new NoPersonFoundException();
+            }
+        }
+    }
 }
