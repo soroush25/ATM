@@ -53,6 +53,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
         preparedStatement.setString(7, customer.getPhone());
         preparedStatement.setString(8, customer.getEmail());
         preparedStatement.setString(9, customer.getAddress());
+        preparedStatement.setInt(10, customer.getId());
+
         return customer;
     }
 

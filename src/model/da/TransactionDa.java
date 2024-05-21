@@ -27,10 +27,10 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         );
         preparedStatement.setInt(1, transaction.getId());
         preparedStatement.setDouble(2, transaction.getAmount());
-        preparedStatement.setDouble(3, transaction.getDeposit());
-        preparedStatement.setInt(4, String.valueOf(transaction.getAccount()));
-        preparedStatement.setDate(5, Date.valueOf(transaction.getTransactionDateAndTime()));
-        preparedStatement.setString(6, transaction.getTransactionType());
+        preparedStatement.setDouble(3, Double.parseDouble(transaction.getDeposit()));
+        preparedStatement.setInt(4, Integer.parseInt(String.valueOf(transaction.getAccount())));
+        preparedStatement.setDate(5, Date.valueOf(String.valueOf(transaction.getTransactionDateAndTime())));
+        preparedStatement.setString(6, String.valueOf(transaction.getTransactionType()));
 
         preparedStatement.execute();
         return transaction;
@@ -39,17 +39,16 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
     @Override
     public Transaction edit(Transaction transaction) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "UPDATE TRANSACTION SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?, city = ?, phone = ?, email = ?, address = ? WHERE id = ?"
+                "UPDATE TRANSACTION SET amount = ?, deposit = ?, account = ?, transactionDateAndTime = ?, transactionType = ? WHERE id = ?"
         );
-        preparedStatement.setString(1, transaction.getFirstName());
-        preparedStatement.setString(2, transaction.getLastName());
-        preparedStatement.setString(3, transaction.getNationalID());
-        preparedStatement.setString(4, transaction.getGender().name());
-        preparedStatement.setDate(5, Date.valueOf(transaction.getBirthDate()));
-        preparedStatement.setString(6, transaction.getCity().name());
-        preparedStatement.setString(7, transaction.getPhone());
-        preparedStatement.setString(8, transaction.getEmail());
-        preparedStatement.setString(9, transaction.getAddress());
+        preparedStatement.setDouble(1, transaction.getAmount());
+        preparedStatement.setDouble(2, Double.parseDouble(transaction.getDeposit()));
+        preparedStatement.setInt(3, Integer.parseInt(String.valueOf(transaction.getAccount())));
+        preparedStatement.setDate(4, Date.valueOf(String.valueOf(transaction.getTransactionDateAndTime())));
+        preparedStatement.setString(5, String.valueOf(transaction.getTransactionType()));
+        preparedStatement.setInt(6, transaction.getId());
+
+
         return transaction;
     }
 
@@ -74,15 +73,11 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
             Transaction transaction = Transaction
                     .builder()
                     .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
-                    .nationalID(resultSet.getString("NID"))
-                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
-                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
-                    .city(City.valueOf(resultSet.getString("CITY")))
-                    .phone(resultSet.getString("PHONE"))
-                    .email(resultSet.getString("EMAIL"))
-                    .address(resultSet.getString("ADDRESS"))
+                    .amount(resultSet.getDouble("AMOUNT"))
+                    .deposit(resultSet.getString("DEPOSIT"))
+                    .account(resultSet.getString("ACCOUNT"))
+                    .transactionDateAndTime(resultSet.getString("transactionDateAndTime"))
+                    .transactionType(resultSet.getString("transactionType"))
                     .build();
 
             transactionList.add(transaction);
@@ -101,40 +96,32 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
             transaction = Transaction
                     .builder()
                     .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
-                    .nationalID(resultSet.getString("NID"))
-                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
-                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
-                    .city(City.valueOf(resultSet.getString("CITY")))
-                    .phone(resultSet.getString("PHONE"))
-                    .email(resultSet.getString("EMAIL"))
-                    .address(resultSet.getString("ADDRESS"))
+                    .amount(resultSet.getDouble("AMOUNT"))
+                    .deposit(resultSet.getString("DEPOSIT"))
+                    .account(resultSet.getString("ACCOUNT"))
+                    .transactionDateAndTime(resultSet.getString("transactionDateAndTime"))
+                    .transactionType(resultSet.getString("transactionType"))
                     .build();
         }
         return transaction;
     }
 
-    public List<Transaction> findByFamily(String family) throws Exception {
+    public List<Transaction> findByAccount(String account) throws Exception {
         List<Transaction> transactionList = new ArrayList<>();
 
-        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE lname LIKE? ORDER BY ID");
-        preparedStatement.setString(1, family + "%");
+        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE Transaction.account LIKE? ORDER BY ID");
+        preparedStatement.setString(1, account + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
             Transaction transaction = Transaction
                     .builder()
                     .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
-                    .nationalID(resultSet.getString("NID"))
-                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
-                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
-                    .city(City.valueOf(resultSet.getString("CITY")))
-                    .phone(resultSet.getString("PHONE"))
-                    .email(resultSet.getString("EMAIL"))
-                    .address(resultSet.getString("ADDRESS"))
+                    .amount(resultSet.getDouble("AMOUNT"))
+                    .deposit(resultSet.getString("DEPOSIT"))
+                    .account(resultSet.getString("ACCOUNT"))
+                    .transactionDateAndTime(resultSet.getString("transactionDateAndTime"))
+                    .transactionType(resultSet.getString("transactionType"))
                     .build();
 
             transactionList.add(transaction);
