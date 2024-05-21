@@ -1,8 +1,7 @@
 package src.model.da;
 
 import lombok.extern.log4j.Log4j;
-import src.model.entity.Customer;
-import src.model.entity.enums.City;
+import src.model.entity.Admin;
 import src.model.entity.enums.Gender;
 import src.model.tools.CRUD;
 import src.model.tools.ConnectionProvider;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Log4j
-public class AdminDa implements AutoCloseable, CRUD<Customer> {
+public class AdminDa implements AutoCloseable, CRUD<Admin> {
     private final Connection connection;
     private PreparedStatement preparedStatement;
 
@@ -21,47 +20,46 @@ public class AdminDa implements AutoCloseable, CRUD<Customer> {
     }
 
     @Override
-    public Customer save(Customer customer) throws Exception {
+    public Admin save(Admin admin) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "INSERT INTO CUSTOMER (id, fname, lname, nid, gender, birth_date, city, phone, email, address, permission) VALUES (?,?,?,?,?,?,?,?,?,?,?)"
+                "INSERT INTO ADMIN (id, fname, lname, nid, gender, birth_date,  phone, email, address, permission) VALUES (?,?,?,?,?,?,?,?,?,?)"
         );
-        preparedStatement.setInt(1, customer.getId());
-        preparedStatement.setString(2, customer.getFirstName());
-        preparedStatement.setString(3, customer.getLastName());
-        preparedStatement.setString(4, customer.getNationalID());
-        preparedStatement.setString(5, customer.getGender().name());
-        preparedStatement.setDate(6, Date.valueOf(customer.getBirthDate()));
-        preparedStatement.setString(7, customer.getCity().name());
-        preparedStatement.setString(8, customer.getPhone());
-        preparedStatement.setString(9, customer.getEmail());
-        preparedStatement.setString(10, customer.getAddress());
-        preparedStatement.setString(11, customer.getPermission());
+        preparedStatement.setInt(1, admin.getId());
+        preparedStatement.setString(2, admin.getFirstName());
+        preparedStatement.setString(3, admin.getLastName());
+        preparedStatement.setString(4, admin.getNationalID());
+        preparedStatement.setString(5, admin.getGender().name());
+        preparedStatement.setDate(6, Date.valueOf(admin.getBirthDate()));
+        preparedStatement.setString(7, admin.getPhone());
+        preparedStatement.setString(8, admin.getEmail());
+        preparedStatement.setString(9, admin.getAddress());
+        preparedStatement.setString(10, admin.getPermission());
+
         preparedStatement.execute();
-        return customer;
+        return admin;
     }
 
     @Override
-    public Customer edit(Customer customer) throws Exception {
+    public Admin edit(Admin admin) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "UPDATE CUSTOMER SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?, city = ?, phone = ?, email = ?, address = ?, permission = ? WHERE id = ?"
+                "UPDATE ADMIN SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?,  phone = ?, email = ?, address = ?, permission = ? WHERE id = ?"
         );
-        preparedStatement.setString(1, customer.getFirstName());
-        preparedStatement.setString(2, customer.getLastName());
-        preparedStatement.setString(3, customer.getNationalID());
-        preparedStatement.setString(4, customer.getGender().name());
-        preparedStatement.setDate(5, Date.valueOf(customer.getBirthDate()));
-        preparedStatement.setString(6, customer.getCity().name());
-        preparedStatement.setString(7, customer.getPhone());
-        preparedStatement.setString(8, customer.getEmail());
-        preparedStatement.setString(9, customer.getAddress());
-        preparedStatement.setString(10, customer.getPermission());
-        return customer;
+        preparedStatement.setString(1, admin.getFirstName());
+        preparedStatement.setString(2, admin.getLastName());
+        preparedStatement.setString(3, admin.getNationalID());
+        preparedStatement.setString(4, admin.getGender().name());
+        preparedStatement.setDate(5, Date.valueOf(admin.getBirthDate()));
+        preparedStatement.setString(6, admin.getPhone());
+        preparedStatement.setString(7, admin.getEmail());
+        preparedStatement.setString(8, admin.getAddress());
+        preparedStatement.setString(9, admin.getPermission());
+        return admin;
     }
 
     @Override
-    public Customer remove(int id) throws Exception {
+    public Admin remove(int id) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "DELETE FROM CUSTOMER WHERE ID=?"
+                "DELETE FROM ADMIN WHERE ID=?"
         );
         preparedStatement.setInt(1, id);
         preparedStatement.execute();
@@ -69,14 +67,14 @@ public class AdminDa implements AutoCloseable, CRUD<Customer> {
     }
 
     @Override
-    public List<Customer> findAll() throws Exception {
-        List<Customer> customerList = new ArrayList<>();
+    public List<Admin> findAll() throws Exception {
+        List<Admin> adminList = new ArrayList<>();
 
-        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER ORDER BY ID");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN ORDER BY ID");
         ResultSet resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
-            Customer customer = Customer
+            Admin admin = Admin
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .firstName(resultSet.getString("NAME"))
@@ -84,26 +82,26 @@ public class AdminDa implements AutoCloseable, CRUD<Customer> {
                     .nationalID(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
-                    .city(City.valueOf(resultSet.getString("CITY")))
                     .phone(resultSet.getString("PHONE"))
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
+                    .permission(resultSet.getString("PERMISSION"))
                     .build();
 
-            customerList.add(customer);
+            adminList.add(admin);
         }
 
-        return customerList;
+        return adminList;
     }
 
     @Override
-    public Customer findById(int id) throws Exception {
-        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE ID=?");
+    public Admin findById(int id) throws Exception {
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE ID=?");
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
-        Customer customer = null;
+        Admin admin  = null;
         if (resultSet.next()) {
-            customer = Customer
+            admin = Admin
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .firstName(resultSet.getString("NAME"))
@@ -111,24 +109,24 @@ public class AdminDa implements AutoCloseable, CRUD<Customer> {
                     .nationalID(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
-                    .city(City.valueOf(resultSet.getString("CITY")))
                     .phone(resultSet.getString("PHONE"))
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
+                    .permission(resultSet.getString("PERMISSION"))
                     .build();
         }
-        return customer;
+        return admin;
     }
 
-    public List<Customer> findByFamily(String family) throws Exception {
-        List<Customer> customerList = new ArrayList<>();
+    public List<Admin> findByFamily(String family) throws Exception {
+        List<Admin> adminList = new ArrayList<>();
 
-        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE lname LIKE? ORDER BY ID");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE lname LIKE? ORDER BY ID");
         preparedStatement.setString(1, family + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
-            Customer customer = Customer
+            Admin admin = Admin
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .firstName(resultSet.getString("NAME"))
@@ -136,15 +134,15 @@ public class AdminDa implements AutoCloseable, CRUD<Customer> {
                     .nationalID(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
-                    .city(City.valueOf(resultSet.getString("CITY")))
                     .phone(resultSet.getString("PHONE"))
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
+                    .permission(resultSet.getString("PERMISSION"))
                     .build();
 
-            customerList.add(customer);
+            adminList.add(admin);
         }
-        return customerList;
+        return adminList;
     }
 
     @Override
