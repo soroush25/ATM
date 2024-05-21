@@ -15,10 +15,10 @@ import java.time.LocalDateTime;
 @SuperBuilder(toBuilder = true)
 
 public class Transaction {
-    private LocalDateTime date;
+    private int id;
     private Double amount;
     private String deposit;
-    private Account Account;
+    private Account account;
     private LocalDateTime transactionDateAndTime;
     private TransactionTypes transactionType;
 

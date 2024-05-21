@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Log4j
-public class UserDa implements AutoCloseable, CRUD<Customer> {
+public class AdminDa implements AutoCloseable, CRUD<Customer> {
     private final Connection connection;
     private PreparedStatement preparedStatement;
 
-    public UserDa() throws SQLException {
+    public AdminDa() throws SQLException {
         connection = ConnectionProvider.getConnectionProvider().getConnection();
     }
 

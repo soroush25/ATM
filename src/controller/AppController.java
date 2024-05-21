@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import src.model.da.UserDa;
+import src.model.da.CustomerDa;
 import src.model.entity.Customer;
 import src.model.entity.User;
 import src.model.entity.enums.Gender;
@@ -42,7 +42,7 @@ public class AppController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         adminCreate.setOnAction(event -> {
-            try (UserDa userDa = new UserDa()) {
+            try (CustomerDa customerDa = new CustomerDa()) {
                 RadioButton gender = (RadioButton) GenderToggle.getSelectedToggle();
                 Customer customer = new Customer()
                         .builder()
@@ -54,7 +54,7 @@ public class AppController implements Initializable {
                         .phone(Validator.phoneValidator(phonefield.getText(), "Invalid Phone!"))
                         .address(Validator.addressValidator(addtessfield.getText(), "Invalid Address!"))
                         .build();
-                userDa.save(customer);
+                customerDa.save(customer);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Saved!");
                 alert.show();
                 resetForm();
@@ -65,7 +65,7 @@ public class AppController implements Initializable {
         });
 
         adminEdit.setOnAction(event -> {
-            try (UserDa userDa = new UserDa()) {
+            try (CustomerDa customerDa = new CustomerDa()) {
                 RadioButton gender = (RadioButton) GenderToggle.getSelectedToggle();
                 Customer customer = new Customer()
                         .builder()
@@ -78,7 +78,7 @@ public class AppController implements Initializable {
                         .phone(Validator.phoneValidator(phonefield.getText(), "Invalid Phone!"))
                         .address(Validator.addressValidator(addressfield.getText(), "Invalid Address!"))
                         .build();
-                userDa.edit(customer);
+                customerDa.edit(customer);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Edited!");
                 alert.show();
                 resetForm();
@@ -89,8 +89,8 @@ public class AppController implements Initializable {
         });
 
         adminDelete.setOnAction(event -> {
-            try (UserDa userDa = new UserDa()) {
-                userDa.remove(Integer.parseInt(idfield.getText()));
+            try (CustomerDa customerDa = new CustomerDa()) {
+                customerDa.remove(Integer.parseInt(idfield.getText()));
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Deleted!");
                 alert.show();
                 resetForm();
@@ -135,8 +135,8 @@ public class AppController implements Initializable {
         emailfield.clear();
         phonefield.clear();
         addressfield.clear();
-        try (UserDa userDa = new UserDa()) {
-            showDataOnTable(userDa.findAll());
+        try (CustomerDa customerDa = new CustomerDa()) {
+            showDataOnTable(customerDa.findAll());
         }
     }
 }
