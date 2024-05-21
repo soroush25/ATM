@@ -23,7 +23,7 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
     @Override
     public Transaction save(Transaction transaction) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "INSERT INTO TRANSACTION (id, amount, deposit, account, transactionDateAndTime, transactionType) VALUES (?,?,?,?,?,?)"
+                "INSERT INTO TRANSACTION (id, amount, deposit, account_id, transactionDateAndTime, transactionType) VALUES (?,?,?,?,?,?)"
         );
         preparedStatement.setInt(1, transaction.getId());
         preparedStatement.setDouble(2, transaction.getAmount());
@@ -39,7 +39,7 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
     @Override
     public Transaction edit(Transaction transaction) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "UPDATE TRANSACTION SET amount = ?, deposit = ?, account = ?, transactionDateAndTime = ?, transactionType = ? WHERE id = ?"
+                "UPDATE TRANSACTION SET amount = ?, deposit = ?, account_id = ?, transactionDateAndTime = ?, transactionType = ? WHERE id = ?"
         );
         preparedStatement.setDouble(1, transaction.getAmount());
         preparedStatement.setDouble(2, Double.parseDouble(transaction.getDeposit()));
@@ -75,7 +75,7 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getDouble("AMOUNT"))
                     .deposit(resultSet.getString("DEPOSIT"))
-                    .account(resultSet.getString("ACCOUNT"))
+                    .account(resultSet.getString("ACCOUNT_ID"))
                     .transactionDateAndTime(resultSet.getString("transactionDateAndTime"))
                     .transactionType(resultSet.getString("transactionType"))
                     .build();
@@ -98,7 +98,7 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getDouble("AMOUNT"))
                     .deposit(resultSet.getString("DEPOSIT"))
-                    .account(resultSet.getString("ACCOUNT"))
+                    .account(resultSet.getString("ACCOUNT_ID"))
                     .transactionDateAndTime(resultSet.getString("transactionDateAndTime"))
                     .transactionType(resultSet.getString("transactionType"))
                     .build();
@@ -109,7 +109,7 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
     public List<Transaction> findByAccount(String account) throws Exception {
         List<Transaction> transactionList = new ArrayList<>();
 
-        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE Transaction.account LIKE? ORDER BY ID");
+        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE Transaction.account_id LIKE? ORDER BY ID");
         preparedStatement.setString(1, account + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -119,7 +119,7 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getDouble("AMOUNT"))
                     .deposit(resultSet.getString("DEPOSIT"))
-                    .account(resultSet.getString("ACCOUNT"))
+                    .account(resultSet.getString("account_id"))
                     .transactionDateAndTime(resultSet.getString("transactionDateAndTime"))
                     .transactionType(resultSet.getString("transactionType"))
                     .build();

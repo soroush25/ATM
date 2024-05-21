@@ -1,7 +1,7 @@
 package src.model.da;
 
 import lombok.extern.log4j.Log4j;
-import src.model.entity.Customer;
+import src.model.entity.Account;
 import src.model.entity.enums.City;
 import src.model.entity.enums.Gender;
 import src.model.tools.CRUD;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Log4j
-public class AccountDa implements AutoCloseable, CRUD<Customer> {
+public class AccountDa implements AutoCloseable, CRUD<Account> {
     private final Connection connection;
     private PreparedStatement preparedStatement;
 
@@ -21,45 +21,37 @@ public class AccountDa implements AutoCloseable, CRUD<Customer> {
     }
 
     @Override
-    public Customer save(Customer customer) throws Exception {
+    public Account save(Account account) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "INSERT INTO CUSTOMER (id, fname, lname, nid, gender, birth_date, city, phone, email, address) VALUES (?,?,?,?,?,?,?,?,?,?)"
+                "INSERT INTO ACCOUNT (accountNumber, balance, customer_id, bank, accountTypes) VALUES (?,?,?,?,?)"
         );
-        preparedStatement.setInt(1, customer.getId());
-        preparedStatement.setString(2, customer.getFirstName());
-        preparedStatement.setString(3, customer.getLastName());
-        preparedStatement.setString(4, customer.getNationalID());
-        preparedStatement.setString(5, customer.getGender().name());
-        preparedStatement.setDate(6, Date.valueOf(customer.getBirthDate()));
-        preparedStatement.setString(7, customer.getCity().name());
-        preparedStatement.setString(8, customer.getPhone());
-        preparedStatement.setString(9, customer.getEmail());
-        preparedStatement.setString(10, customer.getAddress());
+        preparedStatement.setInt(1, account.getAccountNumber());
+        preparedStatement.setInt(2, account.getBalance());
+        preparedStatement.setString(3, String.valueOf(account.getBank()));
+        preparedStatement.setString(4, String.valueOf(account.getAccountTypes()));
+        preparedStatement.setString(5, String.valueOf(account.getTransaction()));
         preparedStatement.execute();
-        return customer;
+        return account;
     }
 
     @Override
-    public Customer edit(Customer customer) throws Exception {
+    public Account edit(Account account) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "UPDATE CUSTOMER SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?, city = ?, phone = ?, email = ?, address = ? WHERE id = ?"
+                "UPDATE ACCOUNT SET balance = ?, customer_id = ?, bank = ?, accountTypes = ? WHERE AccountNumber = ?"
         );
-        preparedStatement.setString(1, customer.getFirstName());
-        preparedStatement.setString(2, customer.getLastName());
-        preparedStatement.setString(3, customer.getNationalID());
-        preparedStatement.setString(4, customer.getGender().name());
-        preparedStatement.setDate(5, Date.valueOf(customer.getBirthDate()));
-        preparedStatement.setString(6, customer.getCity().name());
-        preparedStatement.setString(7, customer.getPhone());
-        preparedStatement.setString(8, customer.getEmail());
-        preparedStatement.setString(9, customer.getAddress());
-        return customer;
+        preparedStatement.setInt(1, account.getBalance());
+        preparedStatement.setString(2, String.valueOf(account.getBank()));
+        preparedStatement.setString(3, String.valueOf(account.getAccountTypes()));
+        preparedStatement.setString(4, String.valueOf(account.getTransaction()));
+        preparedStatement.setInt(5, account.getAccountNumber());
+
+        return account;
     }
 
     @Override
-    public Customer remove(int id) throws Exception {
+    public Account remove(int id) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "DELETE FROM CUSTOMER WHERE ID=?"
+                "DELETE FROM ACCOUNT WHERE AccountNumber=?"
         );
         preparedStatement.setInt(1, id);
         preparedStatement.execute();
@@ -67,82 +59,67 @@ public class AccountDa implements AutoCloseable, CRUD<Customer> {
     }
 
     @Override
-    public List<Customer> findAll() throws Exception {
-        List<Customer> customerList = new ArrayList<>();
+    public List<Account> findAll() throws Exception {
+        List<Account> accountList = new ArrayList<>();
 
-        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER ORDER BY ID");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT ORDER BY AccountNumber");
         ResultSet resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
-            Customer customer = Customer
+            Account account = Account
                     .builder()
-                    .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
-                    .nationalID(resultSet.getString("NID"))
-                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
-                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
-                    .city(City.valueOf(resultSet.getString("CITY")))
-                    .phone(resultSet.getString("PHONE"))
-                    .email(resultSet.getString("EMAIL"))
-                    .address(resultSet.getString("ADDRESS"))
+                    .accountNumber(resultSet.getInt("AccountNumber"))
+                    .balance(resultSet.getInt("Balance"))
+                    .transaction(resultSet.getString("Customer_id"))
+                    .bank(resultSet.getString("Bank"))
+                    .accountTypes(resultSet.getString("AccountTypes"))
                     .build();
 
-            customerList.add(customer);
+            accountList.add(account);
         }
 
-        return customerList;
+        return accountList;
     }
 
     @Override
-    public Customer findById(int id) throws Exception {
-        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE ID=?");
+    public Account findById(int id) throws Exception {
+        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE AccountNumber=?");
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
-        Customer customer = null;
+        Account account = null;
         if (resultSet.next()) {
-            customer = Customer
+            account = Account
                     .builder()
-                    .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
-                    .nationalID(resultSet.getString("NID"))
-                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
-                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
-                    .city(City.valueOf(resultSet.getString("CITY")))
-                    .phone(resultSet.getString("PHONE"))
-                    .email(resultSet.getString("EMAIL"))
-                    .address(resultSet.getString("ADDRESS"))
+                    .accountNumber(resultSet.getInt("AccountNumber"))
+                    .balance(resultSet.getInt("Balance"))
+                    .transaction(resultSet.getString("Customer_id"))
+                    .bank(resultSet.getString("Bank"))
+                    .accountTypes(resultSet.getString("AccountTypes"))
                     .build();
         }
-        return customer;
+        return account;
     }
 
-    public List<Customer> findByFamily(String family) throws Exception {
-        List<Customer> customerList = new ArrayList<>();
+    public List<Account> findByAccountNumber(String accountNumber) throws Exception {
+        List<Account> accountList = new ArrayList<>();
 
-        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE lname LIKE? ORDER BY ID");
-        preparedStatement.setString(1, family + "%");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE Account.accountNumber LIKE? ORDER BY accountNumber");
+        preparedStatement.setString(1, accountNumber + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
-            Customer customer = Customer
+            Account account = Account
                     .builder()
-                    .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
-                    .nationalID(resultSet.getString("NID"))
-                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
-                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
-                    .city(City.valueOf(resultSet.getString("CITY")))
-                    .phone(resultSet.getString("PHONE"))
-                    .email(resultSet.getString("EMAIL"))
-                    .address(resultSet.getString("ADDRESS"))
+                    .accountNumber(resultSet.getInt("AccountNumber"))
+                    .balance(resultSet.getInt("Balance"))
+                    .transaction(resultSet.getString("Customer_id"))
+                    .bank(resultSet.getString("Bank"))
+                    .accountTypes(resultSet.getString("AccountTypes"))
                     .build();
 
-            customerList.add(customer);
+            accountList.add(account);
         }
-        return customerList;
+        return accountList;
     }
 
     @Override

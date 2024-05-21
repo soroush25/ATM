@@ -22,7 +22,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
     @Override
     public Admin save(Admin admin) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "INSERT INTO CUSTOMER (id, fname, lname, nid, gender, birth_date,  phone, email, address,permission) VALUES (?,?,?,?,?,?,?,?,?,?)"
+                "INSERT INTO ADMIN (id, fname, lname, nid, gender, birth_date,  phone, email, address, permission) VALUES (?,?,?,?,?,?,?,?,?,?)"
         );
         preparedStatement.setInt(1, admin.getId());
         preparedStatement.setString(2, admin.getFirstName());
@@ -35,7 +35,6 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         preparedStatement.setString(9, admin.getAddress());
         preparedStatement.setString(10, admin.getPermission());
 
-
         preparedStatement.execute();
         return admin;
     }
@@ -43,7 +42,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
     @Override
     public Admin edit(Admin admin) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "UPDATE CUSTOMER SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?,  phone = ?, email = ?, address = ?,permission = ? WHERE id = ?"
+                "UPDATE ADMIN SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?,  phone = ?, email = ?, address = ?, permission = ? WHERE id = ?"
         );
         preparedStatement.setString(1, admin.getFirstName());
         preparedStatement.setString(2, admin.getLastName());
@@ -53,6 +52,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         preparedStatement.setString(6, admin.getPhone());
         preparedStatement.setString(7, admin.getEmail());
         preparedStatement.setString(8, admin.getAddress());
+        preparedStatement.setString(9, admin.getPermission());
         return admin;
     }
 
