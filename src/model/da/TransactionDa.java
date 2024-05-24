@@ -48,7 +48,6 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         preparedStatement.setString(5, String.valueOf(transaction.getTransactionType()));
         preparedStatement.setInt(6, transaction.getId());
 
-
         return transaction;
     }
 
@@ -72,10 +71,10 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         while (resultSet.next()) {
             Transaction transaction = Transaction
                     .builder()
-                    .id(resultSet.getInt("ID"))
-                    .amount(resultSet.getDouble("AMOUNT"))
-                    .deposit(resultSet.getString("DEPOSIT"))
-                    .account(resultSet.getString("ACCOUNT_ID"))
+                    .id(resultSet.getInt("id"))
+                    .amount(resultSet.getDouble("amount"))
+                    .deposit(resultSet.getString("deposit"))
+                    .account(resultSet.getString("account_id"))
                     .transactionDateAndTime(resultSet.getString("transactionDateAndTime"))
                     .transactionType(resultSet.getString("transactionType"))
                     .build();
@@ -95,10 +94,10 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         if (resultSet.next()) {
             transaction = Transaction
                     .builder()
-                    .id(resultSet.getInt("ID"))
-                    .amount(resultSet.getDouble("AMOUNT"))
-                    .deposit(resultSet.getString("DEPOSIT"))
-                    .account(resultSet.getString("ACCOUNT_ID"))
+                    .id(resultSet.getInt("id"))
+                    .amount(resultSet.getDouble("amount"))
+                    .deposit(resultSet.getString("deposit"))
+                    .account(resultSet.getString("account_id"))
                     .transactionDateAndTime(resultSet.getString("transactionDateAndTime"))
                     .transactionType(resultSet.getString("transactionType"))
                     .build();
@@ -116,9 +115,9 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         while (resultSet.next()) {
             Transaction transaction = Transaction
                     .builder()
-                    .id(resultSet.getInt("ID"))
-                    .amount(resultSet.getDouble("AMOUNT"))
-                    .deposit(resultSet.getString("DEPOSIT"))
+                    .id(resultSet.getInt("id"))
+                    .amount(resultSet.getDouble("amount"))
+                    .deposit(resultSet.getString("deposit"))
                     .account(resultSet.getString("account_id"))
                     .transactionDateAndTime(resultSet.getString("transactionDateAndTime"))
                     .transactionType(resultSet.getString("transactionType"))

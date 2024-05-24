@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
-@SuperBuilder(toBuilder = true)
+@SuperBuilder
 
 public class User {
     private int id;

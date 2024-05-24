@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
-@SuperBuilder(toBuilder = true)
+@SuperBuilder
 
 public class Customer extends User {
     private City city;

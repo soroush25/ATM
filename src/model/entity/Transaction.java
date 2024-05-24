@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-@SuperBuilder(toBuilder = true)
+@SuperBuilder
 
 public class Transaction {
     private int id;

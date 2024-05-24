@@ -11,7 +11,7 @@ import src.model.entity.enums.Banks;
 @NoArgsConstructor
 @Getter
 @Setter
-@SuperBuilder(toBuilder = true)
+@SuperBuilder
 
 public class Account {
     private int accountNumber;
