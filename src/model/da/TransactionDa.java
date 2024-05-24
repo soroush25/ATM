@@ -1,13 +1,13 @@
 package src.model.da;
 
 import lombok.extern.log4j.Log4j;
+import src.model.entity.Account;
 import src.model.entity.Transaction;
-import src.model.entity.enums.City;
-import src.model.entity.enums.Gender;
+import src.model.entity.enums.TransactionTypes;
 import src.model.tools.CRUD;
 import src.model.tools.ConnectionProvider;
-
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         preparedStatement.setInt(1, transaction.getId());
         preparedStatement.setDouble(2, transaction.getAmount());
         preparedStatement.setDouble(3, Double.parseDouble(transaction.getDeposit()));
-        preparedStatement.setInt(4, Integer.parseInt(String.valueOf(transaction.getAccount())));
+        preparedStatement.setInt(4, transaction.getAccount().getAccountNumber());
         preparedStatement.setDate(5, Date.valueOf(String.valueOf(transaction.getTransactionDateAndTime())));
         preparedStatement.setString(6, String.valueOf(transaction.getTransactionType()));
 
@@ -43,7 +43,7 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         );
         preparedStatement.setDouble(1, transaction.getAmount());
         preparedStatement.setDouble(2, Double.parseDouble(transaction.getDeposit()));
-        preparedStatement.setInt(3, Integer.parseInt(String.valueOf(transaction.getAccount())));
+        preparedStatement.setInt(3, transaction.getAccount().getAccountNumber());
         preparedStatement.setDate(4, Date.valueOf(String.valueOf(transaction.getTransactionDateAndTime())));
         preparedStatement.setString(5, String.valueOf(transaction.getTransactionType()));
         preparedStatement.setInt(6, transaction.getId());
@@ -71,17 +71,15 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         while (resultSet.next()) {
             Transaction transaction = Transaction
                     .builder()
-                    .id(resultSet.getInt("id"))
-                    .amount(resultSet.getDouble("amount"))
-                    .deposit(resultSet.getString("deposit"))
-                    .account(resultSet.getString("account_id"))
-                    .transactionDateAndTime(resultSet.getString("transactionDateAndTime"))
-                    .transactionType(resultSet.getString("transactionType"))
+                    .id(resultSet.getInt("ID"))
+                    .amount(resultSet.getDouble("Amount"))
+                    .deposit(resultSet.getString("Deposit"))
+                    .account((Account)resultSet.getObject("Account_ID"))
+                    .transactionDateAndTime(LocalDateTime.parse(resultSet.getString("TransactionDateAndTime")))
+                    .transactionType(TransactionTypes.valueOf(resultSet.getString("TransactionType")))
                     .build();
-
             transactionList.add(transaction);
         }
-
         return transactionList;
     }
 
@@ -94,12 +92,12 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         if (resultSet.next()) {
             transaction = Transaction
                     .builder()
-                    .id(resultSet.getInt("id"))
-                    .amount(resultSet.getDouble("amount"))
-                    .deposit(resultSet.getString("deposit"))
-                    .account(resultSet.getString("account_id"))
-                    .transactionDateAndTime(resultSet.getString("transactionDateAndTime"))
-                    .transactionType(resultSet.getString("transactionType"))
+                    .id(resultSet.getInt("ID"))
+                    .amount(resultSet.getDouble("Amount"))
+                    .deposit(resultSet.getString("Deposit"))
+                    .account((Account)resultSet.getObject("Account_ID"))
+                    .transactionDateAndTime(LocalDateTime.parse(resultSet.getString("TransactionDateAndTime")))
+                    .transactionType(TransactionTypes.valueOf(resultSet.getString("TransactionType")))
                     .build();
         }
         return transaction;
@@ -115,14 +113,13 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         while (resultSet.next()) {
             Transaction transaction = Transaction
                     .builder()
-                    .id(resultSet.getInt("id"))
-                    .amount(resultSet.getDouble("amount"))
-                    .deposit(resultSet.getString("deposit"))
-                    .account(resultSet.getString("account_id"))
-                    .transactionDateAndTime(resultSet.getString("transactionDateAndTime"))
-                    .transactionType(resultSet.getString("transactionType"))
+                    .id(resultSet.getInt("ID"))
+                    .amount(resultSet.getDouble("Amount"))
+                    .deposit(resultSet.getString("Deposit"))
+                    .account((Account)resultSet.getObject("Account_ID"))
+                    .transactionDateAndTime(LocalDateTime.parse(resultSet.getString("TransactionDateAndTime")))
+                    .transactionType(TransactionTypes.valueOf(resultSet.getString("TransactionType")))
                     .build();
-
             transactionList.add(transaction);
         }
         return transactionList;
