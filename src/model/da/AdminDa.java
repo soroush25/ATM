@@ -22,7 +22,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
     @Override
     public Admin save(Admin admin) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "INSERT INTO ADMIN (id, fname, lname, nid, gender, birth_date,  phone, email, address, permission) VALUES (?,?,?,?,?,?,?,?,?,?)"
+                "INSERT INTO ADMIN (id, fname, lname, nid, gender, birth_date, phone, email, address, permission) VALUES (?,?,?,?,?,?,?,?,?,?)"
         );
         preparedStatement.setInt(1, admin.getId());
         preparedStatement.setString(2, admin.getFirstName());
@@ -34,7 +34,6 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         preparedStatement.setString(8, admin.getEmail());
         preparedStatement.setString(9, admin.getAddress());
         preparedStatement.setString(10, admin.getPermission());
-
         preparedStatement.execute();
         return admin;
     }
@@ -59,7 +58,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
     @Override
     public Admin remove(int id) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "DELETE FROM ADMIN WHERE ID=?"
+                "DELETE FROM ADMIN WHERE ID = ?"
         );
         preparedStatement.setInt(1, id);
         preparedStatement.execute();
@@ -69,7 +68,6 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
     @Override
     public List<Admin> findAll() throws Exception {
         List<Admin> adminList = new ArrayList<>();
-
         preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN ORDER BY ID");
         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -87,19 +85,17 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .address(resultSet.getString("ADDRESS"))
                     .permission(resultSet.getString("PERMISSION"))
                     .build();
-
             adminList.add(admin);
         }
-
         return adminList;
     }
 
     @Override
     public Admin findById(int id) throws Exception {
-        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE ID=?");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE ID = ?");
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
-        Admin admin  = null;
+        Admin admin = null;
         if (resultSet.next()) {
             admin = Admin
                     .builder()

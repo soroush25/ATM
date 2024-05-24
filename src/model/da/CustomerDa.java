@@ -23,7 +23,7 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
     @Override
     public Customer save(Customer customer) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "INSERT INTO CUSTOMER (id, fname, lname, nid, gender, birth_date, city, phone, email, address) VALUES (?,?,?,?,?,?,?,?,?,?)"
+                "INSERT INTO CUSTOMER (id, fname, lname, nid, gender, birth_date, phone, email, address, city) VALUES (?,?,?,?,?,?,?,?,?,?)"
         );
         preparedStatement.setInt(1, customer.getId());
         preparedStatement.setString(2, customer.getFirstName());
@@ -31,10 +31,10 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
         preparedStatement.setString(4, customer.getNationalID());
         preparedStatement.setString(5, customer.getGender().name());
         preparedStatement.setDate(6, Date.valueOf(customer.getBirthDate()));
-        preparedStatement.setString(7, customer.getCity().name());
-        preparedStatement.setString(8, customer.getPhone());
-        preparedStatement.setString(9, customer.getEmail());
-        preparedStatement.setString(10, customer.getAddress());
+        preparedStatement.setString(7, customer.getPhone());
+        preparedStatement.setString(8, customer.getEmail());
+        preparedStatement.setString(9, customer.getAddress());
+        preparedStatement.setString(10, customer.getCity().name());
         preparedStatement.execute();
         return customer;
     }
@@ -42,26 +42,25 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
     @Override
     public Customer edit(Customer customer) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "UPDATE CUSTOMER SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?, city = ?, phone = ?, email = ?, address = ? WHERE id = ?"
+                "UPDATE CUSTOMER SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?, phone = ?, email = ?, address = ?, city = ? WHERE id = ?"
         );
         preparedStatement.setString(1, customer.getFirstName());
         preparedStatement.setString(2, customer.getLastName());
         preparedStatement.setString(3, customer.getNationalID());
         preparedStatement.setString(4, customer.getGender().name());
         preparedStatement.setDate(5, Date.valueOf(customer.getBirthDate()));
-        preparedStatement.setString(6, customer.getCity().name());
-        preparedStatement.setString(7, customer.getPhone());
-        preparedStatement.setString(8, customer.getEmail());
-        preparedStatement.setString(9, customer.getAddress());
+        preparedStatement.setString(6, customer.getPhone());
+        preparedStatement.setString(7, customer.getEmail());
+        preparedStatement.setString(8, customer.getAddress());
+        preparedStatement.setString(9, customer.getCity().name());
         preparedStatement.setInt(10, customer.getId());
-
         return customer;
     }
 
     @Override
     public Customer remove(int id) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "DELETE FROM CUSTOMER WHERE ID=?"
+                "DELETE FROM CUSTOMER WHERE ID = ?"
         );
         preparedStatement.setInt(1, id);
         preparedStatement.execute();
@@ -84,21 +83,19 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .nationalID(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
-                    .city(City.valueOf(resultSet.getString("CITY")))
                     .phone(resultSet.getString("PHONE"))
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
+                    .city(City.valueOf(resultSet.getString("CITY")))
                     .build();
-
             customerList.add(customer);
         }
-
         return customerList;
     }
 
     @Override
     public Customer findById(int id) throws Exception {
-        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE ID=?");
+        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE ID = ?");
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         Customer customer = null;
@@ -111,10 +108,10 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .nationalID(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
-                    .city(City.valueOf(resultSet.getString("CITY")))
                     .phone(resultSet.getString("PHONE"))
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
+                    .city(City.valueOf(resultSet.getString("CITY")))
                     .build();
         }
         return customer;
@@ -122,7 +119,6 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
 
     public List<Customer> findByFamily(String family) throws Exception {
         List<Customer> customerList = new ArrayList<>();
-
         preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE lname LIKE? ORDER BY ID");
         preparedStatement.setString(1, family + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -136,10 +132,10 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .nationalID(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
-                    .city(City.valueOf(resultSet.getString("CITY")))
                     .phone(resultSet.getString("PHONE"))
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
+                    .city(City.valueOf(resultSet.getString("CITY")))
                     .build();
 
             customerList.add(customer);
