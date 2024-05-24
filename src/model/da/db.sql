@@ -49,4 +49,4 @@ create table Transaction
 create sequence customer_seq start with 1 increment by 1;
 create sequence admin_seq start with 1 increment by 1;
 create sequence account_seq start with 1 increment by 1;
-create sequence transaction_seq start with 1 increment by 1;​
+create sequence transaction_seq start with 1 increment by 1;

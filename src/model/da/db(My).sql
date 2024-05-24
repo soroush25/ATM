@@ -1,4 +1,3 @@
-create database MyDatabase;
 create table Customer
 (
     id         int primary key,
@@ -32,10 +31,10 @@ create table Account
 (
     accountNumber int primary key,
     balance       double,
-    customer_id   nvarchar(30),
+    customer_id   int,
     bank          nvarchar(10),
-    accountTypes  nvarchar(10)
---    FOREIGN KEY (customer_id) REFERENCES Customer(id)
+    accountTypes  nvarchar(10),
+    FOREIGN KEY (customer_id) REFERENCES Customer (id)
 );
 
 create table Transaction
@@ -44,7 +43,7 @@ create table Transaction
     amount                 double,
     deposit                double,
     transactionDateAndTime timestamp,
-    account_id             nvarchar(20),
-    transactionType        nvarchar(10)
---    FOREIGN KEY (account_id) REFERENCES Account (accountNumber)
+    account_id             int,
+    transactionType        nvarchar(10),
+    FOREIGN KEY (account_id) REFERENCES Account (accountNumber)
 );
