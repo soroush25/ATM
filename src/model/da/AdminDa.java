@@ -70,7 +70,6 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         List<Admin> adminList = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN ORDER BY ID");
         ResultSet resultSet = preparedStatement.executeQuery();
-
         while (resultSet.next()) {
             Admin admin = Admin
                     .builder()
@@ -116,11 +115,9 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
 
     public List<Admin> findByFamily(String family) throws Exception {
         List<Admin> adminList = new ArrayList<>();
-
         preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE lname LIKE? ORDER BY ID");
         preparedStatement.setString(1, family + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
-
         while (resultSet.next()) {
             Admin admin = Admin
                     .builder()
@@ -135,7 +132,6 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .address(resultSet.getString("ADDRESS"))
                     .permission(resultSet.getString("PERMISSION"))
                     .build();
-
             adminList.add(admin);
         }
         return adminList;

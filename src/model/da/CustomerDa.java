@@ -70,10 +70,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
     @Override
     public List<Customer> findAll() throws Exception {
         List<Customer> customerList = new ArrayList<>();
-
         preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER ORDER BY ID");
         ResultSet resultSet = preparedStatement.executeQuery();
-
         while (resultSet.next()) {
             Customer customer = Customer
                     .builder()
@@ -122,7 +120,6 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
         preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE lname LIKE? ORDER BY ID");
         preparedStatement.setString(1, family + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
-
         while (resultSet.next()) {
             Customer customer = Customer
                     .builder()
@@ -137,7 +134,6 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .address(resultSet.getString("ADDRESS"))
                     .city(City.valueOf(resultSet.getString("CITY")))
                     .build();
-
             customerList.add(customer);
         }
         return customerList;

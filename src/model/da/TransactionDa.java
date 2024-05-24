@@ -48,7 +48,6 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         preparedStatement.setDate(4, Date.valueOf(String.valueOf(transaction.getTransactionDateAndTime())));
         preparedStatement.setString(5, String.valueOf(transaction.getTransactionType()));
         preparedStatement.setInt(6, transaction.getId());
-
         return transaction;
     }
 
@@ -65,10 +64,8 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
     @Override
     public List<Transaction> findAll() throws Exception {
         List<Transaction> transactionList = new ArrayList<>();
-
         preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION ORDER BY ID");
         ResultSet resultSet = preparedStatement.executeQuery();
-
         while (resultSet.next()) {
             Transaction transaction = Transaction
                     .builder()
@@ -106,11 +103,9 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
 
     public List<Transaction> findByAccount(String account) throws Exception {
         List<Transaction> transactionList = new ArrayList<>();
-
         preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE Transaction.account_id LIKE? ORDER BY ID");
         preparedStatement.setString(1, account + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
-
         while (resultSet.next()) {
             Transaction transaction = Transaction
                     .builder()

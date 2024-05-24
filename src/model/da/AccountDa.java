@@ -45,7 +45,6 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         preparedStatement.setString(3, String.valueOf(account.getBank()));
         preparedStatement.setString(4, String.valueOf(account.getAccountTypes()));
         preparedStatement.setInt(5, account.getAccountNumber());
-
         return account;
     }
 
@@ -62,10 +61,8 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
     @Override
     public List<Account> findAll() throws Exception {
         List<Account> accountList = new ArrayList<>();
-
         preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT ORDER BY AccountNumber");
         ResultSet resultSet = preparedStatement.executeQuery();
-
         while (resultSet.next()) {
             Account account = Account
                     .builder()
@@ -101,11 +98,9 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
 
     public List<Account> findByCustomerID (String customer) throws Exception {
         List<Account> accountList = new ArrayList<>();
-
         preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE Account.customer_id LIKE? ORDER BY accountNumber");
         preparedStatement.setString(1, customer + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
-
         while (resultSet.next()) {
             Account account = Account
                     .builder()
