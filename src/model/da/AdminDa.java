@@ -27,7 +27,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         preparedStatement.setInt(1, admin.getId());
         preparedStatement.setString(2, admin.getFirstName());
         preparedStatement.setString(3, admin.getLastName());
-        preparedStatement.setString(4, admin.getNationalID());
+        preparedStatement.setString(4, admin.getNationalId());
         preparedStatement.setString(5, admin.getGender().name());
         preparedStatement.setDate(6, Date.valueOf(admin.getBirthDate()));
         preparedStatement.setString(7, admin.getPhone());
@@ -45,7 +45,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         );
         preparedStatement.setString(1, admin.getFirstName());
         preparedStatement.setString(2, admin.getLastName());
-        preparedStatement.setString(3, admin.getNationalID());
+        preparedStatement.setString(3, admin.getNationalId());
         preparedStatement.setString(4, admin.getGender().name());
         preparedStatement.setDate(5, Date.valueOf(admin.getBirthDate()));
         preparedStatement.setString(6, admin.getPhone());
@@ -76,7 +76,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .id(resultSet.getInt("ID"))
                     .firstName(resultSet.getString("NAME"))
                     .lastName(resultSet.getString("FAMILY"))
-                    .nationalID(resultSet.getString("NID"))
+                    .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
                     .phone(resultSet.getString("PHONE"))
@@ -101,7 +101,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .id(resultSet.getInt("ID"))
                     .firstName(resultSet.getString("NAME"))
                     .lastName(resultSet.getString("FAMILY"))
-                    .nationalID(resultSet.getString("NID"))
+                    .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
                     .phone(resultSet.getString("PHONE"))
@@ -124,7 +124,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .id(resultSet.getInt("ID"))
                     .firstName(resultSet.getString("NAME"))
                     .lastName(resultSet.getString("FAMILY"))
-                    .nationalID(resultSet.getString("NID"))
+                    .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
                     .phone(resultSet.getString("PHONE"))
@@ -136,6 +136,10 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         }
         return adminList;
     }
+
+//    todo : findByNationalId
+//    todo : findByUsername
+//    todo : findByUsernameAndPassword
 
     @Override
     public void close() throws Exception {

@@ -30,7 +30,7 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         preparedStatement.setDouble(2, transaction.getAmount());
         preparedStatement.setDouble(3, Double.parseDouble(transaction.getDeposit()));
         preparedStatement.setInt(4, transaction.getAccount().getAccountNumber());
-        preparedStatement.setDate(5, Date.valueOf(String.valueOf(transaction.getTransactionDateAndTime())));
+        preparedStatement.setDate(5, Date.valueOf(String.valueOf(transaction.getTransactionDateTime())));
         preparedStatement.setString(6, String.valueOf(transaction.getTransactionType()));
 
         preparedStatement.execute();
@@ -45,7 +45,7 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         preparedStatement.setDouble(1, transaction.getAmount());
         preparedStatement.setDouble(2, Double.parseDouble(transaction.getDeposit()));
         preparedStatement.setInt(3, transaction.getAccount().getAccountNumber());
-        preparedStatement.setDate(4, Date.valueOf(String.valueOf(transaction.getTransactionDateAndTime())));
+        preparedStatement.setDate(4, Date.valueOf(String.valueOf(transaction.getTransactionDateTime())));
         preparedStatement.setString(5, String.valueOf(transaction.getTransactionType()));
         preparedStatement.setInt(6, transaction.getId());
         return transaction;
@@ -73,7 +73,7 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .amount(resultSet.getDouble("Amount"))
                     .deposit(resultSet.getString("Deposit"))
                     .account((Account)resultSet.getObject("Account_ID"))
-                    .transactionDateAndTime(LocalDateTime.parse(resultSet.getString("TransactionDateAndTime")))
+                    .transactionDateTime(LocalDateTime.parse(resultSet.getString("TransactionDateAndTime")))
                     .transactionType(TransactionTypes.valueOf(resultSet.getString("TransactionType")))
                     .build();
             transactionList.add(transaction);
@@ -94,14 +94,14 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .amount(resultSet.getDouble("Amount"))
                     .deposit(resultSet.getString("Deposit"))
                     .account((Account)resultSet.getObject("Account_ID"))
-                    .transactionDateAndTime(LocalDateTime.parse(resultSet.getString("TransactionDateAndTime")))
+                    .transactionDateTime(LocalDateTime.parse(resultSet.getString("TransactionDateAndTime")))
                     .transactionType(TransactionTypes.valueOf(resultSet.getString("TransactionType")))
                     .build();
         }
         return transaction;
     }
 
-    public List<Transaction> findByAccount(String account) throws Exception {
+    public List<Transaction> findByAccountId(int accountId) throws Exception {
         List<Transaction> transactionList = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE Transaction.account_id LIKE? ORDER BY ID");
         preparedStatement.setString(1, account + "%");
@@ -113,13 +113,19 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .amount(resultSet.getDouble("Amount"))
                     .deposit(resultSet.getString("Deposit"))
                     .account((Account)resultSet.getObject("Account_ID"))
-                    .transactionDateAndTime(LocalDateTime.parse(resultSet.getString("TransactionDateAndTime")))
+                    .transactionDateTime(LocalDateTime.parse(resultSet.getString("TransactionDateAndTime")))
                     .transactionType(TransactionTypes.valueOf(resultSet.getString("TransactionType")))
                     .build();
             transactionList.add(transaction);
         }
         return transactionList;
     }
+
+//    todo : findBySourceAccountId
+//    todo : findByDestinationAccountId
+//    todo : findByDateTime
+//    todo : findByDateTimeRange(startDateTime, endDateTime)
+//    todo : findByDateTimeRange(startDateTime, endDateTime) Report
 
     @Override
     public void close() throws Exception {

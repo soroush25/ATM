@@ -20,6 +20,7 @@ public class Account {
     private Banks bank;
     private BankAccountTypes accountTypes;
 
+
     @Override
     public String toString() {
         return new Gson().toJson(this);

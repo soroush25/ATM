@@ -28,7 +28,7 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
         preparedStatement.setInt(1, customer.getId());
         preparedStatement.setString(2, customer.getFirstName());
         preparedStatement.setString(3, customer.getLastName());
-        preparedStatement.setString(4, customer.getNationalID());
+        preparedStatement.setString(4, customer.getNationalId());
         preparedStatement.setString(5, customer.getGender().name());
         preparedStatement.setDate(6, Date.valueOf(customer.getBirthDate()));
         preparedStatement.setString(7, customer.getPhone());
@@ -46,7 +46,7 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
         );
         preparedStatement.setString(1, customer.getFirstName());
         preparedStatement.setString(2, customer.getLastName());
-        preparedStatement.setString(3, customer.getNationalID());
+        preparedStatement.setString(3, customer.getNationalId());
         preparedStatement.setString(4, customer.getGender().name());
         preparedStatement.setDate(5, Date.valueOf(customer.getBirthDate()));
         preparedStatement.setString(6, customer.getPhone());
@@ -78,7 +78,7 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .id(resultSet.getInt("ID"))
                     .firstName(resultSet.getString("NAME"))
                     .lastName(resultSet.getString("FAMILY"))
-                    .nationalID(resultSet.getString("NID"))
+                    .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
                     .phone(resultSet.getString("PHONE"))
@@ -103,7 +103,7 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .id(resultSet.getInt("ID"))
                     .firstName(resultSet.getString("NAME"))
                     .lastName(resultSet.getString("FAMILY"))
-                    .nationalID(resultSet.getString("NID"))
+                    .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
                     .phone(resultSet.getString("PHONE"))
@@ -126,7 +126,7 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .id(resultSet.getInt("ID"))
                     .firstName(resultSet.getString("NAME"))
                     .lastName(resultSet.getString("FAMILY"))
-                    .nationalID(resultSet.getString("NID"))
+                    .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
                     .phone(resultSet.getString("PHONE"))
@@ -138,6 +138,10 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
         }
         return customerList;
     }
+
+//    todo : findByNationalId
+//    todo : findByUsername
+//    todo : findByUsernameAndPassword
 
     @Override
     public void close() throws Exception {

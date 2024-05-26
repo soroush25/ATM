@@ -18,8 +18,9 @@ public class Transaction {
     private int id;
     private Double amount;
     private String deposit;
-    private Account account;
-    private LocalDateTime transactionDateAndTime;
+    private Account sourceAccount;
+    private Account destinationAccount;
+    private LocalDateTime transactionDateTime;
     private TransactionTypes transactionType;
 
     @Override

@@ -96,7 +96,7 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         return account;
     }
 
-    public List<Account> findByCustomerID (String customer) throws Exception {
+    public List<Account> findByCustomerId (String customer) throws Exception {
         List<Account> accountList = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE Account.customer_id LIKE? ORDER BY accountNumber");
         preparedStatement.setString(1, customer + "%");
@@ -114,6 +114,9 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         }
         return accountList;
     }
+
+//    todo : findByBankName
+//    todo : findByAccountType
 
     @Override
     public void close() throws Exception {

@@ -18,13 +18,15 @@ public class User {
     private int id;
     private String firstName;
     private String lastName;
-    private String nationalID;
+    private String nationalId;
     private Gender gender;
     private LocalDate birthDate;
     private String email;
     private String phone;
     private String address;
-    private Account account;
+    private String username;
+    private String password;
+
 
     @Override
     public String toString() {
