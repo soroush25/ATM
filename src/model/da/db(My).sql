@@ -46,7 +46,7 @@ create table Transaction
     id                     int primary key,
     amount                 double,
     deposit                double,
-    transactionDateAndTime timestamp,
+    transactionDateTime timestamp,
     account_src             int,
     account_dst             int,
     transactionType        nvarchar(10),

@@ -1,5 +1,7 @@
 package src.model.tools;
 
+import src.model.entity.Transaction;
+
 import java.util.List;
 
 public interface CRUD<T> {

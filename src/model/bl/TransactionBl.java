@@ -70,15 +70,6 @@ public class TransactionBl implements CRUD<Transaction> {
                 throw new NotFoundException();
             }
         }
-    }    public Transaction findByDateTime(int id) throws Exception {
-        try (TransactionDa transactionDa = new TransactionDa()) {
-            Transaction transaction = transactionDa.findById(id);
-            if (transaction != null) {
-                return transaction;
-            } else {
-                throw new NotFoundException();
-            }
-        }
     }
 
     public List<Transaction> findBySourceAccountId(String sourceAccountId) throws Exception {
@@ -100,9 +91,33 @@ public class TransactionBl implements CRUD<Transaction> {
                 throw new NotFoundException();
             }
         }
-    }    public List<Transaction> findBySourceAccountId(String SourceAccountId) throws Exception {
+    }
+
+    public List<Transaction> findByDateTime(String transactionDateTime) throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
-            List<Transaction> transactionList = transactionDa.findBySourceAccountId(Integer.parseInt(SourceAccountId));
+            List<Transaction> transactionList = transactionDa.findByDateTime(Integer.parseInt(transactionDateTime));
+            if (!transactionList.isEmpty()) {
+                return transactionList;
+            } else {
+                throw new NotFoundException();
+            }
+        }
+    }
+
+    public List<Transaction> findByDateTimeRangeReport(String transactionDateTime) throws Exception {
+        try (TransactionDa transactionDa = new TransactionDa()) {
+            List<Transaction> transactionList = transactionDa.findByDateTimeRangeReport(Integer.parseInt(transactionDateTime));
+            if (!transactionList.isEmpty()) {
+                return transactionList;
+            } else {
+                throw new NotFoundException();
+            }
+        }
+    }
+
+    public List<Transaction> findByDateTime(String transactionDateTime) throws Exception {
+        try (TransactionDa transactionDa = new TransactionDa()) {
+            List<Transaction> transactionList = transactionDa.findBySourceAccountId(Integer.parseInt(transactionDateTime));
             if (!transactionList.isEmpty()) {
                 return transactionList;
             } else {
