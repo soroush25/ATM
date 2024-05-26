@@ -20,16 +20,16 @@
       <Button fx:id="adminCreate" layoutX="35.0" layoutY="100.0" mnemonicParsing="false" prefWidth="150.0" text="Create Account" textAlignment="CENTER" />
       <Button fx:id="adminDelete" layoutX="35.0" layoutY="200.0" mnemonicParsing="false" prefWidth="150.0" text="Delete Account" textAlignment="CENTER" />
       <Button fx:id="adminEdit" layoutX="35.0" layoutY="150.0" mnemonicParsing="false" prefWidth="150.0" text="Edit Account" textAlignment="CENTER" />
-      <TableView fx:id="allTable" layoutX="250.0" layoutY="35.0" prefHeight="312.0" prefWidth="315.0">
+      <TableView fx:id="allTable" layoutX="250.0" layoutY="35.0" prefHeight="312.0" prefWidth="385.0">
         <columns>
           <TableColumn fx:id="adminTableID" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="adminTableName" prefWidth="90.0" text="Name" />
             <TableColumn fx:id="adminTableBalance" prefWidth="75.0" text="Balance" />
-            <TableColumn fx:id="adminTableStatus" prefWidth="75.0" text="Status" />
+            <TableColumn fx:id="adminStatus" prefWidth="135.0" text="Account Type" />
         </columns>
       </TableView>
       <TextField fx:id="adminSearchField" layoutX="250.0" layoutY="350.0" prefHeight="27.0" prefWidth="275.0" promptText="Search" />
-      <Button fx:id="adminSearchBtn" layoutX="527.0" layoutY="350.0" mnemonicParsing="false" text="Go!" />
+      <Button fx:id="adminSearchBtn" layoutX="530.0" layoutY="350.0" mnemonicParsing="false" text="Go!" />
       <Button fx:id="adminBalance" layoutX="35.0" layoutY="250.0" mnemonicParsing="false" prefWidth="150.0" text="Edit Account Balance" textAlignment="CENTER" />
    </children>
 </Pane>

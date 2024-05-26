@@ -6,7 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import src.model.bl.CustomerBl;
 import src.model.da.CustomerDa;
+import src.model.entity.Account;
 import src.model.entity.Customer;
 import src.model.entity.User;
 import src.model.entity.enums.Gender;
@@ -18,7 +20,7 @@ import java.util.ResourceBundle;
 
 public class AppController implements Initializable {
     @FXML
-    private TextField passcodeField, adminSearchField;
+    private TextField passcodeField, adminSearchField, fnamefield, lnamefield, nidfield, emailfield, phonefield, addressfield, idfield;
 
     @FXML
     private RadioButton maletoggle, femaletoggle;
@@ -38,6 +40,12 @@ public class AppController implements Initializable {
     @FXML
     private TableColumn<User, String> adminTableName, adminTableBalance, adminTableStatus;
 
+    @FXML
+    private ComboBox citycmb;
+
+    @FXML
+    private DatePicker birthDatePicker;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -50,9 +58,10 @@ public class AppController implements Initializable {
                         .lastName(Validator.nameValidator(lnamefield.getText(), "Invalid Name!"))
                         .nationalID(Validator.nationalIDValidator(nidfield.getText(), "Invalid National ID!"))
                         .gender(Gender.valueOf(gender.getText()))
+                        .birthDate(birthDatePicker.getValue())
                         .email(Validator.emailValidator(emailfield.getText(), "Invalid Email!"))
                         .phone(Validator.phoneValidator(phonefield.getText(), "Invalid Phone!"))
-                        .address(Validator.addressValidator(addtessfield.getText(), "Invalid Address!"))
+                        .address(Validator.addressValidator(addressfield.getText(), "Invalid Address!"))
                         .build();
                 customerDa.save(customer);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Saved!");
@@ -102,10 +111,11 @@ public class AppController implements Initializable {
 
         allTable.setOnMouseClicked((event) -> {
             User user = allTable.getSelectionModel().getSelectedItem();
-            idcol.setText(String.valueOf(user.getId()));
-            fnamecol.setText(user.getFirstName());
-            lnamecol.setText(user.getLastName());
-            nidcol.setText(user.getNationalID());
+            Account account = allTable.getSelectionModel().getSelectedItem().getAccount();
+            adminTableID.setText(String.valueOf(user.getId()));
+            adminTableName.setText(user.getFirstName());
+            adminTableName.setText(user.getLastName());
+            adminTableBalance.setText(String.valueOf(account.getAccountTypes()));
             if (user.getGender().equals(Gender.Male)) {
                 maletoggle.setSelected(true);
             } else {
@@ -117,13 +127,13 @@ public class AppController implements Initializable {
         });
     }
 
-    private void showDataOnTable(List<User> userList) {
-        ObservableList<User> observableList = FXCollections.observableList(userList);
-
+    private void showDataOnTable(List<Customer> customerList) throws Exception {
+        ObservableList<Customer> observableList = FXCollections.observableList(customerList);
         adminTableID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        adminTableName.setCellValueFactory(new PropertyValueFactory<>("last name"));
+        adminTableName.setCellValueFactory(new PropertyValueFactory<>("name"));
         adminTableBalance.setCellValueFactory(new PropertyValueFactory<>("balance"));
-        adminTableStatus.setItems(observableList);
+        adminTableBalance.setCellValueFactory(new PropertyValueFactory<>("account type"));
+        adminTableStatus.setText(observableList.toString());
     }
 
     private void resetForm() throws Exception {
@@ -135,8 +145,6 @@ public class AppController implements Initializable {
         emailfield.clear();
         phonefield.clear();
         addressfield.clear();
-        try (CustomerDa customerDa = new CustomerDa()) {
-            showDataOnTable(customerDa.findAll());
-        }
+        showDataOnTable(CustomerBl.getCustomerBl().findAll());
     }
 }

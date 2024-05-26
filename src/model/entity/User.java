@@ -24,6 +24,7 @@ public class User {
     private String email;
     private String phone;
     private String address;
+    private Account account;
 
     @Override
     public String toString() {
