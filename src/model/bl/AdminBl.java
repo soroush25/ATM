@@ -1,7 +1,7 @@
 package src.model.bl;
 
 import lombok.Getter;
-import src.controller.exceptions.NoPersonFoundException;
+import src.controller.exceptions.NotFoundException;
 import src.model.da.AdminDa;
 import src.model.da.CustomerDa;
 import src.model.entity.Admin;
@@ -32,7 +32,7 @@ public class AdminBl implements CRUD<Admin> {
                 adminDa.edit(admin);
                 return admin;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -45,7 +45,7 @@ public class AdminBl implements CRUD<Admin> {
                 adminDa.remove(id);
                 return admin;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -57,7 +57,7 @@ public class AdminBl implements CRUD<Admin> {
             if (!perosnList.isEmpty()) {
                 return perosnList;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -69,7 +69,7 @@ public class AdminBl implements CRUD<Admin> {
             if (admin != null) {
                 return admin;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -80,7 +80,7 @@ public class AdminBl implements CRUD<Admin> {
             if (!adminList.isEmpty()) {
                 return adminList;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -90,7 +90,7 @@ public class AdminBl implements CRUD<Admin> {
             if (!adminList.isEmpty()) {
                 return adminList;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -101,7 +101,7 @@ public class AdminBl implements CRUD<Admin> {
             if (!adminList.isEmpty()) {
                 return adminList;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -112,7 +112,7 @@ public class AdminBl implements CRUD<Admin> {
             if (!adminList.isEmpty()) {
                 return adminList;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }

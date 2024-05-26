@@ -82,6 +82,7 @@ public class TransactionBl implements CRUD<Transaction> {
             }
         }
     }
+
     public List<Transaction> findByDestinationAccountId(String destinationAccountId) throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
             List<Transaction> transactionList = transactionDa.findByDestinationAccountId(Integer.parseInt(destinationAccountId));
@@ -104,20 +105,22 @@ public class TransactionBl implements CRUD<Transaction> {
         }
     }
 
-    public List<Transaction> findByDateTimeRangeReport(String transactionDateTime) throws Exception {
+    @Override
+    public Transaction findByDateTimeRange(String transactionDateTime) throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
-            List<Transaction> transactionList = transactionDa.findByDateTimeRangeReport(Integer.parseInt(transactionDateTime));
-            if (!transactionList.isEmpty()) {
-                return transactionList;
+            Transaction transaction = transactionDa.findByDateTimeRange(transactionDateTime);
+            if (transaction != null) {
+                return transaction;
             } else {
                 throw new NotFoundException();
             }
         }
     }
+}
 
-    public List<Transaction> findByDateTime(String transactionDateTime) throws Exception {
+    public List<Transaction> findByDateTimeRangeReport(String transactionDateTime) throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
-            List<Transaction> transactionList = transactionDa.findBySourceAccountId(Integer.parseInt(transactionDateTime));
+            List<Transaction> transactionList = transactionDa.findByDateTimeRangeReport(Integer.parseInt(transactionDateTime));
             if (!transactionList.isEmpty()) {
                 return transactionList;
             } else {
