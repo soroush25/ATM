@@ -137,6 +137,85 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         return adminList;
     }
 
+
+
+    public List<Admin> findByNationalId(String nationalId) throws Exception {
+        List<Admin> adminList = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE nid LIKE? ORDER BY ID");
+        preparedStatement.setString(1, nationalId + "%");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Admin admin = Admin
+                    .builder()
+                    .id(resultSet.getInt("ID"))
+                    .firstName(resultSet.getString("NAME"))
+                    .lastName(resultSet.getString("FAMILY"))
+                    .nationalId(resultSet.getString("NID"))
+                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
+                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
+                    .phone(resultSet.getString("PHONE"))
+                    .email(resultSet.getString("EMAIL"))
+                    .address(resultSet.getString("ADDRESS"))
+                    .permission(resultSet.getString("PERMISSION"))
+//                    .username(resultSet.getString("USERNAME"))
+//                    .password(resultSet.getString("PASSWORD"))
+                    .build();
+            adminList.add(admin);
+        }
+        return adminList;
+    }
+
+    public List<Admin> findByUsername(String username) throws Exception {
+        List<Admin> adminList = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE username LIKE? ORDER BY ID");
+        preparedStatement.setString(1, username + "%");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Admin admin = Admin
+                    .builder()
+                    .id(resultSet.getInt("ID"))
+                    .firstName(resultSet.getString("NAME"))
+                    .lastName(resultSet.getString("FAMILY"))
+                    .nationalId(resultSet.getString("NID"))
+                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
+                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
+                    .phone(resultSet.getString("PHONE"))
+                    .email(resultSet.getString("EMAIL"))
+                    .address(resultSet.getString("ADDRESS"))
+                    .permission(resultSet.getString("PERMISSION"))
+                    .username(resultSet.getString("USERNAME"))
+//                    .password(resultSet.getString("PASSWORD"))
+                    .build();
+            adminList.add(admin);
+        }
+        return adminList;
+    }
+    public List<Admin> findByUsernameAndPassword(String username,String password) throws Exception {
+        List<Admin> adminList = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE username,password LIKE? ORDER BY ID");
+        preparedStatement.setString(1, username + "%");
+        preparedStatement.setString(2, password + "%");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Admin admin = Admin
+                    .builder()
+                    .id(resultSet.getInt("ID"))
+                    .firstName(resultSet.getString("NAME"))
+                    .lastName(resultSet.getString("FAMILY"))
+                    .nationalId(resultSet.getString("NID"))
+                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
+                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
+                    .phone(resultSet.getString("PHONE"))
+                    .email(resultSet.getString("EMAIL"))
+                    .address(resultSet.getString("ADDRESS"))
+                    .permission(resultSet.getString("PERMISSION"))
+                    .username(resultSet.getString("USERNAME"))
+                    .password(resultSet.getString("PASSWORD"))
+                    .build();
+            adminList.add(admin);
+        }
+        return adminList;
+    }
 //    todo : findByNationalId
 //    todo : findByUsername
 //    todo : findByUsernameAndPassword
