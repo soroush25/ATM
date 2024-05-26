@@ -104,27 +104,27 @@ public class TransactionBl implements CRUD<Transaction> {
             }
         }
     }
-
-    public Transaction findByDateTimeRange(String transactionDateTime) throws Exception {
-        try (TransactionDa transactionDa = new TransactionDa()) {
-            Transaction transaction = transactionDa.findByDateTimeRange(transactionDateTime);
-            if (transaction != null) {
-                return transaction;
-            } else {
-                throw new NotFoundException();
-            }
-        }
-    }
-}
-
-    public List<Transaction> findByDateTimeRangeReport(String transactionDateTime) throws Exception {
-        try (TransactionDa transactionDa = new TransactionDa()) {
-            List<Transaction> transactionList = transactionDa.findByDateTimeRangeReport(Integer.parseInt(transactionDateTime));
-            if (!transactionList.isEmpty()) {
-                return transactionList;
-            } else {
-                throw new NotFoundException();
-            }
-        }
-    }
+//
+//    public Transaction findByDateTimeRange(String transactionDateTime) throws Exception {
+//        try (TransactionDa transactionDa = new TransactionDa()) {
+//            Transaction transaction = transactionDa.findByDateTimeRange(transactionDateTime);
+//            if (transaction != null) {
+//                return transaction;
+//            } else {
+//                throw new NotFoundException();
+//            }
+//        }
+//    }
+//}
+//
+//    public List<Transaction> findByDateTimeRangeReport(String transactionDateTime) throws Exception {
+//        try (TransactionDa transactionDa = new TransactionDa()) {
+//            List<Transaction> transactionList = transactionDa.findByDateTimeRangeReport(Integer.parseInt(transactionDateTime));
+//            if (!transactionList.isEmpty()) {
+//                return transactionList;
+//            } else {
+//                throw new NotFoundException();
+//            }
+//        }
+//    }
 }
