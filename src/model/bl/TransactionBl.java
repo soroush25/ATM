@@ -72,7 +72,6 @@ public class TransactionBl implements CRUD<Transaction> {
         }
     }
 
-    @Override
     public List<Transaction> findBySourceAccountId(String sourceAccountId) throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
             List<Transaction> transactionList = transactionDa.findBySourceAccountId(Integer.parseInt(sourceAccountId));
@@ -84,7 +83,6 @@ public class TransactionBl implements CRUD<Transaction> {
         }
     }
 
-    @Override
     public List<Transaction> findByDestinationAccountId(String destinationAccountId) throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
             List<Transaction> transactionList = transactionDa.findByDestinationAccountId(Integer.parseInt(destinationAccountId));
@@ -96,7 +94,6 @@ public class TransactionBl implements CRUD<Transaction> {
         }
     }
 
-    @Override
     public List<Transaction> findByDateTime(String transactionDateTime) throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
             List<Transaction> transactionList = transactionDa.findByDateTime(Integer.parseInt(transactionDateTime));
@@ -108,28 +105,25 @@ public class TransactionBl implements CRUD<Transaction> {
         }
     }
 
-//    @Override
-//    public Transaction findByDateTimeRange(String transactionDateTime) throws Exception {
-//        try (TransactionDa transactionDa = new TransactionDa()) {
-//            Transaction transaction = transactionDa.findByDateTimeRange(transactionDateTime);
-//            if (transaction != null) {
-//                return transaction;
-//            } else {
-//                throw new NotFoundException();
-//            }
-//        }
-//    }
-//}
-//
-//    @Override
-//    public List<Transaction> findByDateTimeRangeReport(String transactionDateTime) throws Exception {
-//        try (TransactionDa transactionDa = new TransactionDa()) {
-//            List<Transaction> transactionList = transactionDa.findByDateTimeRangeReport(Integer.parseInt(transactionDateTime));
-//            if (!transactionList.isEmpty()) {
-//                return transactionList;
-//            } else {
-//                throw new NotFoundException();
-//            }
-//        }
-//    }
+    public Transaction findByDateTimeRange(int start, int end) throws Exception {
+        try (TransactionDa transactionDa = new TransactionDa()) {
+            Transaction transaction = transactionDa.findByDateTimeRange(start, end);
+            if (transaction != null) {
+                return transaction;
+            } else {
+                throw new NotFoundException();
+            }
+        }
+    }
+
+    public List<Transaction> findByDateTimeRangeReport(int start, int end) throws Exception {
+        try (TransactionDa transactionDa = new TransactionDa()) {
+            List<Transaction> transactionList = transactionDa.findByDateTimeRangeReport(start, end);
+            if (!transactionList.isEmpty()) {
+                return transactionList;
+            } else {
+                throw new NotFoundException();
+            }
+        }
+    }
 }
