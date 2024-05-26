@@ -9,7 +9,9 @@ create table Customer
     city       varchar2(10),
     email      nvarchar2(30),
     phone      nvarchar2(30),
-    address    nvarchar2(30)
+    address    nvarchar2(30),
+    username   nvarchar2(10),
+    password   nvarchar2(10)
 );
 
 create table Admin
@@ -24,13 +26,16 @@ create table Admin
     email      nvarchar2(30),
     phone      nvarchar2(30),
     address    nvarchar2(30),
-    permission nvarchar2(10)
+    permission nvarchar2(10),
+    username   nvarchar2(10),
+    password   nvarchar2(10)
 );
 
 create table Account
 (
     accountNumber number primary key,
     balance       number,
+    customer_id   number,
     bank          nvarchar2(10),
     accountTypes  nvarchar2(10),
     customer_id references Customer
@@ -41,9 +46,11 @@ create table Transaction
     id                     number primary key,
     amount                 nvarchar2(30),
     deposit                nvarchar2(30),
-    transactionDateAndTime timestamp,
+    transactionDateTime    timestamp,
+    account_src            number,
+    account_dst            number,
     transactionType        nvarchar2(10),
-    account_id references account
+    account_id references  account
 );
 
 create sequence customer_seq start with 1 increment by 1;
