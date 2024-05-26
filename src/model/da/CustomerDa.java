@@ -112,8 +112,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
                     .city(City.valueOf(resultSet.getString("CITY")))
-                    .username(resultSet.getString("username"))
-                    .password(resultSet.getString("password"))
+                    .username(resultSet.getString("USERNAME"))
+                    .password(resultSet.getString("PASSWORD"))
                     .build();
         }
         return customer;
@@ -137,8 +137,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
                     .city(City.valueOf(resultSet.getString("CITY")))
-                    .username(resultSet.getString("username"))
-                    .password(resultSet.getString("password"))
+                    .username(resultSet.getString("USERNAME"))
+                    .password(resultSet.getString("PASSWORD"))
                     .build();
             customerList.add(customer);
         }
@@ -163,8 +163,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
                     .city(City.valueOf(resultSet.getString("CITY")))
-                    .username(resultSet.getString("username"))
-                    .password(resultSet.getString("password"))
+                    .username(resultSet.getString("USERNAME"))
+                    .password(resultSet.getString("PASSWORD"))
                     .build();
             customerList.add(customer);
         }
@@ -189,8 +189,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
                     .city(City.valueOf(resultSet.getString("CITY")))
-                    .username(resultSet.getString("username"))
-                    .password(resultSet.getString("password"))
+                    .username(resultSet.getString("USERNAME"))
+                    .password(resultSet.getString("PASSWORD"))
                     .build();
             customerList.add(customer);
         }
@@ -199,8 +199,9 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
 
     public List<Customer> findByUsernameAndPassword(String username, String password) throws Exception {
         List<Customer> customerList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE Customer.username and Customer.password LIKE? ORDER BY ID");
-        preparedStatement.setString(2, username + "%" + password);
+        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE Customer.username & Customer.password LIKE? ORDER BY ID");
+        preparedStatement.setString(1, username + "%");
+        preparedStatement.setString(2, password + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Customer customer = Customer
@@ -215,8 +216,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
                     .city(City.valueOf(resultSet.getString("CITY")))
-                    .username(resultSet.getString("username"))
-                    .password(resultSet.getString("password"))
+                    .username(resultSet.getString("USERNAME"))
+                    .password(resultSet.getString("PASSWORD"))
                     .build();
             customerList.add(customer);
         }

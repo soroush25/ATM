@@ -157,8 +157,8 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
                     .permission(resultSet.getString("PERMISSION"))
-//                    .username(resultSet.getString("USERNAME"))
-//                    .password(resultSet.getString("PASSWORD"))
+                    .username(resultSet.getString("USERNAME"))
+                    .password(resultSet.getString("PASSWORD"))
                     .build();
             adminList.add(admin);
         }
@@ -167,7 +167,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
 
     public List<Admin> findByUsername(String username) throws Exception {
         List<Admin> adminList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE username LIKE? ORDER BY ID");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE Admin.username LIKE? ORDER BY ID");
         preparedStatement.setString(1, username + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
@@ -184,7 +184,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .address(resultSet.getString("ADDRESS"))
                     .permission(resultSet.getString("PERMISSION"))
                     .username(resultSet.getString("USERNAME"))
-//                    .password(resultSet.getString("PASSWORD"))
+                    .password(resultSet.getString("PASSWORD"))
                     .build();
             adminList.add(admin);
         }
@@ -192,7 +192,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
     }
     public List<Admin> findByUsernameAndPassword(String username,String password) throws Exception {
         List<Admin> adminList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE username,password LIKE? ORDER BY ID");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE username AND Admin.password LIKE? ORDER BY ID");
         preparedStatement.setString(1, username + "%");
         preparedStatement.setString(2, password + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
