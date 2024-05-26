@@ -72,7 +72,6 @@ public class CustomerBl implements CRUD<Customer> {
         }
     }
 
-    @Override
     public List<Customer> findByFamily(String family) throws Exception {
         try (CustomerDa customerDa = new CustomerDa()) {
             List<Customer> customerList = customerDa.findByFamily(family);
@@ -84,7 +83,6 @@ public class CustomerBl implements CRUD<Customer> {
         }
     }
 
-    @Override
     public List<Customer> findByNationalId(String nationalId) throws Exception {
         try (CustomerDa customerDa = new CustomerDa()) {
             List<Customer> customerList = customerDa.findByNationalId(nationalId);
@@ -96,7 +94,6 @@ public class CustomerBl implements CRUD<Customer> {
         }
     }
 
-    @Override
     public List<Customer> findByUsername(String username) throws Exception {
         try (CustomerDa customerDa = new CustomerDa()) {
             List<Customer> customerList = customerDa.findByUsername(username);
@@ -108,7 +105,6 @@ public class CustomerBl implements CRUD<Customer> {
         }
     }
 
-    @Override
     public List<Customer> findByUsernameAndPassword(String username, String password) throws Exception {
         try (CustomerDa customerDa = new CustomerDa()) {
             List<Customer> customerList = customerDa.findByUsernameAndPassword(username, password);

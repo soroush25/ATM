@@ -49,7 +49,6 @@ public class AccountBl implements CRUD<Account> {
     }
 
 
-
     @Override
     public List<Account> findAll() throws Exception {
         try (AccountDa accountDa = new AccountDa()) {
@@ -61,6 +60,7 @@ public class AccountBl implements CRUD<Account> {
             }
         }
     }
+
     @Override
     public Account findById(int id) throws Exception {
         try (AccountDa accountDa = new AccountDa()) {
@@ -72,7 +72,7 @@ public class AccountBl implements CRUD<Account> {
             }
         }
     }
-    @Override
+
     public List<Account> findByCustomerId(String customer) throws Exception {
         try (AccountDa accountDa = new AccountDa()) {
             List<Account> accountList = accountDa.findByCustomerId(customer);
@@ -83,7 +83,7 @@ public class AccountBl implements CRUD<Account> {
             }
         }
     }
-    @Override
+
     public List<Account> findByBankName(String customer) throws Exception {
         try (AccountDa accountDa = new AccountDa()) {
             List<Account> accountList = accountDa.findByBankName(customer);
@@ -94,7 +94,7 @@ public class AccountBl implements CRUD<Account> {
             }
         }
     }
-    @Override
+
     public List<Account> findByAccountType(String customer) throws Exception {
         try (AccountDa accountDa = new AccountDa()) {
             List<Account> accountList = accountDa.findByAccountType(customer);
@@ -105,5 +105,4 @@ public class AccountBl implements CRUD<Account> {
             }
         }
     }
-
 }
