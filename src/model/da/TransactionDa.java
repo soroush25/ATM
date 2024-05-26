@@ -105,10 +105,10 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         return transaction;
     }
 
-    public List<Transaction> findBySourceAccountId(int accountId) throws Exception {
+    public List<Transaction> findBySourceAccountId(int sourceAccountId) throws Exception {
         List<Transaction> transactionList = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE Transaction.account_src LIKE? ORDER BY ID");
-        preparedStatement.setString(1, accountId + "%");
+        preparedStatement.setString(1, sourceAccountId + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Transaction transaction = Transaction
@@ -126,10 +126,10 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         return transactionList;
     }
 
-    public List<Transaction> findByDestinationAccountId(int accountId) throws Exception {
+    public List<Transaction> findByDestinationAccountId(int destinationAccountId) throws Exception {
         List<Transaction> transactionList = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE Transaction.account_dst LIKE? ORDER BY ID");
-        preparedStatement.setString(1, accountId + "%");
+        preparedStatement.setString(1, destinationAccountId + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Transaction transaction = Transaction
@@ -147,10 +147,10 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         return transactionList;
     }
 
-    public List<Transaction> findByDateTime(int accountId) throws Exception {
+    public List<Transaction> findByDateTime(int transactionDateTime) throws Exception {
         List<Transaction> transactionList = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE Transaction.transactionDateAndTime LIKE? ORDER BY ID");
-        preparedStatement.setString(1, accountId + "%");
+        preparedStatement.setString(1, transactionDateTime + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Transaction transaction = Transaction
