@@ -10,8 +10,8 @@ public class AdminTest {
     public static void main(String[] args) throws Exception {
         Admin admin = Admin
                 .builder()
-                .username("ali")
-                .password("alipour")
+                .firstName("ali")
+                .lastName("reza")
                 .gender(Gender.Male)
                 .birthDate(LocalDate.now())
                 .build();
