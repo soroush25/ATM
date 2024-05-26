@@ -114,6 +114,44 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         }
         return accountList;
     }
+    public List<Account> findByBankName(String customer) throws Exception {
+        List<Account> accountList = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE Account.bank LIKE? ORDER BY accountNumber");
+        preparedStatement.setString(1, customer + "%");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Account account = Account
+                    .builder()
+                    .accountNumber(resultSet.getInt("AccountNumber"))
+                    .balance(resultSet.getInt("Balance"))
+                    .customer((Customer) resultSet.getObject("Customer_id"))
+                    .bank(Banks.valueOf(resultSet.getString("Bank")))
+                    .accountTypes(BankAccountTypes.valueOf(resultSet.getString("AccountTypes")))
+                    .build();
+            accountList.add(account);
+        }
+        return accountList;
+    }
+
+    public List<Account> findByAccountType(String customer) throws Exception {
+        List<Account> accountList = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE Account.accountTypes LIKE? ORDER BY accountNumber");
+        preparedStatement.setString(1, customer + "%");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Account account = Account
+                    .builder()
+                    .accountNumber(resultSet.getInt("AccountNumber"))
+                    .balance(resultSet.getInt("Balance"))
+                    .customer((Customer) resultSet.getObject("Customer_id"))
+                    .bank(Banks.valueOf(resultSet.getString("Bank")))
+                    .accountTypes(BankAccountTypes.valueOf(resultSet.getString("AccountTypes")))
+                    .build();
+            accountList.add(account);
+        }
+        return accountList;
+    }
+
 
 //    todo : findByBankName
 //    todo : findByAccountType
@@ -123,4 +161,8 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         preparedStatement.close();
         connection.close();
     }
-}
+
+
+
+
+    }
