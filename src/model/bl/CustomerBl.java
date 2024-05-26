@@ -1,7 +1,7 @@
 package src.model.bl;
 
 import lombok.Getter;
-import src.controller.exceptions.NoPersonFoundException;
+import src.controller.exceptions.NotFoundException;
 import src.model.da.CustomerDa;
 import src.model.entity.Customer;
 import src.model.tools.CRUD;
@@ -30,7 +30,7 @@ public class CustomerBl implements CRUD<Customer> {
                 customerDa.edit(customer);
                 return customer;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -43,7 +43,7 @@ public class CustomerBl implements CRUD<Customer> {
                 customerDa.remove(id);
                 return customer;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -55,7 +55,7 @@ public class CustomerBl implements CRUD<Customer> {
             if (!perosnList.isEmpty()) {
                 return perosnList;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -67,7 +67,7 @@ public class CustomerBl implements CRUD<Customer> {
             if (customer != null) {
                 return customer;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -78,7 +78,7 @@ public class CustomerBl implements CRUD<Customer> {
             if (!customerList.isEmpty()) {
                 return customerList;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
