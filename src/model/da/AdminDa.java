@@ -68,7 +68,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
     @Override
     public List<Admin> findAll() throws Exception {
         List<Admin> adminList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN ORDER BY ID");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN ORDER BY id");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Admin admin = Admin
@@ -91,7 +91,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
 
     @Override
     public Admin findById(int id) throws Exception {
-        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE ID = ?");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE id = ?");
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         Admin admin = null;
@@ -115,7 +115,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
 
     public List<Admin> findByFamily(String family) throws Exception {
         List<Admin> adminList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE lname LIKE? ORDER BY ID");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE Admin.lname LIKE? ORDER BY ID");
         preparedStatement.setString(1, family + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
@@ -141,7 +141,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
 
     public List<Admin> findByNationalId(String nationalId) throws Exception {
         List<Admin> adminList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE nid LIKE? ORDER BY ID");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE Admin.nid LIKE? ORDER BY ID");
         preparedStatement.setString(1, nationalId + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
@@ -192,9 +192,10 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
     }
     public List<Admin> findByUsernameAndPassword(String username,String password) throws Exception {
         List<Admin> adminList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE username AND Admin.password LIKE? ORDER BY ID");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE Admin.username LIKE? ORDER BY ID");
         preparedStatement.setString(1, username + "%");
-        preparedStatement.setString(2, password + "%");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE Admin.password LIKE? ORDER BY ID");
+        preparedStatement.setString(1, password + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Admin admin = Admin
