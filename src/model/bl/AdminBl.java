@@ -74,6 +74,7 @@ public class AdminBl implements CRUD<Admin> {
         }
     }
 
+    @Override
     public List<Admin> findByFamily(String family) throws Exception {
         try (AdminDa adminDa = new AdminDa()) {
             List<Admin> adminList = adminDa.findByFamily(family);
@@ -84,6 +85,8 @@ public class AdminBl implements CRUD<Admin> {
             }
         }
     }
+
+    @Override
     public List<Admin> findByNationalId(String nationalId) throws Exception {
         try (AdminDa adminDa = new AdminDa()) {
             List<Admin> adminList = adminDa.findByNationalId(nationalId);
@@ -95,6 +98,7 @@ public class AdminBl implements CRUD<Admin> {
         }
     }
 
+    @Override
     public List<Admin> findByUsername(String username) throws Exception {
         try (AdminDa adminDa = new AdminDa()) {
             List<Admin> adminList = adminDa.findByUsername(username);
@@ -106,6 +110,7 @@ public class AdminBl implements CRUD<Admin> {
         }
     }
 
+    @Override
     public List<Admin> findByUsernameAndPassword(String username,String password) throws Exception {
         try (AdminDa adminDa = new AdminDa()) {
             List<Admin> adminList = adminDa.findByUsernameAndPassword(password,username);

@@ -1,7 +1,7 @@
 package src.model.bl;
 
 import lombok.Getter;
-import src.controller.exceptions.NoPersonFoundException;
+import src.controller.exceptions.NotFoundException;
 import src.model.da.AccountDa;
 import src.model.entity.Account;
 import src.model.tools.CRUD;
@@ -30,7 +30,7 @@ public class AccountBl implements CRUD<Account> {
                 accountDa.edit(account);
                 return account;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -43,7 +43,7 @@ public class AccountBl implements CRUD<Account> {
                 accountDa.remove(id);
                 return account;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -57,7 +57,7 @@ public class AccountBl implements CRUD<Account> {
             if (!accountList.isEmpty()) {
                 return accountList;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -68,7 +68,7 @@ public class AccountBl implements CRUD<Account> {
             if (account != null) {
                 return account;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -79,7 +79,7 @@ public class AccountBl implements CRUD<Account> {
             if (!accountList.isEmpty()) {
                 return accountList;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -90,7 +90,7 @@ public class AccountBl implements CRUD<Account> {
             if (!accountList.isEmpty()) {
                 return accountList;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
@@ -101,7 +101,7 @@ public class AccountBl implements CRUD<Account> {
             if (!accountList.isEmpty()) {
                 return accountList;
             } else {
-                throw new NoPersonFoundException();
+                throw new NotFoundException();
             }
         }
     }
