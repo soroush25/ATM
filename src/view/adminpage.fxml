@@ -25,7 +25,7 @@
           <TableColumn fx:id="adminTableID" text="ID" />
           <TableColumn fx:id="adminTableName" text="Name" />
             <TableColumn fx:id="adminTableBalance" text="Balance" />
-            <TableColumn fx:id="adminStatus" text="Type" />
+            <TableColumn fx:id="adminAccountType" text="Type" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

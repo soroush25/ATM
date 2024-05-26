@@ -26,7 +26,7 @@ public class AppController implements Initializable {
     private RadioButton maletoggle, femaletoggle;
 
     @FXML
-    private ToggleGroup GenderToggle;
+    private ToggleGroup genderToggle;
 
     @FXML
     private Button goCustomerPage, goAdminPage, passcodeBtn, goMenu, userTransfer, userBalance, userWithdrawal, userReport, adminPasscode, adminCreate, adminDelete, adminEdit, adminSearchBtn, adminBalance;
@@ -38,7 +38,7 @@ public class AppController implements Initializable {
     private TableColumn<User, Integer> adminTableID;
 
     @FXML
-    private TableColumn<User, String> adminTableName, adminTableBalance, adminTableStatus;
+    private TableColumn<User, String> adminTableName, adminTableBalance, adminAccountType;
 
     @FXML
     private ComboBox citycmb;
@@ -51,9 +51,10 @@ public class AppController implements Initializable {
 
         adminCreate.setOnAction(event -> {
             try (CustomerDa customerDa = new CustomerDa()) {
-                RadioButton gender = (RadioButton) GenderToggle.getSelectedToggle();
+                RadioButton gender = (RadioButton) genderToggle.getSelectedToggle();
                 Customer customer = new Customer()
                         .builder()
+                        .id(Integer.parseInt(idfield.getText()))
                         .firstName(Validator.nameValidator(fnamefield.getText(), "Invalid Name!"))
                         .lastName(Validator.nameValidator(lnamefield.getText(), "Invalid Name!"))
                         .nationalID(Validator.nationalIDValidator(nidfield.getText(), "Invalid National ID!"))
@@ -75,7 +76,7 @@ public class AppController implements Initializable {
 
         adminEdit.setOnAction(event -> {
             try (CustomerDa customerDa = new CustomerDa()) {
-                RadioButton gender = (RadioButton) GenderToggle.getSelectedToggle();
+                RadioButton gender = (RadioButton) genderToggle.getSelectedToggle();
                 Customer customer = new Customer()
                         .builder()
                         .id(Integer.parseInt(idfield.getText()))
@@ -133,7 +134,7 @@ public class AppController implements Initializable {
         adminTableName.setCellValueFactory(new PropertyValueFactory<>("name"));
         adminTableBalance.setCellValueFactory(new PropertyValueFactory<>("balance"));
         adminTableBalance.setCellValueFactory(new PropertyValueFactory<>("account type"));
-        adminTableStatus.setText(observableList.toString());
+        adminAccountType.setText(observableList.toString());
     }
 
     private void resetForm() throws Exception {
