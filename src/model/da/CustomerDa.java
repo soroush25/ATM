@@ -85,6 +85,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
                     .city(City.valueOf(resultSet.getString("CITY")))
+                    .username(resultSet.getString("username"))
+                    .password(resultSet.getString("password"))
                     .build();
             customerList.add(customer);
         }
@@ -110,6 +112,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
                     .city(City.valueOf(resultSet.getString("CITY")))
+                    .username(resultSet.getString("username"))
+                    .password(resultSet.getString("password"))
                     .build();
         }
         return customer;
@@ -133,6 +137,86 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
                     .city(City.valueOf(resultSet.getString("CITY")))
+                    .username(resultSet.getString("username"))
+                    .password(resultSet.getString("password"))
+                    .build();
+            customerList.add(customer);
+        }
+        return customerList;
+    }
+
+    public List<Customer> findByNationalId(String nationalId) throws Exception {
+        List<Customer> customerList = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE nid LIKE? ORDER BY ID");
+        preparedStatement.setString(1, nationalId + "%");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Customer customer = Customer
+                    .builder()
+                    .id(resultSet.getInt("ID"))
+                    .firstName(resultSet.getString("NAME"))
+                    .lastName(resultSet.getString("FAMILY"))
+                    .nationalId(resultSet.getString("NID"))
+                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
+                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
+                    .phone(resultSet.getString("PHONE"))
+                    .email(resultSet.getString("EMAIL"))
+                    .address(resultSet.getString("ADDRESS"))
+                    .city(City.valueOf(resultSet.getString("CITY")))
+                    .username(resultSet.getString("username"))
+                    .password(resultSet.getString("password"))
+                    .build();
+            customerList.add(customer);
+        }
+        return customerList;
+    }
+
+    public List<Customer> findByUsername(String username) throws Exception {
+        List<Customer> customerList = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE Customer.username LIKE? ORDER BY ID");
+        preparedStatement.setString(1, username + "%");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Customer customer = Customer
+                    .builder()
+                    .id(resultSet.getInt("ID"))
+                    .firstName(resultSet.getString("NAME"))
+                    .lastName(resultSet.getString("FAMILY"))
+                    .nationalId(resultSet.getString("NID"))
+                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
+                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
+                    .phone(resultSet.getString("PHONE"))
+                    .email(resultSet.getString("EMAIL"))
+                    .address(resultSet.getString("ADDRESS"))
+                    .city(City.valueOf(resultSet.getString("CITY")))
+                    .username(resultSet.getString("username"))
+                    .password(resultSet.getString("password"))
+                    .build();
+            customerList.add(customer);
+        }
+        return customerList;
+    }
+
+    public List<Customer> findByUsernameAndPassword(String username, String password) throws Exception {
+        List<Customer> customerList = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE Customer.username and Customer.password LIKE? ORDER BY ID");
+        preparedStatement.setString(2, username + "%" + password);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Customer customer = Customer
+                    .builder()
+                    .id(resultSet.getInt("ID"))
+                    .firstName(resultSet.getString("NAME"))
+                    .lastName(resultSet.getString("FAMILY"))
+                    .nationalId(resultSet.getString("NID"))
+                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
+                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
+                    .phone(resultSet.getString("PHONE"))
+                    .email(resultSet.getString("EMAIL"))
+                    .address(resultSet.getString("ADDRESS"))
+                    .city(City.valueOf(resultSet.getString("CITY")))
+                    .username(resultSet.getString("username"))
+                    .password(resultSet.getString("password"))
                     .build();
             customerList.add(customer);
         }

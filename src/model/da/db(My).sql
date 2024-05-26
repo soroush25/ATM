@@ -9,7 +9,9 @@ create table Customer
     city       varchar(10),
     email      nvarchar(30),
     phone      nvarchar(30),
-    address    nvarchar(30)
+    address    nvarchar(30),
+    username   nvarchar(10),
+    password   nvarchar(10)
 );
 
 create table Admin
@@ -24,7 +26,9 @@ create table Admin
     email      nvarchar(30),
     phone      nvarchar(30),
     address    nvarchar(30),
-    permission varchar(10)
+    permission varchar(10),
+    username   nvarchar(10),
+    password   nvarchar(10)
 );
 
 create table Account
