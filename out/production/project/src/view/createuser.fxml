@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:controller="src.controller.AppController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="464.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane layoutX="68.0" layoutY="98.0" prefHeight="467.0" prefWidth="328.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="114.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.0" minWidth="10.0" prefWidth="193.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="First Name" />
+            <Label layoutX="10.0" layoutY="15.0" text="Last Name" GridPane.rowIndex="1" />
+            <Label layoutX="10.0" layoutY="45.0" text="National ID" GridPane.rowIndex="2" />
+            <Label layoutX="10.0" layoutY="75.0" text="Gender" GridPane.rowIndex="3" />
+            <Label layoutX="10.0" layoutY="105.0" text="BirthDate" GridPane.rowIndex="4" />
+            <Label layoutX="10.0" layoutY="135.0" text="Email" GridPane.rowIndex="5" />
+            <Label layoutX="10.0" layoutY="181.0" text="Phone Number" GridPane.rowIndex="6" />
+            <Label text="Address" GridPane.rowIndex="8" />
+            <TextField fx:id="fnamefield" GridPane.columnIndex="1" />
+            <TextField fx:id="lnamefield" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="nidfield" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="emailfield" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="phonefield" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="addressfield" prefHeight="63.0" prefWidth="193.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <HBox prefHeight="42.0" prefWidth="292.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <RadioButton fx:id="maletoggle" mnemonicParsing="false" selected="true" text="Male">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="genderToggle" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="femaletoggle" mnemonicParsing="false" selected="true" text="Female" toggleGroup="$genderToggle">
+                     <HBox.margin>
+                        <Insets left="55.0" />
+                     </HBox.margin>
+                  </RadioButton>
+               </children>
+            </HBox>
+            <DatePicker fx:id="birthDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="City" GridPane.rowIndex="7" />
+            <ComboBox fx:id="citycmb" prefHeight="31.0" prefWidth="194.0" promptText="City" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+         </children>
+      </GridPane>
+      <HBox layoutX="68.0" layoutY="583.0" prefHeight="31.0" prefWidth="328.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="90.0" text="Save" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="90.0" text="Edit">
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </Button>
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="90.0" text="Remove">
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <Label layoutX="109.0" layoutY="35.0" prefHeight="40.0" prefWidth="247.0" text="Customer Add Page">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

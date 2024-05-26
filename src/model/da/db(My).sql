@@ -43,7 +43,8 @@ create table Transaction
     amount                 double,
     deposit                double,
     transactionDateAndTime timestamp,
-    account_id             int,
+    account_src             int,
+    account_dst             int,
     transactionType        nvarchar(10),
-    FOREIGN KEY (account_id) REFERENCES Account (accountNumber)
+    FOREIGN KEY (account_src) REFERENCES Account (accountNumber)
 );
