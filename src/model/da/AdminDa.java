@@ -21,6 +21,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
 
     @Override
     public Admin save(Admin admin) throws Exception {
+        admin.setId(ConnectionProvider.getConnectionProvider().getNextId("admin_seq"));
         preparedStatement = connection.prepareStatement(
                 "INSERT INTO ADMIN (id, fname, lname, nid, gender, birth_date, phone, email, address, permission) VALUES (?,?,?,?,?,?,?,?,?,?)"
         );

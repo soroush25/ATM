@@ -17,8 +17,8 @@ import java.time.LocalDate;
 
 public class Admin extends User {
     private String permission ;
-    private String username;
-    private String password;
+
+
     @Override
     public String toString() {
         return new Gson().toJson(this);

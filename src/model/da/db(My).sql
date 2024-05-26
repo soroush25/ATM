@@ -30,6 +30,7 @@ create table Admin
     username   nvarchar(10),
     password   nvarchar(10)
 );
+create sequence admin_seq start with 1 increment by 1;
 
 create table Account
 (

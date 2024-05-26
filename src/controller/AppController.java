@@ -112,11 +112,11 @@ public class AppController implements Initializable {
 
         allTable.setOnMouseClicked((event) -> {
             User user = allTable.getSelectionModel().getSelectedItem();
-            Account account = allTable.getSelectionModel().getSelectedItem().getAccount();
+//            Account account = allTable.getSelectionModel().getSelectedItem().getAccount();
             adminTableID.setText(String.valueOf(user.getId()));
             adminTableName.setText(user.getFirstName());
             adminTableName.setText(user.getLastName());
-            adminTableBalance.setText(String.valueOf(account.getAccountTypes()));
+//            adminTableBalance.setText(String.valueOf(account.getAccountTypes()));
             if (user.getGender().equals(Gender.Male)) {
                 maletoggle.setSelected(true);
             } else {
