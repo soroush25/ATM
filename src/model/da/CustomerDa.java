@@ -22,6 +22,7 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
 
     @Override
     public Customer save(Customer customer) throws Exception {
+        customer.setId(ConnectionProvider.getConnectionProvider().getNextId("customer_seq"));
         preparedStatement = connection.prepareStatement(
                 "INSERT INTO CUSTOMER (id, fname, lname, nid, gender, birth_date, phone, email, address, city) VALUES (?,?,?,?,?,?,?,?,?,?)"
         );

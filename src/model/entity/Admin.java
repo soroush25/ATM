@@ -15,9 +15,19 @@ import java.time.LocalDate;
 @Setter
 @SuperBuilder
 
-public class Admin extends User {
+public class Admin {
+    private int id;
+    private String firstName;
+    private String lastName;
+    private String nationalId;
+    private Gender gender;
+    private LocalDate birthDate;
+    private String email;
+    private String phone;
+    private String address;
+    private String username;
+    private String password;
     private String permission ;
-
 
     @Override
     public String toString() {

@@ -23,6 +23,7 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
 
     @Override
     public Account save(Account account) throws Exception {
+        account.setAccountNumber(ConnectionProvider.getConnectionProvider().getNextId("account_seq"));
         preparedStatement = connection.prepareStatement(
                 "INSERT INTO ACCOUNT (accountNumber, balance, customer_id, bank, accountTypes) VALUES (?,?,?,?,?)"
         );

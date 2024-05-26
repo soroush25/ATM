@@ -23,6 +23,7 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
 
     @Override
     public Transaction save(Transaction transaction) throws Exception {
+        transaction.setId(ConnectionProvider.getConnectionProvider().getNextId("transaction_seq"));
         preparedStatement = connection.prepareStatement(
                 "INSERT INTO TRANSACTION (id, amount, deposit, account_src, account_dst, transactionDateTime, transactionType) VALUES (?,?,?,?,?,?,?)"
         );

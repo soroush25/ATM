@@ -35,10 +35,9 @@ create table Account
 (
     accountNumber number primary key,
     balance       number,
-    customer_id   number,
+    customer_id   number references Customer,
     bank          nvarchar2(10),
-    accountTypes  nvarchar2(10),
-    customer_id references Customer
+    accountTypes  nvarchar2(10)
 );
 
 create table Transaction
@@ -47,10 +46,9 @@ create table Transaction
     amount                 nvarchar2(30),
     deposit                nvarchar2(30),
     transactionDateTime    timestamp,
-    account_src            number,
+    account_src            number references account,
     account_dst            number,
-    transactionType        nvarchar2(10),
-    account_id references  account
+    transactionType        nvarchar2(10)
 );
 
 create sequence customer_seq start with 1 increment by 1;

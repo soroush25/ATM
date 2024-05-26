@@ -53,6 +53,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         preparedStatement.setString(7, admin.getEmail());
         preparedStatement.setString(8, admin.getAddress());
         preparedStatement.setString(9, admin.getPermission());
+        preparedStatement.setInt(10, admin.getId());
         return admin;
     }
 

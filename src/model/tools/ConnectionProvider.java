@@ -14,8 +14,8 @@ public class ConnectionProvider {
     }
 
     public Connection getConnection() throws SQLException {
-        basicDataSource.setDriverClassName("mysql.cj.jdbc.Driver");
-        basicDataSource.setUrl("jdbc:mysql://localhost:3306");
+        basicDataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+        basicDataSource.setUrl("jdbc:oracle:thin:@10.211.55.6:1522:XE");
         basicDataSource.setUsername("user1");
         basicDataSource.setPassword("1234");
         basicDataSource.setMinIdle(5);
