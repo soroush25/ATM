@@ -34,7 +34,6 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         preparedStatement.setInt(5, transaction.getDestinationAccount().getAccountNumber());
         preparedStatement.setDate(6, Date.valueOf(String.valueOf(transaction.getTransactionDateTime())));
         preparedStatement.setString(7, String.valueOf(transaction.getTransactionType()));
-
         preparedStatement.execute();
         return transaction;
     }
@@ -51,6 +50,7 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         preparedStatement.setDate(5, Date.valueOf(String.valueOf(transaction.getTransactionDateTime())));
         preparedStatement.setString(6, String.valueOf(transaction.getTransactionType()));
         preparedStatement.setInt(7, transaction.getId());
+        preparedStatement.execute();
         return transaction;
     }
 

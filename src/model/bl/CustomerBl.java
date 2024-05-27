@@ -105,14 +105,14 @@ public class CustomerBl implements CRUD<Customer> {
         }
     }
 
-    public List<Customer> findByUsernameAndPassword(String username, String password) throws Exception {
-        try (CustomerDa customerDa = new CustomerDa()) {
-            List<Customer> customerList = customerDa.findByUsernameAndPassword(username, password);
-            if (!customerList.isEmpty()) {
-                return customerList;
-            } else {
-                throw new NotFoundException();
-            }
-        }
-    }
+//    public List<Customer> findByUsernameAndPassword(String username, String password) throws Exception {
+//        try (CustomerDa customerDa = new CustomerDa()) {
+//            List<Customer> customerList = customerDa.findByUsernameAndPassword(username, password);
+//            if (!customerList.isEmpty()) {
+//                return customerList;
+//            } else {
+//                throw new NotFoundException();
+//            }
+//        }
+//    }
 }

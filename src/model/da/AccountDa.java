@@ -46,6 +46,7 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         preparedStatement.setString(3, String.valueOf(account.getBank()));
         preparedStatement.setString(4, String.valueOf(account.getAccountTypes()));
         preparedStatement.setInt(5, account.getAccountNumber());
+        preparedStatement.execute();
         return account;
     }
 

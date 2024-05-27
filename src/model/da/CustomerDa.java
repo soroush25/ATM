@@ -24,7 +24,7 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
     public Customer save(Customer customer) throws Exception {
         customer.setId(ConnectionProvider.getConnectionProvider().getNextId("customer_seq"));
         preparedStatement = connection.prepareStatement(
-                "INSERT INTO CUSTOMER (id, fname, lname, nid, gender, birth_date, phone, email, address, city) VALUES (?,?,?,?,?,?,?,?,?,?)"
+                "INSERT INTO CUSTOMER (id, fname, lname, nid, gender, birth_date, phone, email, address, city, username, password) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
         );
         preparedStatement.setInt(1, customer.getId());
         preparedStatement.setString(2, customer.getFirstName());
@@ -36,6 +36,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
         preparedStatement.setString(8, customer.getEmail());
         preparedStatement.setString(9, customer.getAddress());
         preparedStatement.setString(10, customer.getCity().name());
+        preparedStatement.setString(11, customer.getUsername());
+        preparedStatement.setString(12, customer.getPassword());
         preparedStatement.execute();
         return customer;
     }
@@ -43,7 +45,7 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
     @Override
     public Customer edit(Customer customer) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "UPDATE CUSTOMER SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?, phone = ?, email = ?, address = ?, city = ? WHERE id = ?"
+                "UPDATE CUSTOMER SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?, phone = ?, email = ?, address = ?, city = ?, username = ?, password = ? WHERE id = ?"
         );
         preparedStatement.setString(1, customer.getFirstName());
         preparedStatement.setString(2, customer.getLastName());
@@ -54,7 +56,10 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
         preparedStatement.setString(7, customer.getEmail());
         preparedStatement.setString(8, customer.getAddress());
         preparedStatement.setString(9, customer.getCity().name());
-        preparedStatement.setInt(10, customer.getId());
+        preparedStatement.setString(10, customer.getUsername());
+        preparedStatement.setString(11, customer.getPassword());
+        preparedStatement.setInt(12, customer.getId());
+        preparedStatement.execute();
         return customer;
     }
 
@@ -77,8 +82,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
             Customer customer = Customer
                     .builder()
                     .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
+                    .firstName(resultSet.getString("FNAME"))
+                    .lastName(resultSet.getString("LNAME"))
                     .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
@@ -86,8 +91,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
                     .city(City.valueOf(resultSet.getString("CITY")))
-                    .username(resultSet.getString("username"))
-                    .password(resultSet.getString("password"))
+                    .username(resultSet.getString("USERNAME"))
+                    .password(resultSet.getString("PASSWORD"))
                     .build();
             customerList.add(customer);
         }
@@ -104,8 +109,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
             customer = Customer
                     .builder()
                     .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
+                    .firstName(resultSet.getString("FNAME"))
+                    .lastName(resultSet.getString("LNAME"))
                     .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
@@ -129,8 +134,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
             Customer customer = Customer
                     .builder()
                     .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
+                    .firstName(resultSet.getString("FNAME"))
+                    .lastName(resultSet.getString("LNAME"))
                     .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
@@ -155,8 +160,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
             Customer customer = Customer
                     .builder()
                     .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
+                    .firstName(resultSet.getString("FNAME"))
+                    .lastName(resultSet.getString("LNAME"))
                     .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
@@ -181,8 +186,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
             Customer customer = Customer
                     .builder()
                     .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
+                    .firstName(resultSet.getString("FNAME"))
+                    .lastName(resultSet.getString("LNAME"))
                     .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
@@ -197,33 +202,33 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
         }
         return customerList;
     }
-
-    public List<Customer> findByUsernameAndPassword(String username, String password) throws Exception {
-        List<Customer> customerList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE Customer.username & Customer.password LIKE? ORDER BY ID");
-        preparedStatement.setString(1, username + "%");
-        preparedStatement.setString(2, password + "%");
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            Customer customer = Customer
-                    .builder()
-                    .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
-                    .nationalId(resultSet.getString("NID"))
-                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
-                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
-                    .phone(resultSet.getString("PHONE"))
-                    .email(resultSet.getString("EMAIL"))
-                    .address(resultSet.getString("ADDRESS"))
-                    .city(City.valueOf(resultSet.getString("CITY")))
-                    .username(resultSet.getString("USERNAME"))
-                    .password(resultSet.getString("PASSWORD"))
-                    .build();
-            customerList.add(customer);
-        }
-        return customerList;
-    }
+//
+//    public List<Customer> findByUsernameAndPassword(String username, String password) throws Exception {
+//        List<Customer> customerList = new ArrayList<>();
+//        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE Customer.username & Customer.password LIKE? ORDER BY ID");
+//        preparedStatement.setString(1, username + "%");
+//        preparedStatement.setString(2, password + "%");
+//        ResultSet resultSet = preparedStatement.executeQuery();
+//        while (resultSet.next()) {
+//            Customer customer = Customer
+//                    .builder()
+//                    .id(resultSet.getInt("ID"))
+//                    .firstName(resultSet.getString("FNAME"))
+//                    .lastName(resultSet.getString("LNAME"))
+//                    .nationalId(resultSet.getString("NID"))
+//                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
+//                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
+//                    .phone(resultSet.getString("PHONE"))
+//                    .email(resultSet.getString("EMAIL"))
+//                    .address(resultSet.getString("ADDRESS"))
+//                    .city(City.valueOf(resultSet.getString("CITY")))
+//                    .username(resultSet.getString("USERNAME"))
+//                    .password(resultSet.getString("PASSWORD"))
+//                    .build();
+//            customerList.add(customer);
+//        }
+//        return customerList;
+//    }
 
 //    todo : findByNationalId
 //    todo : findByUsername

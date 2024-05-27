@@ -23,7 +23,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
     public Admin save(Admin admin) throws Exception {
         admin.setId(ConnectionProvider.getConnectionProvider().getNextId("admin_seq"));
         preparedStatement = connection.prepareStatement(
-                "INSERT INTO ADMIN (id, fname, lname, nid, gender, birth_date, phone, email, address, permission) VALUES (?,?,?,?,?,?,?,?,?,?)"
+                "INSERT INTO ADMIN (id, fname, lname, nid, gender, birth_date, phone, email, address, permission, username, password) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
         );
         preparedStatement.setInt(1, admin.getId());
         preparedStatement.setString(2, admin.getFirstName());
@@ -35,6 +35,8 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         preparedStatement.setString(8, admin.getEmail());
         preparedStatement.setString(9, admin.getAddress());
         preparedStatement.setString(10, admin.getPermission());
+        preparedStatement.setString(11, admin.getUsername());
+        preparedStatement.setString(12, admin.getPassword());
         preparedStatement.execute();
         return admin;
     }
@@ -42,7 +44,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
     @Override
     public Admin edit(Admin admin) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "UPDATE ADMIN SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?,  phone = ?, email = ?, address = ?, permission = ? WHERE id = ?"
+                "UPDATE ADMIN SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?,  phone = ?, email = ?, address = ?, permission = ?, username = ?, password =? WHERE id = ?"
         );
         preparedStatement.setString(1, admin.getFirstName());
         preparedStatement.setString(2, admin.getLastName());
@@ -53,7 +55,10 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         preparedStatement.setString(7, admin.getEmail());
         preparedStatement.setString(8, admin.getAddress());
         preparedStatement.setString(9, admin.getPermission());
+        preparedStatement.setString(10, admin.getUsername());
+        preparedStatement.setString(11, admin.getPassword());
         preparedStatement.setInt(10, admin.getId());
+        preparedStatement.execute();
         return admin;
     }
 
@@ -76,8 +81,8 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
             Admin admin = Admin
                     .builder()
                     .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
+                    .firstName(resultSet.getString("FNAME"))
+                    .lastName(resultSet.getString("LNAME"))
                     .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
@@ -85,6 +90,8 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
                     .permission(resultSet.getString("PERMISSION"))
+                    .username(resultSet.getString("USERNAME"))
+                    .password(resultSet.getString("PASSWORD"))
                     .build();
             adminList.add(admin);
         }
@@ -93,7 +100,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
 
     @Override
     public Admin findById(int id) throws Exception {
-        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE id = ?");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE ID = ?");
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         Admin admin = null;
@@ -101,8 +108,8 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
             admin = Admin
                     .builder()
                     .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
+                    .firstName(resultSet.getString("FNAME"))
+                    .lastName(resultSet.getString("LNAME"))
                     .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
@@ -110,6 +117,8 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
                     .permission(resultSet.getString("PERMISSION"))
+                    .username(resultSet.getString("USERNAME"))
+                    .password(resultSet.getString("PASSWORD"))
                     .build();
         }
         return admin;
@@ -124,8 +133,8 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
             Admin admin = Admin
                     .builder()
                     .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
+                    .firstName(resultSet.getString("FNAME"))
+                    .lastName(resultSet.getString("LNAME"))
                     .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
@@ -133,6 +142,8 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
                     .permission(resultSet.getString("PERMISSION"))
+                    .username(resultSet.getString("USERNAME"))
+                    .password(resultSet.getString("PASSWORD"))
                     .build();
             adminList.add(admin);
         }
@@ -150,8 +161,8 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
             Admin admin = Admin
                     .builder()
                     .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
+                    .firstName(resultSet.getString("FNAME"))
+                    .lastName(resultSet.getString("LNAME"))
                     .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
@@ -176,8 +187,8 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
             Admin admin = Admin
                     .builder()
                     .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
+                    .firstName(resultSet.getString("FNAME"))
+                    .lastName(resultSet.getString("LNAME"))
                     .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
@@ -194,17 +205,16 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
     }
     public List<Admin> findByUsernameAndPassword(String username,String password) throws Exception {
         List<Admin> adminList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE Admin.username LIKE? ORDER BY ID");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE Admin.username LIKE? and Admin.password LIKE? ORDER BY ID");
         preparedStatement.setString(1, username + "%");
-        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE Admin.password LIKE? ORDER BY ID");
-        preparedStatement.setString(1, password + "%");
+        preparedStatement.setString(2, password + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Admin admin = Admin
                     .builder()
                     .id(resultSet.getInt("ID"))
-                    .firstName(resultSet.getString("NAME"))
-                    .lastName(resultSet.getString("FAMILY"))
+                    .firstName(resultSet.getString("FNAME"))
+                    .lastName(resultSet.getString("LNAME"))
                     .nationalId(resultSet.getString("NID"))
                     .gender(Gender.valueOf(resultSet.getString("GENDER")))
                     .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
