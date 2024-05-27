@@ -109,7 +109,7 @@ public class AdminBl implements CRUD<Admin> {
 
     public List<Admin> findByUsernameAndPassword(String username,String password) throws Exception {
         try (AdminDa adminDa = new AdminDa()) {
-            List<Admin> adminList = adminDa.findByUsernameAndPassword(password,username);
+            List<Admin> adminList = adminDa.findByUsernameAndPassword(username, password);
             if (!adminList.isEmpty()) {
                 return adminList;
             } else {

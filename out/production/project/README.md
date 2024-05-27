@@ -1,1 +1,1 @@
-ATM Project by Me and Mr.Mehrsam Abedi
+ATM Project by Soroush Shahriari and Mehrsam Abedi

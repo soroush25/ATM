@@ -22,7 +22,6 @@ create table Admin
     nid        nvarchar2(10),
     gender     varchar2(6),
     birth_date date,
-    city       varchar2(10),
     email      nvarchar2(30),
     phone      nvarchar2(30),
     address    nvarchar2(30),
