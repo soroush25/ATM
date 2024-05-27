@@ -100,8 +100,8 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
 
     public List<Account> findByCustomerId (String customer) throws Exception {
         List<Account> accountList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE Account.customer_id LIKE? ORDER BY accountNumber");
-        preparedStatement.setString(1, customer + "%");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE customer_id LIKE? ORDER BY accountNumber");
+        preparedStatement.setString(1, customer);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Account account = Account
@@ -116,10 +116,10 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         }
         return accountList;
     }
-    public List<Account> findByBankName(String customer) throws Exception {
+    public List<Account> findByBankName(String bank) throws Exception {
         List<Account> accountList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE Account.bank LIKE? ORDER BY accountNumber");
-        preparedStatement.setString(1, customer + "%");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE bank LIKE? ORDER BY accountNumber");
+        preparedStatement.setString(1, bank + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Account account = Account
@@ -135,10 +135,10 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         return accountList;
     }
 
-    public List<Account> findByAccountType(String customer) throws Exception {
+    public List<Account> findByAccountType(String types) throws Exception {
         List<Account> accountList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE Account.accountTypes LIKE? ORDER BY accountNumber");
-        preparedStatement.setString(1, customer + "%");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE accountTypes LIKE? ORDER BY accountNumber");
+        preparedStatement.setString(1, types + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Account account = Account

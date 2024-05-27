@@ -179,8 +179,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
 
     public List<Customer> findByUsername(String username) throws Exception {
         List<Customer> customerList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE Customer.username LIKE? ORDER BY ID");
-        preparedStatement.setString(1, username + "%");
+        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE username LIKE? ORDER BY ID");
+        preparedStatement.setString(1, username);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Customer customer = Customer
@@ -202,33 +202,33 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
         }
         return customerList;
     }
-//
-//    public List<Customer> findByUsernameAndPassword(String username, String password) throws Exception {
-//        List<Customer> customerList = new ArrayList<>();
-//        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE Customer.username & Customer.password LIKE? ORDER BY ID");
-//        preparedStatement.setString(1, username + "%");
-//        preparedStatement.setString(2, password + "%");
-//        ResultSet resultSet = preparedStatement.executeQuery();
-//        while (resultSet.next()) {
-//            Customer customer = Customer
-//                    .builder()
-//                    .id(resultSet.getInt("ID"))
-//                    .firstName(resultSet.getString("FNAME"))
-//                    .lastName(resultSet.getString("LNAME"))
-//                    .nationalId(resultSet.getString("NID"))
-//                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
-//                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
-//                    .phone(resultSet.getString("PHONE"))
-//                    .email(resultSet.getString("EMAIL"))
-//                    .address(resultSet.getString("ADDRESS"))
-//                    .city(City.valueOf(resultSet.getString("CITY")))
-//                    .username(resultSet.getString("USERNAME"))
-//                    .password(resultSet.getString("PASSWORD"))
-//                    .build();
-//            customerList.add(customer);
-//        }
-//        return customerList;
-//    }
+
+    public List<Customer> findByUsernameAndPassword(String username, String password) throws Exception {
+        List<Customer> customerList = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE username in ? AND password in ? ORDER BY ID");
+        preparedStatement.setString(1, username);
+        preparedStatement.setString(2, password);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Customer customer = Customer
+                    .builder()
+                    .id(resultSet.getInt("ID"))
+                    .firstName(resultSet.getString("FNAME"))
+                    .lastName(resultSet.getString("LNAME"))
+                    .nationalId(resultSet.getString("NID"))
+                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
+                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
+                    .phone(resultSet.getString("PHONE"))
+                    .email(resultSet.getString("EMAIL"))
+                    .address(resultSet.getString("ADDRESS"))
+                    .city(City.valueOf(resultSet.getString("CITY")))
+                    .username(resultSet.getString("USERNAME"))
+                    .password(resultSet.getString("PASSWORD"))
+                    .build();
+            customerList.add(customer);
+        }
+        return customerList;
+    }
 
 //    todo : findByNationalId
 //    todo : findByUsername
