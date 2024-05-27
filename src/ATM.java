@@ -8,7 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
-public class MyApp extends Application {
+public class ATM extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
