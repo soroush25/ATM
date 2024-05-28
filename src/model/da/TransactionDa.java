@@ -167,8 +167,8 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         return transactionList;
     }
 
-    public Transaction findByDateTimeRange(String start, String end) throws Exception {
-        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE Transaction.transactionDateTime BETWEEN ? and ? ORDER BY ID");
+    public Transaction findByDateTimeRange(Timestamp start, Timestamp end) throws Exception {
+        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE transactionDateTime BETWEEN ? and ? ORDER BY ID");
         // todo:?
         preparedStatement.setString(1, String.valueOf(start));
         preparedStatement.setString(2, String.valueOf(end));
@@ -189,9 +189,9 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         return transaction;
     }
 
-    public List<Transaction> findByDateTimeRangeReport(int start, int end) throws Exception {
+    public List<Transaction> findByDateTimeRangeReport(Timestamp start, Timestamp end) throws Exception {
         List<Transaction> transactionList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE Transaction.transactionDateTime BETWEEN ? AND ? ORDER BY ID");
+        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE transactionDateTime BETWEEN ? AND ? ORDER BY ID");
         preparedStatement.setString(1, String.valueOf(start));
         preparedStatement.setString(2, String.valueOf(end));
         ResultSet resultSet = preparedStatement.executeQuery();
