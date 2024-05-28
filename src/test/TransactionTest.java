@@ -14,8 +14,8 @@ public class TransactionTest {
                 .amount(100D)
                 .deposit("100")
                 .transactionType(TransactionTypes.transfer)
-                .destinationAccount("115")
-                .sourceAccount("120")
+                .destinationAccount(null)
+                .sourceAccount(null)
                 //to-do: dst account & src account not working
                 .transactionDateTime(LocalDateTime.now())
                 .build();

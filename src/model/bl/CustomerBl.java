@@ -83,33 +83,33 @@ public class CustomerBl implements CRUD<Customer> {
         }
     }
 
-    public List<Customer> findByNationalId(String nationalId) throws Exception {
+    public Customer findByNationalId(String nationalId) throws Exception {
         try (CustomerDa customerDa = new CustomerDa()) {
-            List<Customer> customerList = customerDa.findByNationalId(nationalId);
-            if (!customerList.isEmpty()) {
-                return customerList;
+            Customer customer = customerDa.findByNationalId(nationalId);
+            if (customer != null) {
+                return customer;
             } else {
                 throw new NotFoundException();
             }
         }
     }
 
-    public List<Customer> findByUsername(String username) throws Exception {
+    public Customer findByUsername(String username) throws Exception {
         try (CustomerDa customerDa = new CustomerDa()) {
-            List<Customer> customerList = customerDa.findByUsername(username);
-            if (!customerList.isEmpty()) {
-                return customerList;
+            Customer customer = customerDa.findByUsername(username);
+            if (customer != null) {
+                return customer;
             } else {
                 throw new NotFoundException();
             }
         }
     }
 
-    public List<Customer> findByUsernameAndPassword(String username, String password) throws Exception {
+    public Customer findByUsernameAndPassword(String username, String password) throws Exception {
         try (CustomerDa customerDa = new CustomerDa()) {
-            List<Customer> customerList = customerDa.findByUsernameAndPassword(username, password);
-            if (!customerList.isEmpty()) {
-                return customerList;
+            Customer customer = customerDa.findByUsernameAndPassword(username, password);
+            if (customer != null) {
+                return customer;
             } else {
                 throw new NotFoundException();
             }

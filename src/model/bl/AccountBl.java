@@ -55,7 +55,7 @@ public class AccountBl implements CRUD<Account> {
             List<Account> accountList = accountDa.findAll();
             if (!accountList.isEmpty()) {
                 for (Account account : accountList) {
-                    account.setCustomer(CustomerBl.getCustomerBl().findById(Account.getCustomer().getId()));
+                    account.setCustomer(CustomerBl.getCustomerBl().findById(account.getCustomer().getId()));
                     // todo: PROBLEM!!!
                 }
                 return accountList;
@@ -95,7 +95,7 @@ public class AccountBl implements CRUD<Account> {
             List<Account> accountList = accountDa.findByBankName(customer);
             if (!accountList.isEmpty()) {
                 for (Account account : accountList) {
-                    account.setCustomer(CustomerBl.getCustomerBl().findById(Account.getCustomer().getId()));
+                    account.setCustomer(CustomerBl.getCustomerBl().findById(account.getCustomer().getId()));
                     // todo: PROBLEM!!!
                 }
                 return accountList;
@@ -110,7 +110,7 @@ public class AccountBl implements CRUD<Account> {
             List<Account> accountList = accountDa.findByAccountType(customer);
             if (!accountList.isEmpty()) {
                 for (Account account : accountList) {
-                    account.setCustomer(CustomerBl.getCustomerBl().findById(Account.getCustomer().getId()));
+                    account.setCustomer(CustomerBl.getCustomerBl().findById(account.getCustomer().getId()));
                     // todo : PROBLEM!!!
                 }
                 return accountList;
