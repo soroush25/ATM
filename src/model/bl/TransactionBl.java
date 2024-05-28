@@ -77,6 +77,7 @@ public class TransactionBl implements CRUD<Transaction> {
             Transaction transaction = transactionDa.findBySourceAccountId(sourceAccountId);
             if (transaction != null) {
                 transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
+                transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
                 return transaction;
             } else {
                 throw new NotFoundException();
@@ -88,6 +89,7 @@ public class TransactionBl implements CRUD<Transaction> {
         try (TransactionDa transactionDa = new TransactionDa()) {
             Transaction transaction = transactionDa.findBySourceAccountId(destinationAccountId);
             if (transaction != null) {
+                transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
                 transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
                 return transaction;
             } else {
@@ -111,6 +113,8 @@ public class TransactionBl implements CRUD<Transaction> {
         try (TransactionDa transactionDa = new TransactionDa()) {
             Transaction transaction = transactionDa.findByDateTimeRange(start, end);
             if (transaction != null) {
+                transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
+                transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
                 return transaction;
             } else {
                 throw new NotFoundException();
@@ -122,6 +126,10 @@ public class TransactionBl implements CRUD<Transaction> {
         try (TransactionDa transactionDa = new TransactionDa()) {
             List<Transaction> transactionList = transactionDa.findByDateTimeRangeReport(start, end);
             if (!transactionList.isEmpty()) {
+                for (Transaction transaction : transactionList) {
+                    transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
+                    transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
+                }
                 return transactionList;
             } else {
                 throw new NotFoundException();
