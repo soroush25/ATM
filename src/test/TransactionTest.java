@@ -16,6 +16,7 @@ public class TransactionTest {
                 .transactionType(TransactionTypes.transfer)
                 .destinationAccount("115")
                 .sourceAccount("120")
+                //to-do: dst account & src account not working
                 .transactionDateTime(LocalDateTime.now())
                 .build();
         System.out.println(TransactionBl.getTransactionBl().save(transaction));
