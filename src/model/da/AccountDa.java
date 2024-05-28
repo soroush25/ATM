@@ -153,10 +153,6 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         return accountList;
     }
 
-
-//    todo : findByBankName
-//    todo : findByAccountType
-
     @Override
     public void close() throws Exception {
         preparedStatement.close();

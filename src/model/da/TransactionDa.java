@@ -213,11 +213,6 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         return transactionList;
     }
 
-//    todo : findBySourceAccountId
-//    todo : findByDestinationAccountId
-//    todo : findByDateTime
-//    todo : findByDateTimeRange(startDateTime, endDateTime)
-//    todo : findByDateTimeRange(startDateTime, endDateTime) Report
 
     @Override
     public void close() throws Exception {

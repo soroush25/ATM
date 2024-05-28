@@ -225,9 +225,6 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         return admin;
     }
 
-//    todo : findByNationalId
-//    todo : findByUsername
-//    todo : findByUsernameAndPassword
 
     @Override
     public void close() throws Exception {

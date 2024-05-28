@@ -230,9 +230,6 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
         return customerList;
     }
 
-//    todo : findByNationalId
-//    todo : findByUsername
-//    todo : findByUsernameAndPassword
 
     @Override
     public void close() throws Exception {
