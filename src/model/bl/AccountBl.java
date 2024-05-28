@@ -112,7 +112,6 @@ public class AccountBl implements CRUD<Account> {
                 for (Account account : accountList) {
                     account.setCustomer(CustomerBl.getCustomerBl().findById(Account.getCustomer().getId()));
                     // todo : PROBLEM!!!
-
                 }
                 return accountList;
             } else {
