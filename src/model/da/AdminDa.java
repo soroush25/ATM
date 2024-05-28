@@ -57,7 +57,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         preparedStatement.setString(9, admin.getPermission());
         preparedStatement.setString(10, admin.getUsername());
         preparedStatement.setString(11, admin.getPassword());
-        preparedStatement.setInt(10, admin.getId());
+        preparedStatement.setInt(12, admin.getId());
         preparedStatement.execute();
         return admin;
     }
@@ -150,15 +150,13 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         return adminList;
     }
 
-
-
-    public List<Admin> findByNationalId(String nationalId) throws Exception {
-        List<Admin> adminList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE nid LIKE? ORDER BY ID");
+    public Admin findByNationalId(String nationalId) throws Exception {
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE nid = ? ORDER BY ID");
         preparedStatement.setString(1, nationalId + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            Admin admin = Admin
+        Admin admin = null;
+        if (resultSet.next()) {
+            admin = Admin
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .firstName(resultSet.getString("FNAME"))
@@ -173,18 +171,17 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .username(resultSet.getString("USERNAME"))
                     .password(resultSet.getString("PASSWORD"))
                     .build();
-            adminList.add(admin);
         }
-        return adminList;
+        return admin;
     }
 
-    public List<Admin> findByUsername(String username) throws Exception {
-        List<Admin> adminList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE username LIKE? ORDER BY ID");
+    public Admin findByUsername(String username) throws Exception {
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE username = ? ORDER BY ID");
         preparedStatement.setString(1, username);
         ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            Admin admin = Admin
+        Admin admin = null;
+        if (resultSet.next()) {
+            admin = Admin
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .firstName(resultSet.getString("FNAME"))
@@ -199,18 +196,17 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .username(resultSet.getString("USERNAME"))
                     .password(resultSet.getString("PASSWORD"))
                     .build();
-            adminList.add(admin);
         }
-        return adminList;
+        return admin;
     }
-    public List<Admin> findByUsernameAndPassword(String username,String password) throws Exception {
-        List<Admin> adminList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE username LIKE? and password LIKE? ORDER BY ID");
+    public Admin findByUsernameAndPassword(String username,String password) throws Exception {
+        preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE username = ? and password = ? ORDER BY ID");
         preparedStatement.setString(1, username);
         preparedStatement.setString(2, password);
         ResultSet resultSet = preparedStatement.executeQuery();
+        Admin admin = null;
         while (resultSet.next()) {
-            Admin admin = Admin
+            admin = Admin
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .firstName(resultSet.getString("FNAME"))
@@ -225,9 +221,8 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .username(resultSet.getString("USERNAME"))
                     .password(resultSet.getString("PASSWORD"))
                     .build();
-            adminList.add(admin);
         }
-        return adminList;
+        return admin;
     }
 
 //    todo : findByNationalId

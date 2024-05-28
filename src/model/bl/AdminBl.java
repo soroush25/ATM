@@ -3,9 +3,7 @@ package src.model.bl;
 import lombok.Getter;
 import src.controller.exceptions.NotFoundException;
 import src.model.da.AdminDa;
-import src.model.da.CustomerDa;
 import src.model.entity.Admin;
-import src.model.entity.Customer;
 import src.model.tools.CRUD;
 
 import java.util.List;
@@ -85,33 +83,33 @@ public class AdminBl implements CRUD<Admin> {
         }
     }
 
-    public List<Admin> findByNationalId(String nationalId) throws Exception {
+    public Admin findByNationalId(String nationalId) throws Exception {
         try (AdminDa adminDa = new AdminDa()) {
-            List<Admin> adminList = adminDa.findByNationalId(nationalId);
-            if (!adminList.isEmpty()) {
-                return adminList;
+            Admin admin = adminDa.findByNationalId(nationalId);
+            if (admin != null) {
+                return admin;
             } else {
                 throw new NotFoundException();
             }
         }
     }
 
-    public List<Admin> findByUsername(String username) throws Exception {
+    public Admin findByUsername(String username) throws Exception {
         try (AdminDa adminDa = new AdminDa()) {
-            List<Admin> adminList = adminDa.findByUsername(username);
-            if (!adminList.isEmpty()) {
-                return adminList;
+            Admin admin = adminDa.findByUsername(username);
+            if (admin != null) {
+                return admin;
             } else {
                 throw new NotFoundException();
             }
         }
     }
 
-    public List<Admin> findByUsernameAndPassword(String username,String password) throws Exception {
+    public Admin findByUsernameAndPassword(String username,String password) throws Exception {
         try (AdminDa adminDa = new AdminDa()) {
-            List<Admin> adminList = adminDa.findByUsernameAndPassword(username, password);
-            if (!adminList.isEmpty()) {
-                return adminList;
+            Admin admin = adminDa.findByUsernameAndPassword(username, password);
+            if (admin != null) {
+                return admin;
             } else {
                 throw new NotFoundException();
             }
