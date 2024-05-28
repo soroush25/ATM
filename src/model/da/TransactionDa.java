@@ -106,9 +106,9 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         return transaction;
     }
 
-    public Transaction findBySourceAccountId(int sourceAccountId) throws Exception {
+    public Transaction findBySourceAccountId(String sourceAccountId) throws Exception {
         preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE account_src = ? ORDER BY ID");
-        preparedStatement.setString(1, String.valueOf(sourceAccountId));
+        preparedStatement.setString(1, sourceAccountId);
         ResultSet resultSet = preparedStatement.executeQuery();
         Transaction transaction = null;
         if (resultSet.next()) {
@@ -126,9 +126,9 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         return transaction;
     }
 
-    public Transaction findByDestinationAccountId(int destinationAccountId) throws Exception {
+    public Transaction findByDestinationAccountId(String destinationAccountId) throws Exception {
         preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE account_dst = ? ORDER BY ID");
-        preparedStatement.setString(1, String.valueOf(destinationAccountId));
+        preparedStatement.setString(1, destinationAccountId);
         ResultSet resultSet = preparedStatement.executeQuery();
         Transaction transaction = null;
         while (resultSet.next()) {
@@ -146,10 +146,10 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         return transaction;
     }
 
-    public List<Transaction> findByDateTime(int transactionDateTime) throws Exception {
+    public List<Transaction> findByDateTime(String transactionDateTime) throws Exception {
         List<Transaction> transactionList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE Transaction.transactionDateTime LIKE? ORDER BY ID");
-        preparedStatement.setString(1, String.valueOf(transactionDateTime));
+        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE transactionDateTime LIKE? ORDER BY ID");
+        preparedStatement.setString(1, transactionDateTime);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Transaction transaction = Transaction
@@ -167,8 +167,9 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         return transactionList;
     }
 
-    public Transaction findByDateTimeRange(int start, int end) throws Exception {
+    public Transaction findByDateTimeRange(String start, String end) throws Exception {
         preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE Transaction.transactionDateTime BETWEEN ? and ? ORDER BY ID");
+        // todo:?
         preparedStatement.setString(1, String.valueOf(start));
         preparedStatement.setString(2, String.valueOf(end));
         ResultSet resultSet = preparedStatement.executeQuery();
