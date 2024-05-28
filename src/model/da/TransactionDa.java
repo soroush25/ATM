@@ -87,7 +87,7 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
 
     @Override
     public Transaction findById(int id) throws Exception {
-        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE ID=?");
+        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE ID = ?");
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         Transaction transaction = null;
@@ -97,8 +97,8 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getDouble("Amount"))
                     .deposit(resultSet.getString("Deposit"))
-                    .sourceAccount((Account)resultSet.getObject("Account_src"))
-                    .destinationAccount((Account)resultSet.getObject("Account_dst"))
+                    .sourceAccount(Account.builder().accountNumber(resultSet.getInt("Account_src")).build())
+                    .destinationAccount(Account.builder().accountNumber(resultSet.getInt("Account_dst")).build())
                     .transactionDateTime(LocalDateTime.parse(resultSet.getString("TransactionDateAndTime")))
                     .transactionType(TransactionTypes.valueOf(resultSet.getString("TransactionType")))
                     .build();
@@ -106,46 +106,44 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         return transaction;
     }
 
-    public List<Transaction> findBySourceAccountId(int sourceAccountId) throws Exception {
-        List<Transaction> transactionList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE Transaction.account_src LIKE? ORDER BY ID");
+    public Transaction findBySourceAccountId(int sourceAccountId) throws Exception {
+        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE account_src = ? ORDER BY ID");
         preparedStatement.setString(1, String.valueOf(sourceAccountId));
         ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            Transaction transaction = Transaction
+        Transaction transaction = null;
+        if (resultSet.next()) {
+            transaction = Transaction
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getDouble("Amount"))
                     .deposit(resultSet.getString("Deposit"))
-                    .sourceAccount((Account)resultSet.getObject("Account_src"))
-                    .destinationAccount((Account)resultSet.getObject("Account_dst"))
+                    .sourceAccount(Account.builder().accountNumber(resultSet.getInt("Account_src")).build())
+                    .destinationAccount(Account.builder().accountNumber(resultSet.getInt("Account_dst")).build())
                     .transactionDateTime(LocalDateTime.parse(resultSet.getString("TransactionDateAndTime")))
                     .transactionType(TransactionTypes.valueOf(resultSet.getString("TransactionType")))
                     .build();
-            transactionList.add(transaction);
         }
-        return transactionList;
+        return transaction;
     }
 
-    public List<Transaction> findByDestinationAccountId(int destinationAccountId) throws Exception {
-        List<Transaction> transactionList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE Transaction.account_dst LIKE? ORDER BY ID");
+    public Transaction findByDestinationAccountId(int destinationAccountId) throws Exception {
+        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE account_dst = ? ORDER BY ID");
         preparedStatement.setString(1, String.valueOf(destinationAccountId));
         ResultSet resultSet = preparedStatement.executeQuery();
+        Transaction transaction = null;
         while (resultSet.next()) {
-            Transaction transaction = Transaction
+            transaction = Transaction
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getDouble("Amount"))
                     .deposit(resultSet.getString("Deposit"))
-                    .sourceAccount((Account)resultSet.getObject("Account_src"))
-                    .destinationAccount((Account)resultSet.getObject("Account_dst"))
+                    .sourceAccount(Account.builder().accountNumber(resultSet.getInt("Account_src")).build())
+                    .destinationAccount(Account.builder().accountNumber(resultSet.getInt("Account_dst")).build())
                     .transactionDateTime(LocalDateTime.parse(resultSet.getString("TransactionDateAndTime")))
                     .transactionType(TransactionTypes.valueOf(resultSet.getString("TransactionType")))
                     .build();
-            transactionList.add(transaction);
         }
-        return transactionList;
+        return transaction;
     }
 
     public List<Transaction> findByDateTime(int transactionDateTime) throws Exception {
@@ -159,8 +157,8 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getDouble("Amount"))
                     .deposit(resultSet.getString("Deposit"))
-                    .sourceAccount((Account)resultSet.getObject("Account_src"))
-                    .destinationAccount((Account)resultSet.getObject("Account_dst"))
+                    .sourceAccount(Account.builder().accountNumber(resultSet.getInt("Account_src")).build())
+                    .destinationAccount(Account.builder().accountNumber(resultSet.getInt("Account_dst")).build())
                     .transactionDateTime(LocalDateTime.parse(resultSet.getString("TransactionDateAndTime")))
                     .transactionType(TransactionTypes.valueOf(resultSet.getString("TransactionType")))
                     .build();
@@ -181,8 +179,8 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getDouble("Amount"))
                     .deposit(resultSet.getString("Deposit"))
-                    .sourceAccount((Account) resultSet.getObject("Account_src"))
-                    .destinationAccount((Account) resultSet.getObject("Account_dst"))
+                    .sourceAccount(Account.builder().accountNumber(resultSet.getInt("Account_src")).build())
+                    .destinationAccount(Account.builder().accountNumber(resultSet.getInt("Account_dst")).build())
                     .transactionDateTime(LocalDateTime.parse(resultSet.getString("TransactionDateAndTime")))
                     .transactionType(TransactionTypes.valueOf(resultSet.getString("TransactionType")))
                     .build();
@@ -202,8 +200,8 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getDouble("Amount"))
                     .deposit(resultSet.getString("Deposit"))
-                    .sourceAccount((Account)resultSet.getObject("Account_src"))
-                    .destinationAccount((Account)resultSet.getObject("Account_dst"))
+                    .sourceAccount(Account.builder().accountNumber(resultSet.getInt("Account_src")).build())
+                    .destinationAccount(Account.builder().accountNumber(resultSet.getInt("Account_dst")).build())
                     .transactionDateTime(LocalDateTime.parse(resultSet.getString("TransactionDateAndTime")))
                     .transactionType(TransactionTypes.valueOf(resultSet.getString("TransactionType")))
                     .build();
