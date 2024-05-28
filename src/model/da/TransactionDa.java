@@ -167,11 +167,11 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         return transactionList;
     }
 
-    public Transaction findByDateTimeRange(Timestamp start, Timestamp end) throws Exception {
+    public Transaction findByDateTimeRange(int start, int end) throws Exception {
         preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE transactionDateTime BETWEEN ? and ? ORDER BY ID");
-        // todo:?
-        preparedStatement.setString(1, String.valueOf(start));
-        preparedStatement.setString(2, String.valueOf(end));
+        preparedStatement.setDate(1, Date.valueOf(String.valueOf(start)));
+        preparedStatement.setDate(2, Date.valueOf(String.valueOf(end)));
+        // todo:آیا صحیح است؟
         ResultSet resultSet = preparedStatement.executeQuery();
         Transaction transaction = new Transaction();
         while (resultSet.next()) {
@@ -189,11 +189,12 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         return transaction;
     }
 
-    public List<Transaction> findByDateTimeRangeReport(Timestamp start, Timestamp end) throws Exception {
+    public List<Transaction> findByDateTimeRangeReport(int start, int end) throws Exception {
         List<Transaction> transactionList = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE transactionDateTime BETWEEN ? AND ? ORDER BY ID");
-        preparedStatement.setString(1, String.valueOf(start));
-        preparedStatement.setString(2, String.valueOf(end));
+        preparedStatement.setDate(1, Date.valueOf(String.valueOf(start)));
+        preparedStatement.setDate(2, Date.valueOf(String.valueOf(end)));
+        // todo:آیا صحیح است؟
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             Transaction transaction = Transaction
