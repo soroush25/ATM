@@ -151,13 +151,13 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
         return customerList;
     }
 
-    public List<Customer> findByNationalId(String nationalId) throws Exception {
-        List<Customer> customerList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE nid LIKE? ORDER BY ID");
+    public Customer findByNationalId(String nationalId) throws Exception {
+        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE nid = ? ORDER BY ID");
         preparedStatement.setString(1, nationalId + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            Customer customer = Customer
+        Customer customer = null;
+        if (resultSet.next()) {
+            customer = Customer
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .firstName(resultSet.getString("FNAME"))
@@ -172,18 +172,17 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .username(resultSet.getString("USERNAME"))
                     .password(resultSet.getString("PASSWORD"))
                     .build();
-            customerList.add(customer);
         }
-        return customerList;
+        return customer;
     }
 
-    public List<Customer> findByUsername(String username) throws Exception {
-        List<Customer> customerList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE username LIKE? ORDER BY ID");
+    public Customer findByUsername(String username) throws Exception {
+        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE username = ? ORDER BY ID");
         preparedStatement.setString(1, username);
         ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            Customer customer = Customer
+        Customer customer = null;
+        if (resultSet.next()) {
+            customer = Customer
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .firstName(resultSet.getString("FNAME"))
@@ -198,19 +197,18 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .username(resultSet.getString("USERNAME"))
                     .password(resultSet.getString("PASSWORD"))
                     .build();
-            customerList.add(customer);
         }
-        return customerList;
+        return customer;
     }
 
-    public List<Customer> findByUsernameAndPassword(String username, String password) throws Exception {
-        List<Customer> customerList = new ArrayList<>();
+    public Customer findByUsernameAndPassword(String username, String password) throws Exception {
         preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE username in ? AND password in ? ORDER BY ID");
         preparedStatement.setString(1, username);
         preparedStatement.setString(2, password);
         ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            Customer customer = Customer
+        Customer customer = null;
+        if (resultSet.next()) {
+            customer = Customer
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .firstName(resultSet.getString("FNAME"))
@@ -225,9 +223,8 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
                     .username(resultSet.getString("USERNAME"))
                     .password(resultSet.getString("PASSWORD"))
                     .build();
-            customerList.add(customer);
         }
-        return customerList;
+        return customer;
     }
 
 
