@@ -94,6 +94,17 @@ public class CustomerBl implements CRUD<Customer> {
         }
     }
 
+    public Customer findByPhone(String phone) throws Exception {
+        try (CustomerDa customerDa = new CustomerDa()) {
+            Customer customer = customerDa.findByPhone(phone);
+            if (customer != null) {
+                return customer;
+            } else {
+                throw new NotFoundException();
+            }
+        }
+    }
+
     public Customer findByUsername(String username) throws Exception {
         try (CustomerDa customerDa = new CustomerDa()) {
             Customer customer = customerDa.findByUsername(username);

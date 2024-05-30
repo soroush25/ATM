@@ -176,6 +176,31 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
         return customer;
     }
 
+    public Customer findByPhone(String phone) throws Exception {
+        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE phone = ? ORDER BY ID");
+        preparedStatement.setString(1, phone + "%");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Customer customer = null;
+        if (resultSet.next()) {
+            customer = Customer
+                    .builder()
+                    .id(resultSet.getInt("ID"))
+                    .firstName(resultSet.getString("FNAME"))
+                    .lastName(resultSet.getString("LNAME"))
+                    .nationalId(resultSet.getString("NID"))
+                    .gender(Gender.valueOf(resultSet.getString("GENDER")))
+                    .birthDate(resultSet.getDate("BIRTH_DATE").toLocalDate())
+                    .phone(resultSet.getString("PHONE"))
+                    .email(resultSet.getString("EMAIL"))
+                    .address(resultSet.getString("ADDRESS"))
+                    .city(City.valueOf(resultSet.getString("CITY")))
+                    .username(resultSet.getString("USERNAME"))
+                    .password(resultSet.getString("PASSWORD"))
+                    .build();
+        }
+        return customer;
+    }
+
     public Customer findByUsername(String username) throws Exception {
         preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE username = ? ORDER BY ID");
         preparedStatement.setString(1, username);
