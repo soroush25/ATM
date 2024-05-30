@@ -51,9 +51,13 @@ public class TransactionBl implements CRUD<Transaction> {
     @Override
     public List<Transaction> findAll() throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
-            List<Transaction> perosnList = transactionDa.findAll();
-            if (!perosnList.isEmpty()) {
-                return perosnList;
+            List<Transaction> transactionList = transactionDa.findAll();
+            if (!transactionList.isEmpty()) {
+                for (Transaction transaction : transactionList) {
+                    transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
+                    transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
+                }
+                return transactionList;
             } else {
                 throw new NotFoundException();
             }
@@ -65,6 +69,8 @@ public class TransactionBl implements CRUD<Transaction> {
         try (TransactionDa transactionDa = new TransactionDa()) {
             Transaction transaction = transactionDa.findById(id);
             if (transaction != null) {
+                transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
+                transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
                 return transaction;
             } else {
                 throw new NotFoundException();
@@ -102,6 +108,10 @@ public class TransactionBl implements CRUD<Transaction> {
         try (TransactionDa transactionDa = new TransactionDa()) {
             List<Transaction> transactionList = transactionDa.findByDateTime(transactionDateTime);
             if (!transactionList.isEmpty()) {
+                for (Transaction transaction : transactionList) {
+                    transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
+                    transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
+                }
                 return transactionList;
             } else {
                 throw new NotFoundException();
@@ -125,6 +135,21 @@ public class TransactionBl implements CRUD<Transaction> {
     public List<Transaction> findByDateTimeRangeReport(int start, int end) throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
             List<Transaction> transactionList = transactionDa.findByDateTimeRangeReport(start, end);
+            if (!transactionList.isEmpty()) {
+                for (Transaction transaction : transactionList) {
+                    transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
+                    transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
+                }
+                return transactionList;
+            } else {
+                throw new NotFoundException();
+            }
+        }
+    }
+
+    public List<Transaction> findByTransactionType(String transactionType) throws Exception {
+        try (TransactionDa transactionDa = new TransactionDa()) {
+            List<Transaction> transactionList = transactionDa.findByTransactionType(transactionType);
             if (!transactionList.isEmpty()) {
                 for (Transaction transaction : transactionList) {
                     transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));

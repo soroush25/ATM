@@ -212,6 +212,27 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         return transactionList;
     }
 
+    public List<Transaction> findByTransactionType(String transactionType) throws Exception {
+        List<Transaction> transactionList = new ArrayList<>();
+        preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE transactionType = ? ORDER BY ID");
+        preparedStatement.setString(1, transactionType);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            Transaction transaction = Transaction
+                    .builder()
+                    .id(resultSet.getInt("ID"))
+                    .amount(resultSet.getDouble("Amount"))
+                    .deposit(resultSet.getString("Deposit"))
+                    .sourceAccount(Account.builder().accountNumber(resultSet.getInt("Account_src")).build())
+                    .destinationAccount(Account.builder().accountNumber(resultSet.getInt("Account_dst")).build())
+                    .transactionDateTime(LocalDateTime.parse(resultSet.getString("TransactionDateAndTime")))
+                    .transactionType(TransactionTypes.valueOf(resultSet.getString("TransactionType")))
+                    .build();
+            transactionList.add(transaction);
+        }
+        return transactionList;
+    }
+
 
     @Override
     public void close() throws Exception {
