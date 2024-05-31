@@ -16,10 +16,8 @@ public class TransactionTest {
                 .transactionType(TransactionTypes.transfer)
                 .destinationAccount(null)
                 .sourceAccount(null)
-                //to-do: dst account & src account not working
                 .transactionDateTime(LocalDateTime.now())
                 .build();
         System.out.println(TransactionBl.getTransactionBl().save(transaction));
-        System.out.println(TransactionBl.getTransactionBl().findByDateTimeRange(2023, 2024));
     }
 }
