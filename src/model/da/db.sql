@@ -41,13 +41,13 @@ create table Account
 
 create table Transaction
 (
-    id                     number primary key,
-    amount                 nvarchar2(30),
-    deposit                nvarchar2(30),
-    transactionDateTime    timestamp,
-    account_src            number references account,
-    account_dst            number,
-    transactionType        nvarchar2(10)
+    id                  number primary key,
+    amount              nvarchar2(30),
+    deposit             nvarchar2(30),
+    transactionDate     timestamp,
+    account_src         number references account,
+    account_dst         number,
+    transactionType     nvarchar2(10)
 );
 
 create sequence customer_seq start with 1 increment by 1;
