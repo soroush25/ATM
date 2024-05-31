@@ -4,6 +4,7 @@ import src.model.bl.AccountBl;
 import src.model.bl.AdminBl;
 import src.model.entity.Account;
 import src.model.entity.Admin;
+import src.model.entity.Customer;
 import src.model.entity.enums.BankAccountTypes;
 import src.model.entity.enums.Banks;
 import src.model.entity.enums.Gender;
@@ -13,6 +14,9 @@ import java.time.LocalDate;
 public class AccountTest {
     public static void main(String[] args) throws Exception {
 
+        Customer customer =
+                Customer.builder()
+                        .id
 
     Account account = Account
             .builder()
