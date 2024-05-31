@@ -106,7 +106,7 @@ public class TransactionBl implements CRUD<Transaction> {
 
     public List<Transaction> findByDate(String transactionDate) throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
-            List<Transaction> transactionList = transactionDa.findByDate(transactionDate);
+            List<Transaction> transactionList = transactionDa.findByDateTime(transactionDate);
             if (!transactionList.isEmpty()) {
                 for (Transaction transaction : transactionList) {
                     transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
@@ -121,7 +121,7 @@ public class TransactionBl implements CRUD<Transaction> {
 
     public Transaction findByDateRange(int start, int end) throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
-            Transaction transaction = transactionDa.findByDateRange(start, end);
+            Transaction transaction = transactionDa.findByDateTimeRange(start, end);
             if (transaction != null) {
                 transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
                 transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
@@ -134,7 +134,7 @@ public class TransactionBl implements CRUD<Transaction> {
 
     public List<Transaction> findByDateRangeReport(int start, int end) throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
-            List<Transaction> transactionList = transactionDa.findByDateRangeReport(start, end);
+            List<Transaction> transactionList = transactionDa.findByDateTimeRangeReport(start, end);
             if (!transactionList.isEmpty()) {
                 for (Transaction transaction : transactionList) {
                     transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
