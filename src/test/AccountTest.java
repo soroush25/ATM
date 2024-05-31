@@ -7,6 +7,7 @@ import src.model.entity.Admin;
 import src.model.entity.Customer;
 import src.model.entity.enums.BankAccountTypes;
 import src.model.entity.enums.Banks;
+import src.model.entity.enums.City;
 import src.model.entity.enums.Gender;
 
 import java.time.LocalDate;
@@ -16,13 +17,24 @@ public class AccountTest {
 
         Customer customer =
                 Customer.builder()
-                        .id
+                        .id(1)
+                        .firstName(null)
+                        .lastName(null)
+                        .nationalId(null)
+                        .birthDate(null)
+                        .gender(null)
+                        .username(null)
+                        .password(null)
+                        .address(null)
+                        .phone(null)
+                        .email(null)
+                        .city(City.Tehran)
 
     Account account = Account
             .builder()
             .accountNumber(1232)
             .balance(234)
-            .customer(null)
+            .customer(customer)
             .bank(Banks.Meli)
             .accountTypes(BankAccountTypes.SavingAccount)
             .build();
