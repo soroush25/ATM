@@ -45,7 +45,7 @@ create table Transaction
     amount              nvarchar2(30),
     deposit             nvarchar2(30),
     transactionDate     timestamp,
-    account_src         number references account,
+    account_src         number references Account,
     account_dst         number,
     transactionType     nvarchar2(10)
 );
