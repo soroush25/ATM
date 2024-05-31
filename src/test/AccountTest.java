@@ -31,14 +31,14 @@ public class AccountTest {
                         .city(City.Tehran)
                         .build();
 
-    Account account = Account
-            .builder()
-            .accountNumber(1232)
-            .balance(234)
-            .customer(customer)
-            .bank(Banks.Meli)
-            .accountTypes(BankAccountTypes.SavingAccount)
-            .build();
+        Account account = Account
+                .builder()
+                .accountNumber(1232)
+                .balance(234)
+                .customer(customer)
+                .bank(Banks.Meli)
+                .accountTypes(BankAccountTypes.SavingAccount)
+                .build();
         System.out.println(AccountBl.getAccountBl().save(account));
-}
+    }
 }
