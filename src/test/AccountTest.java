@@ -29,6 +29,7 @@ public class AccountTest {
                         .phone(null)
                         .email(null)
                         .city(City.Tehran)
+                        .build();
 
     Account account = Account
             .builder()
