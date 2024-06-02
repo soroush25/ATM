@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 @Log4j
 public class AppController implements Initializable {
     @FXML
-    private TextField passcodeField, adminSearchField, fnamefield, lnamefield, nidfield, emailfield, phonefield, addressfield, idfield;
+    private TextField usernameField, passwordField, adminSearchField, fnamefield, lnamefield, nidfield, emailfield, phonefield, addressfield, idfield;
 
     @FXML
     private RadioButton maletoggle, femaletoggle;
@@ -32,7 +32,7 @@ public class AppController implements Initializable {
     private ToggleGroup genderToggle;
 
     @FXML
-    private Button goCustomerPage, goAdminPage, passcodeBtn, goMenu, customerTransfer, customerBalance, customerWithdrawal, customerReport, adminPasscode, adminCreate, adminDelete, adminEdit, adminSearchBtn, adminBalance;
+    private Button goCustomerPage, goAdminPage, autBtn, goMenu, customerTransfer, customerBalance, customerWithdrawal, customerReport, adminPasscode, adminCreate, adminDelete, adminEdit, adminSearchBtn, adminBalance;
 
     @FXML
     private TableView<Admin> allTable;
