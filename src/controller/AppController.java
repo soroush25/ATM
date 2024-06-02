@@ -6,11 +6,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lombok.extern.log4j.Log4j;
 import src.model.bl.CustomerBl;
 import src.model.da.CustomerDa;
 import src.model.entity.Account;
 import src.model.entity.Customer;
-import src.model.entity.User;
+import src.model.entity.Admin;
+import src.model.entity.enums.City;
 import src.model.entity.enums.Gender;
 import src.model.tools.Validator;
 
@@ -18,6 +20,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+@Log4j
 public class AppController implements Initializable {
     @FXML
     private TextField passcodeField, adminSearchField, fnamefield, lnamefield, nidfield, emailfield, phonefield, addressfield, idfield;
@@ -32,13 +35,13 @@ public class AppController implements Initializable {
     private Button goCustomerPage, goAdminPage, passcodeBtn, goMenu, userTransfer, userBalance, userWithdrawal, userReport, adminPasscode, adminCreate, adminDelete, adminEdit, adminSearchBtn, adminBalance;
 
     @FXML
-    private TableView<User> allTable;
+    private TableView<Admin> allTable;
 
     @FXML
-    private TableColumn<User, Integer> adminTableID;
+    private TableColumn<Admin, Integer> adminTableID;
 
     @FXML
-    private TableColumn<User, String> adminTableName, adminTableBalance, adminAccountType;
+    private TableColumn<Admin, String> adminTableName, adminTableBalance, adminAccountType;
 
     @FXML
     private ComboBox citycmb;
@@ -48,6 +51,18 @@ public class AppController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        log.info("Boot");
+        for (City value : City.values()) {
+            cityCmb.getItems().add(value.name());
+        }
+
+        try {
+            resetForm();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Load Error\n" + e.getMessage());
+            alert.show();
+        }
 
         adminCreate.setOnAction(event -> {
             try (CustomerDa customerDa = new CustomerDa()) {
@@ -111,7 +126,7 @@ public class AppController implements Initializable {
         });
 
         allTable.setOnMouseClicked((event) -> {
-            User user = allTable.getSelectionModel().getSelectedItem();
+            Admin user = allTable.getSelectionModel().getSelectedItem();
             Account account = allTable.getSelectionModel().getSelectedItem().getAccount();
             adminTableID.setText(String.valueOf(user.getId()));
             adminTableName.setText(user.getFirstName());
