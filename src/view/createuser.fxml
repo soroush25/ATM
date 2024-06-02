@@ -42,12 +42,12 @@
             <Label layoutX="10.0" layoutY="135.0" text="Email" GridPane.rowIndex="5" />
             <Label layoutX="10.0" layoutY="181.0" text="Phone Number" GridPane.rowIndex="6" />
             <Label text="Address" GridPane.rowIndex="8" />
-            <TextField fx:id="fnamefield" GridPane.columnIndex="1" />
-            <TextField fx:id="lnamefield" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="nidfield" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="emailfield" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="phonefield" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField fx:id="addressfield" prefHeight="63.0" prefWidth="193.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="fnameField" GridPane.columnIndex="1" />
+            <TextField fx:id="lnameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="nidField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="addressField" prefHeight="63.0" prefWidth="193.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <HBox prefHeight="42.0" prefWidth="292.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <RadioButton fx:id="maletoggle" mnemonicParsing="false" selected="true" text="Male">

@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 @Log4j
 public class AppController implements Initializable {
     @FXML
-    private TextField usernameField, passwordField, adminSearchField, fnamefield, lnamefield, nidfield, emailfield, phonefield, addressfield, idfield;
+    private TextField usernameField, passwordField, adminSearchField, fnameField, lnameField, nidField, emailField, phoneField, addressField, idField;
 
     @FXML
     private RadioButton maletoggle, femaletoggle;
@@ -52,7 +52,7 @@ public class AppController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        log.info("Boot");
+        log.info("Startup");
         for (City value : City.values()) {
             citycmb.getItems().add(value.name());
         }
@@ -60,7 +60,7 @@ public class AppController implements Initializable {
         try {
             resetForm();
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Load Error\n" + e.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Startup Error\n" + e.getMessage());
             alert.show();
         }
 
@@ -69,15 +69,18 @@ public class AppController implements Initializable {
                 RadioButton gender = (RadioButton) genderToggle.getSelectedToggle();
                 Customer customer = new Customer()
                         .builder()
-                        .id(Integer.parseInt(idfield.getText()))
-                        .firstName(Validator.nameValidator(fnamefield.getText(), "Invalid Name!"))
-                        .lastName(Validator.nameValidator(lnamefield.getText(), "Invalid Name!"))
-                        .nationalId(Validator.nationalIDValidator(nidfield.getText(), "Invalid National ID!"))
+                        .id(Integer.parseInt(idField.getText()))
+                        .firstName(Validator.nameValidator(fnameField.getText(), "Invalid First Name!"))
+                        .lastName(Validator.nameValidator(lnameField.getText(), "Invalid Last Name!"))
+                        .nationalId(Validator.nationalIDValidator(nidField.getText(), "Invalid National ID!"))
                         .gender(Gender.valueOf(gender.getText()))
                         .birthDate(birthDatePicker.getValue())
-                        .email(Validator.emailValidator(emailfield.getText(), "Invalid Email!"))
-                        .phone(Validator.phoneValidator(phonefield.getText(), "Invalid Phone!"))
-                        .address(Validator.addressValidator(addressfield.getText(), "Invalid Address!"))
+                        .email(Validator.emailValidator(emailField.getText(), "Invalid Email!"))
+                        .phone(Validator.phoneValidator(phoneField.getText(), "Invalid Phone!"))
+                        .address(Validator.addressValidator(addressField.getText(), "Invalid Address!"))
+                        .username(usernameField.getText())
+                        .password(passwordField.getText())
+                        .city(City.valueOf((String) citycmb.getSelectionModel().getSelectedItem()))
                         .build();
                 customerDa.save(customer);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Saved!");
@@ -94,14 +97,14 @@ public class AppController implements Initializable {
                 RadioButton gender = (RadioButton) genderToggle.getSelectedToggle();
                 Customer customer = new Customer()
                         .builder()
-                        .id(Integer.parseInt(idfield.getText()))
-                        .firstName(Validator.nameValidator(fnamefield.getText(), "Invalid Name!"))
-                        .lastName(Validator.nameValidator(lnamefield.getText(), "Invalid Name!"))
-                        .nationalId(Validator.nationalIDValidator(nidfield.getText(), "Invalid National ID!"))
+                        .id(Integer.parseInt(idField.getText()))
+                        .firstName(Validator.nameValidator(fnameField.getText(), "Invalid Name!"))
+                        .lastName(Validator.nameValidator(lnameField.getText(), "Invalid Name!"))
+                        .nationalId(Validator.nationalIDValidator(nidField.getText(), "Invalid National ID!"))
                         .gender(Gender.valueOf(gender.getText()))
-                        .email(Validator.emailValidator(emailfield.getText(), "Invalid Email!"))
-                        .phone(Validator.phoneValidator(phonefield.getText(), "Invalid Phone!"))
-                        .address(Validator.addressValidator(addressfield.getText(), "Invalid Address!"))
+                        .email(Validator.emailValidator(emailField.getText(), "Invalid Email!"))
+                        .phone(Validator.phoneValidator(phoneField.getText(), "Invalid Phone!"))
+                        .address(Validator.addressValidator(addressField.getText(), "Invalid Address!"))
                         .build();
                 customerDa.edit(customer);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Edited!");
@@ -115,7 +118,7 @@ public class AppController implements Initializable {
 
         adminDelete.setOnAction(event -> {
             try (CustomerDa customerDa = new CustomerDa()) {
-                customerDa.remove(Integer.parseInt(idfield.getText()));
+                customerDa.remove(Integer.parseInt(idField.getText()));
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Deleted!");
                 alert.show();
                 resetForm();
@@ -125,23 +128,23 @@ public class AppController implements Initializable {
             }
         });
 
-//        allTable.setOnMouseClicked((event) -> {
-//            Admin customer = allTable.getSelectionModel().getSelectedItem();
-//            Account account = allTable.getSelectionModel().getSelectedItem().getAccount();
-//            adminTableID.setText(String.valueOf(customer.getId()));
-//            adminTableName.setText(customer.getFirstName());
-//            adminTableName.setText(customer.getLastName());
-//            adminTableBalance.setText(String.valueOf(account.getAccountTypes()));
-//            if (customer.getGender().equals(Gender.Male)) {
-//                maletoggle.setSelected(true);
-//            } else {
-//                femaletoggle.setSelected(true);
-//            }
-//            emailfield.setText(customer.getEmail());
-//            phonefield.setText(customer.getPhone());
-//            addressfield.setText(customer.getAddress());
-//        });
-//    }
+        allTable.setOnMouseClicked((event) -> {
+            Admin customer = allTable.getSelectionModel().getSelectedItem();
+            Account account = allTable.getSelectionModel().getSelectedItem().getAccount();
+            adminTableID.setText(String.valueOf(customer.getId()));
+            adminTableName.setText(customer.getFirstName());
+            adminTableName.setText(customer.getLastName());
+            adminTableBalance.setText(String.valueOf(account.getAccountTypes()));
+            if (customer.getGender().equals(Gender.Male)) {
+                maletoggle.setSelected(true);
+            } else {
+                femaletoggle.setSelected(true);
+            }
+            emailField.setText(customer.getEmail());
+            phoneField.setText(customer.getPhone());
+            addressField.setText(customer.getAddress());
+        });
+    }
 
     private void showDataOnTable(List<Customer> customerList) throws Exception {
         ObservableList<Customer> observableList = FXCollections.observableList(customerList);
@@ -153,14 +156,14 @@ public class AppController implements Initializable {
     }
 
     private void resetForm() throws Exception {
-        idfield.clear();
-        fnamefield.clear();
-        lnamefield.clear();
-        nidfield.clear();
+        idField.clear();
+        fnameField.clear();
+        lnameField.clear();
+        nidField.clear();
         maletoggle.setSelected(true);
-        emailfield.clear();
-        phonefield.clear();
-        addressfield.clear();
+        emailField.clear();
+        phoneField.clear();
+        addressField.clear();
         showDataOnTable(CustomerBl.getCustomerBl().findAll());
     }
 }
