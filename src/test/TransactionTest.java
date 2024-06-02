@@ -5,6 +5,7 @@ import src.model.entity.Account;
 import src.model.entity.Transaction;
 import src.model.entity.enums.TransactionTypes;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -33,5 +34,7 @@ public class TransactionTest {
                 .transactionDateTime(Timestamp.valueOf(LocalDateTime.now()))
                 .build();
         System.out.println(TransactionBl.getTransactionBl().save(transaction));
+        System.out.println(TransactionBl.getTransactionBl().findByDateTime(Timestamp.valueOf(LocalDateTime.now())));
+        // todo: Timestamp for findBy(s)
     }
 }

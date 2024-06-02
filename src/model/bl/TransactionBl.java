@@ -6,6 +6,8 @@ import src.model.da.TransactionDa;
 import src.model.entity.Transaction;
 import src.model.tools.CRUD;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class TransactionBl implements CRUD<Transaction> {
@@ -104,7 +106,7 @@ public class TransactionBl implements CRUD<Transaction> {
         }
     }
 
-    public List<Transaction> findByDateTime(String transactionDateTime) throws Exception {
+    public List<Transaction> findByDateTime(Timestamp transactionDateTime) throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
             List<Transaction> transactionList = transactionDa.findByDateTime(transactionDateTime);
             if (!transactionList.isEmpty()) {
@@ -119,7 +121,7 @@ public class TransactionBl implements CRUD<Transaction> {
         }
     }
 
-    public Transaction findByDateTimeRange(int start, int end) throws Exception {
+    public Transaction findByDateTimeRange(Timestamp start, Timestamp end) throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
             Transaction transaction = transactionDa.findByDateTimeRange(start, end);
             if (transaction != null) {
@@ -132,7 +134,7 @@ public class TransactionBl implements CRUD<Transaction> {
         }
     }
 
-    public List<Transaction> findByDateTimeRangeReport(int start, int end) throws Exception {
+    public List<Transaction> findByDateTimeRangeReport(Timestamp start, Timestamp end) throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
             List<Transaction> transactionList = transactionDa.findByDateTimeRangeReport(start, end);
             if (!transactionList.isEmpty()) {
