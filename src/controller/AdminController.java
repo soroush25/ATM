@@ -9,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import src.model.bl.CustomerBl;
 import src.model.da.CustomerDa;
 import src.model.entity.Account;
+import src.model.entity.Admin;
 import src.model.entity.Customer;
 import src.model.entity.enums.Gender;
 import src.model.tools.Validator;
@@ -17,7 +18,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AppController implements Initializable {
+public class AdminController implements Initializable {
     @FXML
     private TextField passcodeField, adminSearchField, fnamefield, lnamefield, nidfield, emailfield, phonefield, addressfield, idfield;
 
@@ -28,16 +29,16 @@ public class AppController implements Initializable {
     private ToggleGroup genderToggle;
 
     @FXML
-    private Button goCustomerPage, goAdminPage, passcodeBtn, goMenu, userTransfer, userBalance, userWithdrawal, userReport, adminPasscode, adminCreate, adminDelete, adminEdit, adminSearchBtn, adminBalance;
+    private Button goCustomerPage, goAdminPage, passcodeBtn, goMenu, adminTransfer, adminBalance, adminWithdrawal, adminReport, adminPasscode, adminCreate, adminDelete, adminEdit, adminSearchBtn;
 
     @FXML
-    private TableView<User> allTable;
+    private TableView<Admin> allTable;
 
     @FXML
-    private TableColumn<User, Integer> adminTableID;
+    private TableColumn<Admin, Integer> adminTableID;
 
     @FXML
-    private TableColumn<User, String> adminTableName, adminTableBalance, adminAccountType;
+    private TableColumn<Admin, String> adminTableName, adminTableBalance, adminAccountType;
 
     @FXML
     private ComboBox citycmb;
@@ -110,20 +111,20 @@ public class AppController implements Initializable {
         });
 
         allTable.setOnMouseClicked((event) -> {
-            User user = allTable.getSelectionModel().getSelectedItem();
+            Admin admin = allTable.getSelectionModel().getSelectedItem();
             Account account = allTable.getSelectionModel().getSelectedItem().getAccount();
-            adminTableID.setText(String.valueOf(user.getId()));
-            adminTableName.setText(user.getFirstName());
-            adminTableName.setText(user.getLastName());
+            adminTableID.setText(String.valueOf(admin.getId()));
+            adminTableName.setText(admin.getFirstName());
+            adminTableName.setText(admin.getLastName());
             adminTableBalance.setText(String.valueOf(account.getAccountTypes()));
-            if (user.getGender().equals(Gender.Male)) {
+            if (admin.getGender().equals(Gender.Male)) {
                 maletoggle.setSelected(true);
             } else {
                 femaletoggle.setSelected(true);
             }
-            emailfield.setText(user.getEmail());
-            phonefield.setText(user.getPhone());
-            addressfield.setText(user.getAddress());
+            emailfield.setText(admin.getEmail());
+            phonefield.setText(admin.getPhone());
+            addressfield.setText(admin.getAddress());
         });
     }
 
