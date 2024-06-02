@@ -28,6 +28,7 @@ public class Admin {
     private String username;
     private String password;
     private String permission ;
+    private Account account;
 
     @Override
     public String toString() {

@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.extern.log4j.Log4j;
+import src.model.bl.AdminBl;
 import src.model.bl.CustomerBl;
 import src.model.da.CustomerDa;
 import src.model.entity.Account;
@@ -98,13 +99,17 @@ public class AppController implements Initializable {
                 Customer customer = new Customer()
                         .builder()
                         .id(Integer.parseInt(idField.getText()))
-                        .firstName(Validator.nameValidator(fnameField.getText(), "Invalid Name!"))
-                        .lastName(Validator.nameValidator(lnameField.getText(), "Invalid Name!"))
+                        .firstName(Validator.nameValidator(fnameField.getText(), "Invalid First Name!"))
+                        .lastName(Validator.nameValidator(lnameField.getText(), "Invalid Last Name!"))
                         .nationalId(Validator.nationalIDValidator(nidField.getText(), "Invalid National ID!"))
                         .gender(Gender.valueOf(gender.getText()))
+                        .birthDate(birthDatePicker.getValue())
                         .email(Validator.emailValidator(emailField.getText(), "Invalid Email!"))
                         .phone(Validator.phoneValidator(phoneField.getText(), "Invalid Phone!"))
                         .address(Validator.addressValidator(addressField.getText(), "Invalid Address!"))
+                        .username(usernameField.getText())
+                        .password(passwordField.getText())
+                        .city(City.valueOf((String) citycmb.getSelectionModel().getSelectedItem()))
                         .build();
                 customerDa.edit(customer);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Edited!");
@@ -129,30 +134,22 @@ public class AppController implements Initializable {
         });
 
         allTable.setOnMouseClicked((event) -> {
-            Admin customer = allTable.getSelectionModel().getSelectedItem();
+            Customer customer = allTable.getSelectionModel().getSelectedItem().getAccount().getCustomer();
             Account account = allTable.getSelectionModel().getSelectedItem().getAccount();
             adminTableID.setText(String.valueOf(customer.getId()));
-            adminTableName.setText(customer.getFirstName());
             adminTableName.setText(customer.getLastName());
-            adminTableBalance.setText(String.valueOf(account.getAccountTypes()));
-            if (customer.getGender().equals(Gender.Male)) {
-                maletoggle.setSelected(true);
-            } else {
-                femaletoggle.setSelected(true);
-            }
-            emailField.setText(customer.getEmail());
-            phoneField.setText(customer.getPhone());
-            addressField.setText(customer.getAddress());
+            adminTableBalance.setText(String.valueOf(account.getBalance()));
+            adminAccountType.setText(String.valueOf(account.getAccountTypes()));
         });
     }
 
-    private void showDataOnTable(List<Customer> customerList) throws Exception {
-        ObservableList<Customer> observableList = FXCollections.observableList(customerList);
+    private void showDataOnTable(List<Admin> customerList) throws Exception {
+        ObservableList<Admin> observableList = FXCollections.observableList(customerList);
         adminTableID.setCellValueFactory(new PropertyValueFactory<>("id"));
         adminTableName.setCellValueFactory(new PropertyValueFactory<>("name"));
         adminTableBalance.setCellValueFactory(new PropertyValueFactory<>("balance"));
-        adminTableBalance.setCellValueFactory(new PropertyValueFactory<>("account type"));
-        adminAccountType.setText(observableList.toString());
+        adminAccountType.setCellValueFactory(new PropertyValueFactory<>("account type"));
+        allTable.setItems(observableList);
     }
 
     private void resetForm() throws Exception {
@@ -164,6 +161,8 @@ public class AppController implements Initializable {
         emailField.clear();
         phoneField.clear();
         addressField.clear();
-        showDataOnTable(CustomerBl.getCustomerBl().findAll());
+        birthDatePicker.setValue(null);
+        citycmb.getSelectionModel().select(0);
+        showDataOnTable(AdminBl.getAdminBl().findAll());
     }
 }
