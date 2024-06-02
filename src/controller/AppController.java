@@ -32,7 +32,7 @@ public class AppController implements Initializable {
     private ToggleGroup genderToggle;
 
     @FXML
-    private Button goCustomerPage, goAdminPage, autBtn, goMenu, customerTransfer, customerBalance, customerWithdrawal, customerReport, adminPasscode, adminCreate, adminDelete, adminEdit, adminSearchBtn, adminBalance;
+    private Button goCustomerPage, goAdminPage, autBtn, goMenu, customerTransfer, customerBalance, customerWithdrawal, customerReport, adminPassword, adminCreate, adminDelete, adminEdit, adminSearchBtn, adminBalance;
 
     @FXML
     private TableView<Admin> allTable;
