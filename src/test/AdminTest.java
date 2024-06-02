@@ -15,6 +15,6 @@ public class AdminTest {
                 .gender(Gender.Male)
                 .birthDate(LocalDate.now())
                 .build();
-        System.out.println(AdminBl.getAdminBl().save(admin));
+        //System.out.println(AdminBl.getAdminBl().save(admin));
     }
 }

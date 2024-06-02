@@ -79,26 +79,30 @@ public class TransactionBl implements CRUD<Transaction> {
         }
     }
 
-    public Transaction findBySourceAccountId(String sourceAccountId) throws Exception {
+    public List<Transaction> findBySourceAccountId(String sourceAccountId) throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
-            Transaction transaction = transactionDa.findBySourceAccountId(sourceAccountId);
-            if (transaction != null) {
-                transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
-                transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
-                return transaction;
+            List<Transaction> transactionList = transactionDa.findBySourceAccountId(sourceAccountId);
+            if (!transactionList.isEmpty()) {
+                for (Transaction transaction : transactionList) {
+                    transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
+                    transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
+                }
+                return transactionList;
             } else {
                 throw new NotFoundException();
             }
         }
     }
 
-    public Transaction findByDestinationAccountId(String destinationAccountId) throws Exception {
+    public List<Transaction> findByDestinationAccountId(String destinationAccountId) throws Exception {
         try (TransactionDa transactionDa = new TransactionDa()) {
-            Transaction transaction = transactionDa.findBySourceAccountId(destinationAccountId);
-            if (transaction != null) {
-                transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
-                transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
-                return transaction;
+            List<Transaction> transactionList = transactionDa.findBySourceAccountId(destinationAccountId);
+            if (!transactionList.isEmpty()) {
+                for (Transaction transaction : transactionList) {
+                    transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
+                    transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
+                }
+                return transactionList;
             } else {
                 throw new NotFoundException();
             }

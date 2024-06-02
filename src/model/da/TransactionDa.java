@@ -105,13 +105,13 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         return transaction;
     }
 
-    public Transaction findBySourceAccountId(String sourceAccountId) throws Exception {
+    public List<Transaction> findBySourceAccountId(String sourceAccountId) throws Exception {
+        List<Transaction> transactionList = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE account_src = ? ORDER BY ID");
         preparedStatement.setString(1, sourceAccountId);
         ResultSet resultSet = preparedStatement.executeQuery();
-        Transaction transaction = null;
-        if (resultSet.next()) {
-            transaction = Transaction
+        while (resultSet.next()) {
+            Transaction transaction = Transaction
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getInt("Amount"))
@@ -121,17 +121,18 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .transactionDateTime(resultSet.getTimestamp("TransactionDateTime"))
                     .transactionType(TransactionTypes.valueOf(resultSet.getString("TransactionType")))
                     .build();
+            transactionList.add(transaction);
         }
-        return transaction;
+        return transactionList;
     }
 
-    public Transaction findByDestinationAccountId(String destinationAccountId) throws Exception {
+    public List<Transaction> findByDestinationAccountId(String destinationAccountId) throws Exception {
+        List<Transaction> transactionList = new ArrayList<>();
         preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE account_dst = ? ORDER BY ID");
         preparedStatement.setString(1, destinationAccountId);
         ResultSet resultSet = preparedStatement.executeQuery();
-        Transaction transaction = null;
         while (resultSet.next()) {
-            transaction = Transaction
+            Transaction transaction = Transaction
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getInt("Amount"))
@@ -141,8 +142,9 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .transactionDateTime(resultSet.getTimestamp("TransactionDateTime"))
                     .transactionType(TransactionTypes.valueOf(resultSet.getString("TransactionType")))
                     .build();
+            transactionList.add(transaction);
         }
-        return transaction;
+        return transactionList;
     }
 
     public List<Transaction> findByDateTime(Timestamp transactionDateTime) throws Exception {
@@ -169,7 +171,7 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
     public Transaction findByDateTimeRange(Timestamp start, Timestamp end) throws Exception {
         preparedStatement = connection.prepareStatement("SELECT * FROM TRANSACTION WHERE transactionDateTime BETWEEN ? and ? ORDER BY ID");
         preparedStatement.setTimestamp(1, Timestamp.valueOf(start.toLocalDateTime()));
-        preparedStatement.setTimestamp(2, Timestamp.valueOf(ed.toLocalDateTime()));
+        preparedStatement.setTimestamp(2, Timestamp.valueOf(end.toLocalDateTime()));
         ResultSet resultSet = preparedStatement.executeQuery();
         Transaction transaction = new Transaction();
         while (resultSet.next()) {

@@ -152,7 +152,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
 
     public Admin findByNationalId(String nationalId) throws Exception {
         preparedStatement = connection.prepareStatement("SELECT * FROM ADMIN WHERE nid = ? ORDER BY ID");
-        preparedStatement.setString(1, nationalId + "%");
+        preparedStatement.setString(1, nationalId);
         ResultSet resultSet = preparedStatement.executeQuery();
         Admin admin = null;
         if (resultSet.next()) {

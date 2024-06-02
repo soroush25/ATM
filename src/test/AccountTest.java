@@ -28,12 +28,19 @@ public class AccountTest {
 
         Account account = Account
                 .builder()
-                .accountNumber(1)
-                .balance(1)
+                .balance(200)
                 .customer(customer)
                 .bank(Banks.Meli)
                 .accountTypes(BankAccountTypes.Saving)
+                .accountNumber(1)
                 .build();
-        System.out.println(AccountBl.getAccountBl().save(account));
+        //System.out.println(AccountBl.getAccountBl().save(account));
+        //System.out.println(AccountBl.getAccountBl().edit(account));
+        //System.out.println(AccountBl.getAccountBl().remove(1));
+        //System.out.println(AccountBl.getAccountBl().findAll());
+        //System.out.println(AccountBl.getAccountBl().findById(1));
+        //System.out.println(AccountBl.getAccountBl().findByAccountType("Saving"));
+        //System.out.println(AccountBl.getAccountBl().findByBankName("Meli");
+        //System.out.println(AccountBl.getAccountBl().findByCustomerId("1"));
     }
 }

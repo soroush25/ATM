@@ -153,7 +153,7 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
 
     public Customer findByNationalId(String nationalId) throws Exception {
         preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE nid = ? ORDER BY ID");
-        preparedStatement.setString(1, nationalId + "%");
+        preparedStatement.setString(1, nationalId);
         ResultSet resultSet = preparedStatement.executeQuery();
         Customer customer = null;
         if (resultSet.next()) {
@@ -178,7 +178,7 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
 
     public Customer findByPhone(String phone) throws Exception {
         preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE phone = ? ORDER BY ID");
-        preparedStatement.setString(1, phone + "%");
+        preparedStatement.setString(1, phone);
         ResultSet resultSet = preparedStatement.executeQuery();
         Customer customer = null;
         if (resultSet.next()) {

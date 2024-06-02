@@ -29,9 +29,11 @@ public class TransactionTest {
                 .sourceAccount(account)
                 .destinationAccount(account)
                 .transactionType(TransactionTypes.transfer)
-                .transactionDateTime(Timestamp.valueOf(LocalDateTime.now()))
+                .transactionDateTime(now)
                 .build();
-        System.out.println(TransactionBl.getTransactionBl().save(transaction));
-        System.out.println(TransactionBl.getTransactionBl().findByDateTime(now));
+        //System.out.println(TransactionBl.getTransactionBl().save(transaction));
+        //System.out.println(TransactionBl.getTransactionBl().findByDateTime(now));
+        //System.out.println(TransactionBl.getTransactionBl().findBySourceAccountId("1"));
+
     }
 }
