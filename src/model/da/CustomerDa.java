@@ -227,7 +227,7 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
     }
 
     public Customer findByUsernameAndPassword(String username, String password) throws Exception {
-        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE username in ? AND password in ? ORDER BY ID");
+        preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE username = ? AND password = ? ORDER BY ID");
         preparedStatement.setString(1, username);
         preparedStatement.setString(2, password);
         ResultSet resultSet = preparedStatement.executeQuery();

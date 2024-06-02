@@ -118,7 +118,7 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
 
     public List<Account> findByBankName(String bank) throws Exception {
         List<Account> accountList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE bank LIKE? ORDER BY accountNumber");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE bank = ? ORDER BY accountNumber");
         preparedStatement.setString(1, bank + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
@@ -137,7 +137,7 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
 
     public List<Account> findByAccountType(String types) throws Exception {
         List<Account> accountList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE accountTypes LIKE? ORDER BY accountNumber");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE accountTypes = ? ORDER BY accountNumber");
         preparedStatement.setString(1, types + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {

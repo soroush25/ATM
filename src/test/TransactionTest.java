@@ -20,7 +20,7 @@ public class TransactionTest {
                         .accountTypes(null)
                         .build();
 
-
+        Timestamp now = Timestamp.valueOf(LocalDateTime.now());
         Transaction transaction = Transaction
                 .builder()
                 .id(1)
@@ -32,7 +32,6 @@ public class TransactionTest {
                 .transactionDateTime(Timestamp.valueOf(LocalDateTime.now()))
                 .build();
         System.out.println(TransactionBl.getTransactionBl().save(transaction));
-        System.out.println(TransactionBl.getTransactionBl().findByDateTime(Timestamp.valueOf(LocalDateTime.now())));
-        // todo: Timestamp for findBy(s)
+        System.out.println(TransactionBl.getTransactionBl().findByDateTime(now));
     }
 }
