@@ -6,7 +6,6 @@ import src.model.da.TransactionDa;
 import src.model.entity.Transaction;
 import src.model.tools.CRUD;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 

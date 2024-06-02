@@ -8,7 +8,6 @@ import lombok.experimental.SuperBuilder;
 import src.model.entity.enums.TransactionTypes;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 
 @NoArgsConstructor
 @Getter
