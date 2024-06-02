@@ -32,7 +32,7 @@ public class AppController implements Initializable {
     private ToggleGroup genderToggle;
 
     @FXML
-    private Button goCustomerPage, goAdminPage, passcodeBtn, goMenu, userTransfer, userBalance, userWithdrawal, userReport, adminPasscode, adminCreate, adminDelete, adminEdit, adminSearchBtn, adminBalance;
+    private Button goCustomerPage, goAdminPage, passcodeBtn, goMenu, customerTransfer, customerBalance, customerWithdrawal, customerReport, adminPasscode, adminCreate, adminDelete, adminEdit, adminSearchBtn, adminBalance;
 
     @FXML
     private TableView<Admin> allTable;
@@ -125,23 +125,23 @@ public class AppController implements Initializable {
             }
         });
 
-        allTable.setOnMouseClicked((event) -> {
-            Admin user = allTable.getSelectionModel().getSelectedItem();
-            Account account = allTable.getSelectionModel().getSelectedItem().getAccount();
-            adminTableID.setText(String.valueOf(user.getId()));
-            adminTableName.setText(user.getFirstName());
-            adminTableName.setText(user.getLastName());
-            adminTableBalance.setText(String.valueOf(account.getAccountTypes()));
-            if (user.getGender().equals(Gender.Male)) {
-                maletoggle.setSelected(true);
-            } else {
-                femaletoggle.setSelected(true);
-            }
-            emailfield.setText(user.getEmail());
-            phonefield.setText(user.getPhone());
-            addressfield.setText(user.getAddress());
-        });
-    }
+//        allTable.setOnMouseClicked((event) -> {
+//            Admin customer = allTable.getSelectionModel().getSelectedItem();
+//            Account account = allTable.getSelectionModel().getSelectedItem().getAccount();
+//            adminTableID.setText(String.valueOf(customer.getId()));
+//            adminTableName.setText(customer.getFirstName());
+//            adminTableName.setText(customer.getLastName());
+//            adminTableBalance.setText(String.valueOf(account.getAccountTypes()));
+//            if (customer.getGender().equals(Gender.Male)) {
+//                maletoggle.setSelected(true);
+//            } else {
+//                femaletoggle.setSelected(true);
+//            }
+//            emailfield.setText(customer.getEmail());
+//            phonefield.setText(customer.getPhone());
+//            addressfield.setText(customer.getAddress());
+//        });
+//    }
 
     private void showDataOnTable(List<Customer> customerList) throws Exception {
         ObservableList<Customer> observableList = FXCollections.observableList(customerList);
