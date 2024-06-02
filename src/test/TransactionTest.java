@@ -5,7 +5,9 @@ import src.model.entity.Account;
 import src.model.entity.Transaction;
 import src.model.entity.enums.TransactionTypes;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class TransactionTest {
     public static void main(String[] args) throws Exception {
@@ -28,7 +30,7 @@ public class TransactionTest {
                 .sourceAccount(account)
                 .destinationAccount(account)
                 .transactionType(TransactionTypes.transfer)
-                .transactionDate(LocalDate.now())
+                .transactionDateTime(Timestamp.valueOf(LocalDateTime.now()))
                 .build();
         System.out.println(TransactionBl.getTransactionBl().save(transaction));
     }
