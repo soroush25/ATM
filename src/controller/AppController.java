@@ -54,7 +54,7 @@ public class AppController implements Initializable {
 
         log.info("Boot");
         for (City value : City.values()) {
-            cityCmb.getItems().add(value.name());
+            citycmb.getItems().add(value.name());
         }
 
         try {
