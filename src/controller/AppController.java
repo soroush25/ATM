@@ -53,7 +53,7 @@ public class AppController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        log.info("Startup");
+        log.info("Start");
         for (City value : City.values()) {
             citycmb.getItems().add(value.name());
         }
