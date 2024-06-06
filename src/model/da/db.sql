@@ -35,7 +35,6 @@ create table Account
     accountNumber number primary key,
     balance       number,
     customer_id   number references Customer,
-    bank          nvarchar2(10),
     accountTypes  nvarchar2(10)
 );
 
