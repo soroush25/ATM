@@ -144,9 +144,9 @@ public class AdminController implements Initializable {
                 showDataOnTable(Collections.singletonList(AdminBl.getAdminBl().findByNationalId(adminSearchField.getText())));
                 showDataOnTable(Collections.singletonList(AdminBl.getAdminBl().findByUsername(adminSearchField.getText())));
             } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, " Persons\n" + e.getMessage());
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
                 alert.show();
-                log.error("Find By Family Error : " + e.getMessage());
+                log.error("Search Error : " + e.getMessage());
             }
         });
 
