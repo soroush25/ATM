@@ -25,7 +25,6 @@ create table Admin
     email      nvarchar2(30),
     phone      nvarchar2(30),
     address    nvarchar2(30),
-    permission nvarchar2(10),
     username   nvarchar2(10),
     password   nvarchar2(10)
 );
@@ -35,7 +34,7 @@ create table Account
     accountNumber number primary key,
     balance       number,
     customer_id   number references Customer,
-    accountTypes  nvarchar2(10)
+    accountType  nvarchar2(10)
 );
 
 create table Transaction

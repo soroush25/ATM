@@ -81,7 +81,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <TableView layoutX="221.0" layoutY="16.0" prefHeight="372.0" prefWidth="376.0">
+      <TableView fx:id="customerTable" layoutX="221.0" layoutY="6.0" prefHeight="389.0" prefWidth="376.0">
         <columns>
           <TableColumn fx:id="customerTableDst" prefWidth="75.0" text="Destination" />
           <TableColumn fx:id="customerTableAmount" prefWidth="75.0" text="Amount" />

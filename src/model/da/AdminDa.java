@@ -23,7 +23,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
     public Admin save(Admin admin) throws Exception {
         admin.setId(ConnectionProvider.getConnectionProvider().getNextId("admin_seq"));
         preparedStatement = connection.prepareStatement(
-                "INSERT INTO ADMIN (id, fname, lname, nid, gender, birth_date, phone, email, address, permission, username, password) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
+                "INSERT INTO ADMIN (id, fname, lname, nid, gender, birth_date, phone, email, address, username, password) VALUES (?,?,?,?,?,?,?,?,?,?,?)"
         );
         preparedStatement.setInt(1, admin.getId());
         preparedStatement.setString(2, admin.getFirstName());
@@ -34,9 +34,8 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         preparedStatement.setString(7, admin.getPhone());
         preparedStatement.setString(8, admin.getEmail());
         preparedStatement.setString(9, admin.getAddress());
-        preparedStatement.setString(10, admin.getPermission());
-        preparedStatement.setString(11, admin.getUsername());
-        preparedStatement.setString(12, admin.getPassword());
+        preparedStatement.setString(10, admin.getUsername());
+        preparedStatement.setString(11, admin.getPassword());
         preparedStatement.execute();
         return admin;
     }
@@ -44,7 +43,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
     @Override
     public Admin edit(Admin admin) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "UPDATE ADMIN SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?,  phone = ?, email = ?, address = ?, permission = ?, username = ?, password =? WHERE id = ?"
+                "UPDATE ADMIN SET fname = ?, lname = ?, nid = ?, gender = ?, birth_date = ?,  phone = ?, email = ?, address = ?, username = ?, password =? WHERE id = ?"
         );
         preparedStatement.setString(1, admin.getFirstName());
         preparedStatement.setString(2, admin.getLastName());
@@ -54,10 +53,9 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         preparedStatement.setString(6, admin.getPhone());
         preparedStatement.setString(7, admin.getEmail());
         preparedStatement.setString(8, admin.getAddress());
-        preparedStatement.setString(9, admin.getPermission());
-        preparedStatement.setString(10, admin.getUsername());
-        preparedStatement.setString(11, admin.getPassword());
-        preparedStatement.setInt(12, admin.getId());
+        preparedStatement.setString(9, admin.getUsername());
+        preparedStatement.setString(10, admin.getPassword());
+        preparedStatement.setInt(11, admin.getId());
         preparedStatement.execute();
         return admin;
     }
@@ -89,7 +87,6 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .phone(resultSet.getString("PHONE"))
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
-                    .permission(resultSet.getString("PERMISSION"))
                     .username(resultSet.getString("USERNAME"))
                     .password(resultSet.getString("PASSWORD"))
                     .build();
@@ -116,7 +113,6 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .phone(resultSet.getString("PHONE"))
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
-                    .permission(resultSet.getString("PERMISSION"))
                     .username(resultSet.getString("USERNAME"))
                     .password(resultSet.getString("PASSWORD"))
                     .build();
@@ -141,7 +137,6 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .phone(resultSet.getString("PHONE"))
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
-                    .permission(resultSet.getString("PERMISSION"))
                     .username(resultSet.getString("USERNAME"))
                     .password(resultSet.getString("PASSWORD"))
                     .build();
@@ -167,7 +162,6 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .phone(resultSet.getString("PHONE"))
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
-                    .permission(resultSet.getString("PERMISSION"))
                     .username(resultSet.getString("USERNAME"))
                     .password(resultSet.getString("PASSWORD"))
                     .build();
@@ -192,7 +186,6 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .phone(resultSet.getString("PHONE"))
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
-                    .permission(resultSet.getString("PERMISSION"))
                     .username(resultSet.getString("USERNAME"))
                     .password(resultSet.getString("PASSWORD"))
                     .build();
@@ -217,7 +210,6 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
                     .phone(resultSet.getString("PHONE"))
                     .email(resultSet.getString("EMAIL"))
                     .address(resultSet.getString("ADDRESS"))
-                    .permission(resultSet.getString("PERMISSION"))
                     .username(resultSet.getString("USERNAME"))
                     .password(resultSet.getString("PASSWORD"))
                     .build();
