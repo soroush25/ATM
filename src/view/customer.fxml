@@ -20,7 +20,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Button fx:id="goBack" layoutX="41.0" layoutY="357.0" mnemonicParsing="false" prefWidth="150.0" text="Exit" textAlignment="CENTER">
+      <Button fx:id="exit" layoutX="41.0" layoutY="357.0" mnemonicParsing="false" prefWidth="150.0" text="Exit" textAlignment="CENTER">
          <rotationAxis>
             <Point3D />
          </rotationAxis>

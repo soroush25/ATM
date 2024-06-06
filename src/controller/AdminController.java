@@ -87,7 +87,7 @@ public class AdminController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
                 alert.show();
             }
-    });
+        });
 
         adminEdit.setOnAction(event -> {
             try {
