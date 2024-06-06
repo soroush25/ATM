@@ -8,11 +8,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.extern.log4j.Log4j;
 import src.model.bl.AdminBl;
-import src.model.bl.CustomerBl;
 import src.model.da.CustomerDa;
 import src.model.entity.Account;
-import src.model.entity.Customer;
 import src.model.entity.Admin;
+import src.model.entity.Customer;
 import src.model.entity.enums.City;
 import src.model.entity.enums.Gender;
 import src.model.tools.Validator;
@@ -22,7 +21,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 @Log4j
-public class AppController implements Initializable {
+public class CustomerController implements Initializable {
     @FXML
     private TextField usernameField, passwordField, adminSearchField, fnameField, lnameField, nidField, emailField, phoneField, addressField, idField;
 

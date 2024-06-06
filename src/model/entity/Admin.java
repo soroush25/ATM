@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import src.model.entity.enums.City;
 import src.model.entity.enums.Gender;
 
 import java.time.LocalDate;
@@ -28,7 +27,6 @@ public class Admin {
     private String username;
     private String password;
     private String permission ;
-    private Account account;
 
     @Override
     public String toString() {

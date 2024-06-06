@@ -1,6 +1,5 @@
 package src.test;
 
-import src.model.bl.TransactionBl;
 import src.model.entity.Account;
 import src.model.entity.Transaction;
 import src.model.entity.enums.TransactionTypes;
@@ -16,7 +15,6 @@ public class TransactionTest {
                         .accountNumber(1)
                         .balance(100)
                         .customer(null)
-                        .bank(null)
                         .accountTypes(null)
                         .build();
 
@@ -25,10 +23,9 @@ public class TransactionTest {
                 .builder()
                 .id(1)
                 .amount(100)
-                .deposit(100)
                 .sourceAccount(account)
                 .destinationAccount(account)
-                .transactionType(TransactionTypes.transfer)
+                .transactionType(TransactionTypes.Transfer)
                 .transactionDateTime(now)
                 .build();
         //System.out.println(TransactionBl.getTransactionBl().save(transaction));

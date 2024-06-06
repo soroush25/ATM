@@ -17,7 +17,6 @@ import java.sql.Timestamp;
 public class Transaction {
     private int id;
     private int amount;
-    private int deposit;
     private Account sourceAccount;
     private Account destinationAccount;
     private Timestamp transactionDateTime;

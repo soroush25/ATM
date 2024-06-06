@@ -43,7 +43,6 @@ create table Transaction
 (
     id                  number primary key,
     amount              nvarchar2(30),
-    deposit             nvarchar2(30),
     transactionDateTime timestamp,
     account_src         number references Account,
     account_dst         number,

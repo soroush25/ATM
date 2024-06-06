@@ -89,20 +89,6 @@ public class AccountBl implements CRUD<Account> {
         }
     }
 
-    public List<Account> findByBankName(String customer) throws Exception {
-        try (AccountDa accountDa = new AccountDa()) {
-            List<Account> accountList = accountDa.findByBankName(customer);
-            if (!accountList.isEmpty()) {
-                for (Account account : accountList) {
-                    account.setCustomer(CustomerBl.getCustomerBl().findById(account.getCustomer().getId()));
-                }
-                return accountList;
-            } else {
-                throw new NotFoundException();
-            }
-        }
-    }
-
     public List<Account> findByAccountType(String customer) throws Exception {
         try (AccountDa accountDa = new AccountDa()) {
             List<Account> accountList = accountDa.findByAccountType(customer);

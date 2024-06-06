@@ -3,8 +3,7 @@ package src.model.da;
 import lombok.extern.log4j.Log4j;
 import src.model.entity.Account;
 import src.model.entity.Customer;
-import src.model.entity.enums.BankAccountTypes;
-import src.model.entity.enums.Banks;
+import src.model.entity.enums.AccountType;
 import src.model.tools.CRUD;
 import src.model.tools.ConnectionProvider;
 
@@ -25,13 +24,12 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
     public Account save(Account account) throws Exception {
         account.setAccountNumber(ConnectionProvider.getConnectionProvider().getNextId("account_seq"));
         preparedStatement = connection.prepareStatement(
-                "INSERT INTO ACCOUNT (accountNumber, balance, customer_id, bank, accountTypes) VALUES (?,?,?,?,?)"
+                "INSERT INTO ACCOUNT (accountNumber, balance, customer_id, accountTypes) VALUES (?,?,?,?)"
         );
         preparedStatement.setInt(1, account.getAccountNumber());
         preparedStatement.setInt(2, account.getBalance());
         preparedStatement.setInt(3, account.getCustomer().getId());
-        preparedStatement.setString(4, String.valueOf(account.getBank()));
-        preparedStatement.setString(5, String.valueOf(account.getAccountTypes()));
+        preparedStatement.setString(4, String.valueOf(account.getAccountTypes()));
         preparedStatement.execute();
         return account;
     }
@@ -39,13 +37,12 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
     @Override
     public Account edit(Account account) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "UPDATE ACCOUNT SET balance = ?, customer_id = ?, bank = ?, accountTypes = ? WHERE AccountNumber = ?"
+                "UPDATE ACCOUNT SET balance = ?, customer_id = ?, accountTypes = ? WHERE AccountNumber = ?"
         );
         preparedStatement.setInt(1, account.getBalance());
         preparedStatement.setInt(2, account.getCustomer().getId());
-        preparedStatement.setString(3, String.valueOf(account.getBank()));
-        preparedStatement.setString(4, String.valueOf(account.getAccountTypes()));
-        preparedStatement.setInt(5, account.getAccountNumber());
+        preparedStatement.setString(3, String.valueOf(account.getAccountTypes()));
+        preparedStatement.setInt(4, account.getAccountNumber());
         preparedStatement.execute();
         return account;
     }
@@ -71,8 +68,7 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
                     .accountNumber(resultSet.getInt("AccountNumber"))
                     .balance(resultSet.getInt("Balance"))
                     .customer(Customer.builder().id(resultSet.getInt("Customer_id")).build())
-                    .bank(Banks.valueOf(resultSet.getString("Bank")))
-                    .accountTypes(BankAccountTypes.valueOf(resultSet.getString("AccountTypes")))
+                    .accountTypes(AccountType.valueOf(resultSet.getString("AccountTypes")))
                     .build();
             accountList.add(account);
         }
@@ -91,8 +87,7 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
                     .accountNumber(resultSet.getInt("AccountNumber"))
                     .balance(resultSet.getInt("Balance"))
                     .customer(Customer.builder().id(resultSet.getInt("Customer_id")).build())
-                    .bank(Banks.valueOf(resultSet.getString("Bank")))
-                    .accountTypes(BankAccountTypes.valueOf(resultSet.getString("AccountTypes")))
+                    .accountTypes(AccountType.valueOf(resultSet.getString("AccountTypes")))
                     .build();
         }
         return account;
@@ -109,30 +104,10 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
                     .accountNumber(resultSet.getInt("AccountNumber"))
                     .balance(resultSet.getInt("Balance"))
                     .customer(Customer.builder().id(resultSet.getInt("Customer_id")).build())
-                    .bank(Banks.valueOf(resultSet.getString("Bank")))
-                    .accountTypes(BankAccountTypes.valueOf(resultSet.getString("AccountTypes")))
+                    .accountTypes(AccountType.valueOf(resultSet.getString("AccountTypes")))
                     .build();
         }
         return account;
-    }
-
-    public List<Account> findByBankName(String bank) throws Exception {
-        List<Account> accountList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE bank LIKE ? ORDER BY accountNumber");
-        preparedStatement.setString(1, bank + "%");
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            Account account = Account
-                    .builder()
-                    .accountNumber(resultSet.getInt("AccountNumber"))
-                    .balance(resultSet.getInt("Balance"))
-                    .customer(Customer.builder().id(resultSet.getInt("Customer_id")).build())
-                    .bank(Banks.valueOf(resultSet.getString("Bank")))
-                    .accountTypes(BankAccountTypes.valueOf(resultSet.getString("AccountTypes")))
-                    .build();
-            accountList.add(account);
-        }
-        return accountList;
     }
 
     public List<Account> findByAccountType(String types) throws Exception {
@@ -146,8 +121,7 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
                     .accountNumber(resultSet.getInt("AccountNumber"))
                     .balance(resultSet.getInt("Balance"))
                     .customer(Customer.builder().id(resultSet.getInt("Customer_id")).build())
-                    .bank(Banks.valueOf(resultSet.getString("Bank")))
-                    .accountTypes(BankAccountTypes.valueOf(resultSet.getString("AccountTypes")))
+                    .accountTypes(AccountType.valueOf(resultSet.getString("AccountTypes")))
                     .build();
             accountList.add(account);
         }

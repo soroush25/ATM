@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:controller="src.controller.AppController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controller.AppController">
    <children>
       <Text layoutX="35.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrator">
          <font>
@@ -16,7 +16,7 @@
          </font>
       </Text>
       <Button fx:id="goMenu" layoutX="35.0" layoutY="350.0" mnemonicParsing="false" prefWidth="150.0" text="Exit" textAlignment="CENTER" />
-      <Button fx:id="adminPasscode" layoutX="35.0" layoutY="300.0" mnemonicParsing="false" prefWidth="150.0" text="Edit Account Passcode" textAlignment="CENTER" />
+      <Button fx:id="adminPassword" layoutX="35.0" layoutY="300.0" mnemonicParsing="false" prefWidth="150.0" text="Edit Account Passcode" textAlignment="CENTER" />
       <Button fx:id="adminCreate" layoutX="35.0" layoutY="100.0" mnemonicParsing="false" prefWidth="150.0" text="Create Account" textAlignment="CENTER" />
       <Button fx:id="adminDelete" layoutX="35.0" layoutY="200.0" mnemonicParsing="false" prefWidth="150.0" text="Delete Account" textAlignment="CENTER" />
       <Button fx:id="adminEdit" layoutX="35.0" layoutY="150.0" mnemonicParsing="false" prefWidth="150.0" text="Edit Account" textAlignment="CENTER" />

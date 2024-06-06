@@ -24,15 +24,14 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
     public Transaction save(Transaction transaction) throws Exception {
         transaction.setId(ConnectionProvider.getConnectionProvider().getNextId("transaction_seq"));
         preparedStatement = connection.prepareStatement(
-                "INSERT INTO TRANSACTION (id, amount, deposit, account_src, account_dst, transactionDateTime, transactionType) VALUES (?,?,?,?,?,?,?)"
+                "INSERT INTO TRANSACTION (id, amount, account_src, account_dst, transactionDateTime, transactionType) VALUES (?,?,?,?,?,?)"
         );
         preparedStatement.setInt(1, transaction.getId());
         preparedStatement.setInt(2, transaction.getAmount());
-        preparedStatement.setInt(3, transaction.getDeposit());
-        preparedStatement.setInt(4, transaction.getSourceAccount().getAccountNumber());
-        preparedStatement.setInt(5, transaction.getDestinationAccount().getAccountNumber());
-        preparedStatement.setTimestamp(6, Timestamp.valueOf(transaction.getTransactionDateTime().toLocalDateTime()));
-        preparedStatement.setString(7, String.valueOf(transaction.getTransactionType()));
+        preparedStatement.setInt(3, transaction.getSourceAccount().getAccountNumber());
+        preparedStatement.setInt(4, transaction.getDestinationAccount().getAccountNumber());
+        preparedStatement.setTimestamp(5, Timestamp.valueOf(transaction.getTransactionDateTime().toLocalDateTime()));
+        preparedStatement.setString(6, String.valueOf(transaction.getTransactionType()));
         preparedStatement.execute();
         return transaction;
     }
@@ -40,15 +39,14 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
     @Override
     public Transaction edit(Transaction transaction) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "UPDATE TRANSACTION SET amount = ?, deposit = ?, account_src = ?, account_dst = ?, transactionDateTime = ?, transactionType = ? WHERE id = ?"
+                "UPDATE TRANSACTION SET amount = ?, account_src = ?, account_dst = ?, transactionDateTime = ?, transactionType = ? WHERE id = ?"
         );
         preparedStatement.setInt(1, transaction.getAmount());
-        preparedStatement.setInt(2, transaction.getDeposit());
-        preparedStatement.setInt(3, transaction.getSourceAccount().getAccountNumber());
-        preparedStatement.setInt(4, transaction.getDestinationAccount().getAccountNumber());
-        preparedStatement.setTimestamp(5, Timestamp.valueOf(transaction.getTransactionDateTime().toLocalDateTime()));
-        preparedStatement.setString(6, String.valueOf(transaction.getTransactionType()));
-        preparedStatement.setInt(7, transaction.getId());
+        preparedStatement.setInt(2, transaction.getSourceAccount().getAccountNumber());
+        preparedStatement.setInt(3, transaction.getDestinationAccount().getAccountNumber());
+        preparedStatement.setTimestamp(4, Timestamp.valueOf(transaction.getTransactionDateTime().toLocalDateTime()));
+        preparedStatement.setString(5, String.valueOf(transaction.getTransactionType()));
+        preparedStatement.setInt(6, transaction.getId());
         preparedStatement.execute();
         return transaction;
     }
@@ -73,7 +71,6 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getInt("Amount"))
-                    .deposit(resultSet.getInt("Deposit"))
                     .sourceAccount(Account.builder().accountNumber(resultSet.getInt("Account_src")).build())
                     .destinationAccount(Account.builder().accountNumber(resultSet.getInt("Account_dst")).build())
                     .transactionDateTime(resultSet.getTimestamp("TransactionDateTime"))
@@ -95,7 +92,6 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getInt("Amount"))
-                    .deposit(resultSet.getInt("Deposit"))
                     .sourceAccount(Account.builder().accountNumber(resultSet.getInt("Account_src")).build())
                     .destinationAccount(Account.builder().accountNumber(resultSet.getInt("Account_dst")).build())
                     .transactionDateTime(resultSet.getTimestamp("TransactionDateTime"))
@@ -115,7 +111,6 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getInt("Amount"))
-                    .deposit(resultSet.getInt("Deposit"))
                     .sourceAccount(Account.builder().accountNumber(resultSet.getInt("Account_src")).build())
                     .destinationAccount(Account.builder().accountNumber(resultSet.getInt("Account_dst")).build())
                     .transactionDateTime(resultSet.getTimestamp("TransactionDateTime"))
@@ -136,7 +131,6 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getInt("Amount"))
-                    .deposit(resultSet.getInt("Deposit"))
                     .sourceAccount(Account.builder().accountNumber(resultSet.getInt("Account_src")).build())
                     .destinationAccount(Account.builder().accountNumber(resultSet.getInt("Account_dst")).build())
                     .transactionDateTime(resultSet.getTimestamp("TransactionDateTime"))
@@ -157,7 +151,6 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getInt("Amount"))
-                    .deposit(resultSet.getInt("Deposit"))
                     .sourceAccount(Account.builder().accountNumber(resultSet.getInt("Account_src")).build())
                     .destinationAccount(Account.builder().accountNumber(resultSet.getInt("Account_dst")).build())
                     .transactionDateTime(resultSet.getTimestamp("TransactionDateTime"))
@@ -179,7 +172,6 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getInt("Amount"))
-                    .deposit(resultSet.getInt("Deposit"))
                     .sourceAccount(Account.builder().accountNumber(resultSet.getInt("Account_src")).build())
                     .destinationAccount(Account.builder().accountNumber(resultSet.getInt("Account_dst")).build())
                     .transactionDateTime(resultSet.getTimestamp("TransactionDateTime"))
@@ -200,7 +192,6 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getInt("Amount"))
-                    .deposit(resultSet.getInt("Deposit"))
                     .sourceAccount(Account.builder().accountNumber(resultSet.getInt("Account_src")).build())
                     .destinationAccount(Account.builder().accountNumber(resultSet.getInt("Account_dst")).build())
                     .transactionDateTime(resultSet.getTimestamp("TransactionDateTime"))
@@ -221,7 +212,6 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .builder()
                     .id(resultSet.getInt("ID"))
                     .amount(resultSet.getInt("Amount"))
-                    .deposit(resultSet.getInt("Deposit"))
                     .sourceAccount(Account.builder().accountNumber(resultSet.getInt("Account_src")).build())
                     .destinationAccount(Account.builder().accountNumber(resultSet.getInt("Account_dst")).build())
                     .transactionDateTime(resultSet.getTimestamp("TransactionDateTime"))

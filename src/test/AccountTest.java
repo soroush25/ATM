@@ -1,10 +1,8 @@
 package src.test;
 
-import src.model.bl.AccountBl;
 import src.model.entity.Account;
 import src.model.entity.Customer;
-import src.model.entity.enums.BankAccountTypes;
-import src.model.entity.enums.Banks;
+import src.model.entity.enums.AccountType;
 import src.model.entity.enums.City;
 
 public class AccountTest {
@@ -30,8 +28,7 @@ public class AccountTest {
                 .builder()
                 .balance(200)
                 .customer(customer)
-                .bank(Banks.Meli)
-                .accountTypes(BankAccountTypes.Saving)
+                .accountTypes(AccountType.Saving)
                 .accountNumber(1)
                 .build();
         //System.out.println(AccountBl.getAccountBl().save(account));

@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import src.model.entity.enums.BankAccountTypes;
-import src.model.entity.enums.Banks;
+import src.model.entity.enums.AccountType;
 
 @NoArgsConstructor
 @Getter
@@ -17,8 +16,7 @@ public class Account {
     private int accountNumber;
     private int balance;
     private Customer customer;
-    private Banks bank;
-    private BankAccountTypes accountTypes;
+    private AccountType accountTypes;
 
     @Override
     public String toString() {

@@ -13,7 +13,7 @@ public class ATM extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Scene scene = new Scene(
-                FXMLLoader.load(getClass().getResource("view/welcome.fxml"))
+                FXMLLoader.load(getClass().getResource("view/authentication.fxml"))
         );
 
         primaryStage.setScene(scene);

@@ -7,25 +7,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class WindowsManager {
-    public static void showPersonForm() throws IOException {
+    public static void showATMForm() throws IOException {
         Stage stage = new Stage();
         Scene scene = new Scene(
-                FXMLLoader.load(WindowsManager.class.getResource("view/welcome.fxml"))
+                FXMLLoader.load(WindowsManager.class.getResource("view/authentication.fxml"))
         );
 
         stage.setScene(scene);
-        stage.setTitle("Profile");
-        stage.show();
-    }
-
-    public static void showAboutForm() throws IOException {
-        Stage stage = new Stage();
-        Scene scene = new Scene(
-                FXMLLoader.load(WindowsManager.class.getResource("about.fxml"))
-        );
-
-        stage.setScene(scene);
-        stage.setTitle("About");
+        stage.setTitle("ATM");
         stage.show();
     }
 }
