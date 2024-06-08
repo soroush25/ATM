@@ -44,6 +44,7 @@ public class CustomerController implements Initializable {
 
         customerBalance.setOnAction(event -> {
             try {
+                // todo
                 resetForm();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
@@ -53,6 +54,7 @@ public class CustomerController implements Initializable {
 
         customerReport.setOnAction(event -> {
             try {
+                //todo
                 resetForm();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
@@ -62,6 +64,7 @@ public class CustomerController implements Initializable {
 
         customerDeposit.setOnAction(event -> {
             try {
+                //todo
                 resetForm();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
@@ -71,6 +74,7 @@ public class CustomerController implements Initializable {
 
         customerTransfer.setOnAction(event -> {
             try {
+                //todo
                 resetForm();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
@@ -79,6 +83,7 @@ public class CustomerController implements Initializable {
         });
         customerWithdrawal.setOnAction(event -> {
             try {
+                //todo
                 resetForm();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
