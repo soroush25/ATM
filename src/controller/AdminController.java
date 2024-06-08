@@ -146,7 +146,7 @@ public class AdminController implements Initializable {
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
                 alert.show();
-                log.error("Search Error : " + e.getMessage());
+                log.error("Search Error: " + e.getMessage());
             }
         });
 
