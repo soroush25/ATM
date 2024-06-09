@@ -71,9 +71,9 @@ public class CustomerController implements Initializable {
         customerDeposit.setOnAction(event -> {
             try {
                 //todo: واریز وجه
-                Transaction transaction = new Transaction();
+                Transaction transaction = new Transaction()
                         .builder()
-                        .amount(amountField.getText())
+                        .amount(Integer.parseInt(amountField.getText()))
                         .destinationAccount(accountField.getText())
                         .build();
                 TransactionBl.getTransactionBl().save(transaction);
@@ -90,9 +90,9 @@ public class CustomerController implements Initializable {
         customerTransfer.setOnAction(event -> {
             try {
                 //todo: انتقال وجه
-                Transaction transaction = new Transaction();
+                Transaction transaction = new Transaction()
                         .builder()
-                        .amount(amountField.getText())
+                        .amount(Integer.parseInt(amountField.getText()))
                         .destinationAccount(accountField.getText())
                         .build();
                 TransactionBl.getTransactionBl().save(transaction);
@@ -108,9 +108,9 @@ public class CustomerController implements Initializable {
         customerWithdrawal.setOnAction(event -> {
             try {
                 //todo: برداشت وجه
-                Transaction transaction = new Transaction();
+                Transaction transaction = new Transaction()
                         .builder()
-                        .amount(amountField.getText())
+                        .amount(Integer.parseInt(amountField.getText()))
                         .sourceAccount(accountField.getText())
                         .build();
                 TransactionBl.getTransactionBl().save(transaction);
