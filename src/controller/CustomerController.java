@@ -8,8 +8,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.extern.log4j.Log4j;
+import src.model.bl.AccountBl;
 import src.model.bl.CustomerBl;
+import src.model.bl.TransactionBl;
 import src.model.entity.Customer;
+import src.model.entity.Transaction;
 
 import java.net.URL;
 import java.util.List;
@@ -18,7 +21,8 @@ import java.util.ResourceBundle;
 @Log4j
 public class CustomerController implements Initializable {
     @FXML
-    private TextField amountField, destinationField;
+    private TextField amountField, accountField;
+
     @FXML
     private Button exit, customerTransfer, customerBalance, customerWithdrawal, customerReport, customerDeposit;
 
@@ -44,7 +48,8 @@ public class CustomerController implements Initializable {
 
         customerBalance.setOnAction(event -> {
             try {
-                // todo
+                // todo: نشان دادن موجودی
+                customerTableBalance.setCellValueFactory(new PropertyValueFactory<>("balance"));
                 resetForm();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
@@ -54,7 +59,8 @@ public class CustomerController implements Initializable {
 
         customerReport.setOnAction(event -> {
             try {
-                //todo
+                //todo: نشان دادن تراکنش های اخیر در جدول
+                showDataOnTable((List<Customer>) customerReport);
                 resetForm();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
@@ -64,7 +70,16 @@ public class CustomerController implements Initializable {
 
         customerDeposit.setOnAction(event -> {
             try {
-                //todo
+                //todo: واریز وجه
+                Transaction transaction = new Transaction();
+                        .builder()
+                        .amount(amountField.getText())
+                        .destinationAccount(accountField.getText())
+                        .build();
+                TransactionBl.getTransactionBl().save(transaction);
+                AccountBl.getAccountBl().edit(amountField);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Done!");
+                alert.show();
                 resetForm();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
@@ -74,7 +89,16 @@ public class CustomerController implements Initializable {
 
         customerTransfer.setOnAction(event -> {
             try {
-                //todo
+                //todo: انتقال وجه
+                Transaction transaction = new Transaction();
+                        .builder()
+                        .amount(amountField.getText())
+                        .destinationAccount(accountField.getText())
+                        .build();
+                TransactionBl.getTransactionBl().save(transaction);
+                AccountBl.getAccountBl().edit(amountField);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Done!");
+                alert.show();
                 resetForm();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
@@ -83,7 +107,16 @@ public class CustomerController implements Initializable {
         });
         customerWithdrawal.setOnAction(event -> {
             try {
-                //todo
+                //todo: برداشت وجه
+                Transaction transaction = new Transaction();
+                        .builder()
+                        .amount(amountField.getText())
+                        .sourceAccount(accountField.getText())
+                        .build();
+                TransactionBl.getTransactionBl().save(transaction);
+                AccountBl.getAccountBl().edit(amountField);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Done!");
+                alert.show();
                 resetForm();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
@@ -101,7 +134,7 @@ public class CustomerController implements Initializable {
 
         customerTable.setOnMouseClicked((event) -> {
             Customer customer = customerTable.getSelectionModel().getSelectedItem();
-            destinationField.setText(String.valueOf(customer.getTransaction().getDestinationAccount()));
+            accountField.setText(String.valueOf(customer.getTransaction().getDestinationAccount()));
             amountField.setText(String.valueOf(customer.getTransaction().getAmount()));
         });
     }
@@ -117,7 +150,7 @@ public class CustomerController implements Initializable {
     }
 
     private void resetForm() throws Exception {
-        destinationField.clear();
+        accountField.clear();
         amountField.clear();
         showDataOnTable(CustomerBl.getCustomerBl().findAll());
     }

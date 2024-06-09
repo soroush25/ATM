@@ -28,8 +28,6 @@ public class Customer {
     private String username;
     private String password;
     private City city;
-    private Transaction transaction;
-    private Account account;
 
     @Override
     public String toString() {

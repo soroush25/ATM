@@ -36,6 +36,7 @@ public class AuthenticationController implements Initializable {
 
         loginBtn.setOnAction(event -> {
             try {
+                //todo: جستوجو یوزر و پسوورد در دیتابیس و باز کردن پنجره مرتبط
                 if (CustomerBl.getCustomerBl().findByUsernameAndPassword(usernameField.getText(),passwordField.getText()) != null){
                     Stage stage = new Stage();
                     Scene scene = new Scene(

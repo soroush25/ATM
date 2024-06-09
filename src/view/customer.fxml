@@ -71,9 +71,9 @@
          </rowConstraints>
          <children>
             <Label text="Amount" />
-            <Label text="Destination" GridPane.rowIndex="1" />
+            <Label text="Account" GridPane.rowIndex="1" />
             <TextField fx:id="amountField" GridPane.columnIndex="1" />
-            <TextField fx:id="destinationField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="accountField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Button fx:id="customerDeposit" layoutX="41.0" layoutY="220.0" mnemonicParsing="false" prefWidth="150.0" text="Deposit">
