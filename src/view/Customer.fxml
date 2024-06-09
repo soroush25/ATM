@@ -31,5 +31,10 @@
             </Button>
          </children>
       </HBox>
+      <Button fx:id="exit" layoutX="224.0" layoutY="332.0" mnemonicParsing="false" prefWidth="150.0" text="Exit" textAlignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

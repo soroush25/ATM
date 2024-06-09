@@ -18,7 +18,6 @@ public class CustomerController implements Initializable {
     @FXML
     private Button exit, CustomerAccountBtn, CustomerTransactionBtn;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

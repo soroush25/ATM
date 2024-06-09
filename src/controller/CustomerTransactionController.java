@@ -24,7 +24,7 @@ public class CustomerTransactionController implements Initializable {
     private TextField amountField, accountField;
 
     @FXML
-    private Button exit, customerTransfer, customerBalance, customerWithdrawal, customerReport, customerDeposit;
+    private Button exit, customerTransfer, customerWithdrawal, customerDeposit;
 
     @FXML
     private TableView<Customer> customerTable;
@@ -45,28 +45,6 @@ public class CustomerTransactionController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Customer Error\n" + e.getMessage());
             alert.show();
         }
-
-        customerBalance.setOnAction(event -> {
-            try {
-                // todo: نشان دادن موجودی
-                customerTableBalance.setCellValueFactory(new PropertyValueFactory<>("balance"));
-                resetForm();
-            } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
-                alert.show();
-            }
-        });
-
-        customerReport.setOnAction(event -> {
-            try {
-                //todo: نشان دادن تراکنش های اخیر در جدول
-                showDataOnTable((List<Customer>) customerReport);
-                resetForm();
-            } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
-                alert.show();
-            }
-        });
 
         customerDeposit.setOnAction(event -> {
             try {
