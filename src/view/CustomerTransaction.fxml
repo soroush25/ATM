@@ -13,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controller.CustomerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controller.CustomerTransactionController">
    <children>
-      <Text layoutX="20.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select An Option">
+      <Text layoutX="20.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Transaction">
          <font>
             <Font size="20.0" />
          </font>
@@ -28,7 +28,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="customerTransfer" layoutX="41.0" layoutY="265.0" mnemonicParsing="false" prefWidth="150.0" text="Transfer" textAlignment="CENTER">
+      <Button fx:id="customerTransfer" layoutX="41.0" layoutY="206.0" mnemonicParsing="false" prefWidth="150.0" text="Transfer" textAlignment="CENTER">
          <rotationAxis>
             <Point3D />
          </rotationAxis>
@@ -36,23 +36,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="customerBalance" layoutX="41.0" layoutY="130.0" mnemonicParsing="false" prefWidth="150.0" text="Balance" textAlignment="CENTER">
-         <rotationAxis>
-            <Point3D />
-         </rotationAxis>
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="customerWithdrawal" layoutX="41.0" layoutY="310.0" mnemonicParsing="false" prefWidth="150.0" text="Withdrawal" textAlignment="CENTER">
-         <rotationAxis>
-            <Point3D />
-         </rotationAxis>
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="customerReport" layoutX="41.0" layoutY="175.0" mnemonicParsing="false" prefWidth="150.0" text="Report" textAlignment="CENTER">
+      <Button fx:id="customerWithdrawal" layoutX="41.0" layoutY="251.0" mnemonicParsing="false" prefWidth="150.0" text="Withdrawal" textAlignment="CENTER">
          <rotationAxis>
             <Point3D />
          </rotationAxis>
@@ -76,7 +60,7 @@
             <TextField fx:id="accountField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="customerDeposit" layoutX="41.0" layoutY="220.0" mnemonicParsing="false" prefWidth="150.0" text="Deposit">
+      <Button fx:id="customerDeposit" layoutX="41.0" layoutY="161.0" mnemonicParsing="false" prefWidth="150.0" text="Deposit">
          <font>
             <Font size="14.0" />
          </font>

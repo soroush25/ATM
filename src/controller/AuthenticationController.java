@@ -40,7 +40,7 @@ public class AuthenticationController implements Initializable {
                 if (CustomerBl.getCustomerBl().findByUsernameAndPassword(usernameField.getText(),passwordField.getText()) != null){
                     Stage stage = new Stage();
                     Scene scene = new Scene(
-                            FXMLLoader.load(WindowsManager.class.getResource("view/customer.fxml"))
+                            FXMLLoader.load(WindowsManager.class.getResource("view/Customer.fxml"))
                     );
                     stage.setScene(scene);
                 }
