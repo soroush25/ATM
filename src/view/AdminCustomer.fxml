@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="872.0" prefWidth="1163.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="459.0" layoutY="26.0" text="Customers Panel">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <TableView fx:id="AdminCustomresTbl" layoutX="14.0" layoutY="107.0" prefHeight="716.0" prefWidth="1136.0">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="54.0" text="ID" />
+          <TableColumn fx:id="nameCol" prefWidth="96.0" text="FirstName" />
+            <TableColumn fx:id="familyCol" prefWidth="90.0" text="Last Name" />
+            <TableColumn fx:id="nationalIdCol" prefWidth="107.0" text="National ID" />
+            <TableColumn fx:id="genderCol" prefWidth="75.0" text="Gender" />
+            <TableColumn fx:id="birthDateCol" prefWidth="101.0" text="BirthDate" />
+            <TableColumn fx:id="emailCol" prefWidth="97.0" text="Email" />
+            <TableColumn fx:id="phoneNumberCol" prefWidth="113.0" text="Phone Number" />
+            <TableColumn fx:id="addressCol" prefWidth="113.0" text="Address" />
+            <TableColumn fx:id="usernameCol" prefWidth="95.0" text="Username" />
+            <TableColumn fx:id="passwordCol" prefWidth="95.0" text="Password" />
+            <TableColumn fx:id="cityCol" prefWidth="99.0" text="City" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>

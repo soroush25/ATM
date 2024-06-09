@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="203.0" layoutY="14.0" text="Transactions Panel">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+      <TableView fx:id="AdminTransactionTbl" layoutX="36.0" layoutY="85.0" prefHeight="511.0" prefWidth="638.0">
+        <columns>
+          <TableColumn fx:id="idTransactionCol" prefWidth="64.0" text="ID" />
+          <TableColumn fx:id="ammountTransactionCol" prefWidth="86.0" text="Amount" />
+            <TableColumn fx:id="sourceTransactionCol" prefWidth="137.0" text="Source Account" />
+            <TableColumn fx:id="destinationTransactionCol" prefWidth="151.0" text="Destination Account" />
+            <TableColumn fx:id="timeTransactionCol" minWidth="0.0" prefWidth="108.0" text="Time" />
+            <TableColumn fx:id="typeTransactionCol" prefWidth="91.0" text="Type" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>
