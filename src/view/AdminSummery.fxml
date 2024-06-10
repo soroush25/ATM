@@ -41,5 +41,10 @@
          </children>
       </GridPane>
       <Button fx:id="AdminRefreshBtn" layoutX="27.0" layoutY="241.0" mnemonicParsing="false" text="Refresh" />
+      <Button fx:id="exit" layoutX="183.0" layoutY="240.0" mnemonicParsing="false" prefWidth="150.0" text="Exit" textAlignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
