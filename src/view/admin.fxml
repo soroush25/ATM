@@ -18,18 +18,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controller.AdminController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controller.AdminController">
    <children>
-      <Text layoutX="14.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrator">
+      <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrator">
          <font>
-            <Font size="20.0" />
+            <Font size="30.0" />
          </font>
       </Text>
-      <Button fx:id="exit" layoutX="14.0" layoutY="364.0" mnemonicParsing="false" text="Exit" textAlignment="CENTER" />
-      <Button fx:id="adminCreate" layoutX="70.0" layoutY="364.0" mnemonicParsing="false" text="Create" textAlignment="CENTER" />
-      <Button fx:id="adminDelete" layoutX="206.0" layoutY="364.0" mnemonicParsing="false" text="Delete" textAlignment="CENTER" />
-      <Button fx:id="adminEdit" layoutX="147.0" layoutY="364.0" mnemonicParsing="false" text="Edit" textAlignment="CENTER" />
-      <TableView fx:id="adminTable" layoutX="267.0" layoutY="4.0" prefHeight="359.0" prefWidth="327.0">
+      <Button fx:id="exit" layoutX="30.0" layoutY="466.0" mnemonicParsing="false" text="Exit" textAlignment="CENTER" />
+      <Button fx:id="adminCreate" layoutX="86.0" layoutY="466.0" mnemonicParsing="false" text="Create" textAlignment="CENTER" />
+      <Button fx:id="adminDelete" layoutX="222.0" layoutY="466.0" mnemonicParsing="false" text="Delete" textAlignment="CENTER" />
+      <Button fx:id="adminEdit" layoutX="163.0" layoutY="466.0" mnemonicParsing="false" text="Edit" textAlignment="CENTER" />
+      <TableView fx:id="adminTable" layoutX="297.0" layoutY="2.0" prefHeight="458.0" prefWidth="347.0">
         <columns>
           <TableColumn fx:id="adminTableAccountNumber" text="Number" />
           <TableColumn fx:id="adminTableAccountName" text="Name" />
@@ -40,8 +40,8 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TextField fx:id="adminSearchField" layoutX="267.0" layoutY="365.0" prefHeight="27.0" prefWidth="327.0" promptText="Search" />
-      <GridPane layoutX="14.0" layoutY="23.0" prefHeight="335.0" prefWidth="246.0">
+      <TextField fx:id="adminSearchField" layoutX="297.0" layoutY="466.0" prefHeight="27.0" prefWidth="347.0" promptText="Search" />
+      <GridPane layoutX="14.0" layoutY="45.0" prefHeight="421.0" prefWidth="277.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="114.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.0" minWidth="10.0" prefWidth="193.0" />

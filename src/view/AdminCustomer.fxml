@@ -13,7 +13,7 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <TableView fx:id="AdminCustomresTbl" layoutX="14.0" layoutY="107.0" prefHeight="716.0" prefWidth="1136.0">
+      <TableView fx:id="AdminCustomersTbl" layoutX="14.0" layoutY="107.0" prefHeight="716.0" prefWidth="1136.0">
         <columns>
           <TableColumn fx:id="idCol" prefWidth="54.0" text="ID" />
           <TableColumn fx:id="nameCol" prefWidth="96.0" text="FirstName" />
