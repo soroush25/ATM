@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
-
+//todo: لطفا چک شود
 @Log4j
 public class AdminController implements Initializable {
     @FXML

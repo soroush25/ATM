@@ -14,7 +14,7 @@ import src.model.entity.Customer;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
+//todo: لطفا چک شود
 @Log4j
 public class CustomerAccountController implements Initializable {
     @FXML

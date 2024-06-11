@@ -12,7 +12,7 @@ import src.view.WindowsManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+//todo: لطفا چک شود
 @Log4j
 public class CustomerController implements Initializable {
     @FXML

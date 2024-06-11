@@ -17,7 +17,7 @@ import src.model.entity.Transaction;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
+//todo: لطفا چک شود
 @Log4j
 public class CustomerTransactionController implements Initializable {
     @FXML

@@ -8,7 +8,7 @@ import lombok.extern.log4j.Log4j;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+//todo: لطفا چک شود
 @Log4j
 public class AdminSummeryController implements Initializable {
     @FXML
