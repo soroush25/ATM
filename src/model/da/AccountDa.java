@@ -24,7 +24,7 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
     public Account save(Account account) throws Exception {
         account.setAccountNumber(ConnectionProvider.getConnectionProvider().getNextId("account_seq"));
         preparedStatement = connection.prepareStatement(
-                "INSERT INTO ACCOUNT (accountNumber, balance, customer_id, accountTypes) VALUES (?,?,?,?)"
+                "INSERT INTO ACCOUNT (accountNumber, balance, customer_id, accountType) VALUES (?,?,?,?)"
         );
         preparedStatement.setInt(1, account.getAccountNumber());
         preparedStatement.setInt(2, account.getBalance());
@@ -37,7 +37,7 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
     @Override
     public Account edit(Account account) throws Exception {
         preparedStatement = connection.prepareStatement(
-                "UPDATE ACCOUNT SET balance = ?, customer_id = ?, accountTypes = ? WHERE AccountNumber = ?"
+                "UPDATE ACCOUNT SET balance = ?, customer_id = ?, accountType = ? WHERE AccountNumber = ?"
         );
         preparedStatement.setInt(1, account.getBalance());
         preparedStatement.setInt(2, account.getCustomer().getId());
@@ -112,7 +112,7 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
 
     public List<Account> findByAccountType(String types) throws Exception {
         List<Account> accountList = new ArrayList<>();
-        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE accountTypes LIKE ? ORDER BY accountNumber");
+        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE accountType LIKE ? ORDER BY accountNumber");
         preparedStatement.setString(1, types + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
@@ -127,6 +127,24 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         }
         return accountList;
     }
+
+    public Account findByAccountNumber(int accountNumber) throws Exception {
+        preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE accountNumber=?");
+        preparedStatement.setInt(1, accountNumber);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Account account = null;
+        if (resultSet.next()) {
+            account = Account
+                    .builder()
+                    .accountNumber(resultSet.getInt("AccountNumber"))
+                    .balance(resultSet.getInt("Balance"))
+                    .customer(Customer.builder().id(resultSet.getInt("Customer_id")).build())
+                    .accountTypes(AccountType.valueOf(resultSet.getString("AccountTypes")))
+                    .build();
+        }
+        return account;
+    }
+
 
     @Override
     public void close() throws Exception {
