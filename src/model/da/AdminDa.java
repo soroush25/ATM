@@ -198,7 +198,7 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         preparedStatement.setString(2, password);
         ResultSet resultSet = preparedStatement.executeQuery();
         Admin admin = null;
-        while (resultSet.next()) {
+        if (resultSet.next()) {
             admin = Admin
                     .builder()
                     .id(resultSet.getInt("ID"))
