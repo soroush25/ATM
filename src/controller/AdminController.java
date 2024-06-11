@@ -4,9 +4,12 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import lombok.extern.log4j.Log4j;
 import src.model.bl.AdminBl;
 import src.model.bl.CustomerBl;
@@ -15,6 +18,7 @@ import src.model.entity.Customer;
 import src.model.entity.enums.City;
 import src.model.entity.enums.Gender;
 import src.model.tools.Validator;
+import src.view.WindowsManager;
 
 import java.net.URL;
 import java.util.Collections;
@@ -27,7 +31,7 @@ public class AdminController implements Initializable {
     private TextField adminSearchField, fnameField, lnameField, nidField, emailField, phoneField, addressField, UsernameField, PasswordField, IdField;
 
     @FXML
-    private Button exit, adminCreate, adminDelete, adminEdit;
+    private Button exit, adminCreate, adminDelete, adminEdit, AdminCustomerBtn, AdminAccountBtn, AdminTransactionBtn, AdminSummeryBtn;
 
     @FXML
     private RadioButton maletoggle, femaletoggle;
@@ -126,6 +130,62 @@ public class AdminController implements Initializable {
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
                 alert.show();
+            }
+        });
+
+        AdminCustomerBtn.setOnAction(event -> {
+            try {
+                Stage stage = new Stage();
+                Scene scene = new Scene(
+                        FXMLLoader.load(WindowsManager.class.getResource("view/AdminCustomer.fxml"))
+                );
+                stage.setScene(scene);
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
+                alert.show();
+                log.error("AdminCustomer Error : " + e.getMessage());
+            }
+        });
+//todo: لطفا چک شود
+        AdminAccountBtn.setOnAction(event -> {
+            try {
+                Stage stage = new Stage();
+                Scene scene = new Scene(
+                        FXMLLoader.load(WindowsManager.class.getResource("view/AdminAccount.fxml"))
+                );
+                stage.setScene(scene);
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
+                alert.show();
+                log.error("AdminAccount Error : " + e.getMessage());
+            }
+        });
+
+        AdminTransactionBtn.setOnAction(event -> {
+            try {
+                Stage stage = new Stage();
+                Scene scene = new Scene(
+                        FXMLLoader.load(WindowsManager.class.getResource("view/AdminTransaction.fxml"))
+                );
+                stage.setScene(scene);
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
+                alert.show();
+                log.error("AdminTransaction Error : " + e.getMessage());
+            }
+        });
+
+        AdminSummeryBtn.setOnAction(event -> {
+            try {
+                Stage stage = new Stage();
+                Scene scene = new Scene(
+                        FXMLLoader.load(WindowsManager.class.getResource("view/AdminSummery.fxml"))
+                );
+                stage.setScene(scene);
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
+                alert.show();
+                log.error("AdminSummery Error : " + e.getMessage());
             }
         });
 
