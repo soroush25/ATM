@@ -25,10 +25,10 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <Button fx:id="exit" layoutX="30.0" layoutY="466.0" mnemonicParsing="false" text="Exit" textAlignment="CENTER" />
-      <Button fx:id="adminCreate" layoutX="86.0" layoutY="466.0" mnemonicParsing="false" text="Create" textAlignment="CENTER" />
-      <Button fx:id="adminDelete" layoutX="222.0" layoutY="466.0" mnemonicParsing="false" text="Delete" textAlignment="CENTER" />
-      <Button fx:id="adminEdit" layoutX="163.0" layoutY="466.0" mnemonicParsing="false" text="Edit" textAlignment="CENTER" />
+      <Button fx:id="exit" layoutX="9.0" layoutY="466.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="55.0" text="Exit" textAlignment="CENTER" />
+      <Button fx:id="adminCreateBtn" layoutX="86.0" layoutY="466.0" mnemonicParsing="false" text="Create" textAlignment="CENTER" />
+      <Button fx:id="adminEditBtn" layoutX="163.0" layoutY="466.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="54.0" text="Edit" textAlignment="CENTER" />
+      <Button fx:id="adminDeleteBtn" layoutX="241.0" layoutY="466.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="54.0" text="Delete" textAlignment="CENTER" />
       <TableView fx:id="adminTable" layoutX="297.0" layoutY="2.0" prefHeight="458.0" prefWidth="347.0">
         <columns>
           <TableColumn fx:id="adminTableAccountNumber" text="Number" />
@@ -41,7 +41,27 @@
          </columnResizePolicy>
       </TableView>
       <TextField fx:id="adminSearchField" layoutX="297.0" layoutY="466.0" prefHeight="27.0" prefWidth="347.0" promptText="Search" />
-      <GridPane layoutX="14.0" layoutY="45.0" prefHeight="421.0" prefWidth="277.0">
+      <Button fx:id="AdminSummeryBtn" layoutX="9.0" layoutY="502.0" mnemonicParsing="false" prefWidth="142.0" text="Summery">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="AdminCustomerBtn" layoutX="171.0" layoutY="502.0" mnemonicParsing="false" prefWidth="142.0" text="Customers">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="AdminAccountBtn" layoutX="336.0" layoutY="502.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="142.0" text="Accounts">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <Button fx:id="AdminTransactionBtn" layoutX="502.0" layoutY="502.0" mnemonicParsing="false" text="Transactions">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <GridPane layoutX="13.0" layoutY="37.0" prefHeight="421.0" prefWidth="277.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="114.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.0" minWidth="10.0" prefWidth="193.0" />
@@ -61,6 +81,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
+            <Label text="ID" />
             <Label text="First Name" GridPane.rowIndex="1" />
             <Label layoutX="10.0" layoutY="15.0" text="Last Name" GridPane.rowIndex="2" />
             <Label layoutX="10.0" layoutY="45.0" text="National ID" GridPane.rowIndex="3" />
@@ -68,13 +89,14 @@
             <Label layoutX="10.0" layoutY="105.0" text="BirthDate" GridPane.rowIndex="5" />
             <Label layoutX="10.0" layoutY="135.0" text="Email" GridPane.rowIndex="6" />
             <Label layoutX="10.0" layoutY="181.0" text="Phone" GridPane.rowIndex="7" />
+            <Label text="City" GridPane.rowIndex="8" />
             <Label text="Address" GridPane.rowIndex="9" />
+            <Label text="Username" GridPane.rowIndex="10" />
+            <Label text="Password" GridPane.rowIndex="11" />
+            <TextField fx:id="idField" GridPane.columnIndex="1" />
             <TextField fx:id="fnameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="lnameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="nidField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField fx:id="addressField" prefHeight="0.0" prefWidth="163.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <HBox prefHeight="42.0" prefWidth="292.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <RadioButton fx:id="maletoggle" mnemonicParsing="false" selected="true" text="Male">
@@ -93,35 +115,13 @@
                </children>
             </HBox>
             <DatePicker fx:id="birthDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label text="City" GridPane.rowIndex="8" />
+            <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <ComboBox fx:id="cityCmb" prefHeight="31.0" prefWidth="194.0" promptText="City" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <Label text="ID" />
-            <Label text="Username" GridPane.rowIndex="10" />
-            <Label text="Password" GridPane.rowIndex="11" />
-            <TextField fx:id="UsernameField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <TextField fx:id="PasswordField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <TextField fx:id="IdField" GridPane.columnIndex="1" />
+            <TextField fx:id="addressField" prefHeight="0.0" prefWidth="163.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
          </children>
       </GridPane>
-      <Button fx:id="AdminCustomerBtn" layoutX="171.0" layoutY="502.0" mnemonicParsing="false" prefWidth="142.0" text="Customers">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Button>
-      <Button fx:id="AdminAccountBtn" layoutX="336.0" layoutY="502.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="142.0" text="Accounts">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Button>
-      <Button fx:id="AdminTransactionBtn" layoutX="502.0" layoutY="502.0" mnemonicParsing="false" text="Transactions">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Button>
-      <Button fx:id="AdminSummeryBtn" layoutX="9.0" layoutY="502.0" mnemonicParsing="false" prefWidth="142.0" text="Summery">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Button>
    </children>
 </Pane>

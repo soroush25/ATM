@@ -28,7 +28,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="customerTransfer" layoutX="41.0" layoutY="206.0" mnemonicParsing="false" prefWidth="150.0" text="Transfer" textAlignment="CENTER">
+      <Button fx:id="customerTransferBtn" layoutX="41.0" layoutY="206.0" mnemonicParsing="false" prefWidth="150.0" text="Transfer" textAlignment="CENTER">
          <rotationAxis>
             <Point3D />
          </rotationAxis>
@@ -36,7 +36,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="customerWithdrawal" layoutX="41.0" layoutY="251.0" mnemonicParsing="false" prefWidth="150.0" text="Withdrawal" textAlignment="CENTER">
+      <Button fx:id="customerWithdrawalBtn" layoutX="41.0" layoutY="251.0" mnemonicParsing="false" prefWidth="150.0" text="Withdrawal" textAlignment="CENTER">
          <rotationAxis>
             <Point3D />
          </rotationAxis>
@@ -60,7 +60,7 @@
             <TextField fx:id="accountField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="customerDeposit" layoutX="41.0" layoutY="161.0" mnemonicParsing="false" prefWidth="150.0" text="Deposit">
+      <Button fx:id="customerDepositBtn" layoutX="41.0" layoutY="161.0" mnemonicParsing="false" prefWidth="150.0" text="Deposit">
          <font>
             <Font size="14.0" />
          </font>

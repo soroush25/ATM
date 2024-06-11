@@ -12,22 +12,32 @@ import src.model.bl.CustomerBl;
 import src.model.entity.AppData;
 import src.model.entity.Customer;
 import src.model.entity.enums.City;
+import src.model.entity.enums.Gender;
+import src.model.tools.Validator;
 import src.view.WindowsManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-//todo: لطفا چک شود
 @Log4j
 public class CustomerController implements Initializable {
     @FXML
     private Label welcomeLbl;
 
     @FXML
-    private TextField firstNameField, lastNameField, emailField, phoneField,addressField,usernameField,passwordField;
+    private TextField idField, fnameField, lnameField, nidField, emailField, phoneField, addressField, usernameField, passwordField;
+
+    @FXML
+    private RadioButton maletoggle, femaletoggle;
 
     @FXML
     private ComboBox<City> cityCmb;
+
+    @FXML
+    private ToggleGroup genderToggle;
+
+    @FXML
+    private DatePicker birthDatePicker;
 
     @FXML
     private Button exit, customerAccountBtn, customerTransactionBtn, editBtn;
@@ -41,38 +51,49 @@ public class CustomerController implements Initializable {
 
         cityCmb.getSelectionModel().select(0);
 
-        welcomeLbl.setText("Welcome " +AppData.customer.getFirstName() + " " + AppData.customer.getLastName());
+        welcomeLbl.setText("Welcome " + AppData.customer.getFirstName() + " " + AppData.customer.getLastName());
 
-        firstNameField.setText(AppData.customer.getFirstName());
-        lastNameField.setText(AppData.customer.getLastName());
+        idField.setText(String.valueOf(AppData.customer.getId()));
+        fnameField.setText(AppData.customer.getFirstName());
+        lnameField.setText(AppData.customer.getLastName());
+        nidField.setText(AppData.customer.getNationalId());
+        if (AppData.customer.getGender().equals(Gender.Male)) {
+            maletoggle.setSelected(true);
+        } else {
+            femaletoggle.setSelected(true);
+        }
+        birthDatePicker.setValue(AppData.customer.getBirthDate());
         emailField.setText(AppData.customer.getEmail());
         phoneField.setText(AppData.customer.getPhone());
-        usernameField.setText(AppData.customer.getUsername());
-        passwordField.setText(AppData.customer.getPassword());
+        cityCmb.getSelectionModel().select(AppData.customer.getCity().ordinal());
         addressField.setText(AppData.customer.getAddress());
-
 
         editBtn.setOnAction(event->{
             try {
-            Customer customer =
-                    Customer
-                            .builder()
-                            .id(AppData.customer.getId())
-                            .firstName(firstNameField.getText())
-                            .lastName(lastNameField.getText())
-                            .email(emailField.getText())
-                            .city(cityCmb.getSelectionModel().getSelectedItem())
-                            .username(usernameField.getText())
-                            .password(passwordField.getText())
-                            .build();
+                RadioButton gender = (RadioButton) genderToggle.getSelectedToggle();
+                Customer customer = Customer
+                        .builder()
+                        .id(AppData.customer.getId())
+                        .firstName(Validator.nameValidator(fnameField.getText(), "Invalid First Name!"))
+                        .lastName(Validator.nameValidator(lnameField.getText(), "Invalid Last Name!"))
+                        .nationalId(Validator.nationalIDValidator(nidField.getText(), "Invalid National ID!"))
+                        .gender(Gender.valueOf(gender.getText()))
+                        .birthDate(birthDatePicker.getValue())
+                        .email(Validator.emailValidator(emailField.getText(), "Invalid Email!"))
+                        .phone(Validator.phoneValidator(phoneField.getText(), "Invalid Phone!"))
+                        .city(cityCmb.getSelectionModel().getSelectedItem())
+                        .address(Validator.addressValidator(addressField.getText(), "Invalid Address!"))
+                        .username(usernameField.getText())
+                        .password(passwordField.getText())
+                        .build();
 
                 CustomerBl.getCustomerBl().edit(customer);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Edited!");
+                alert.show();
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
+                alert.show();
             }
-
-//            todo
-//            alert
         });
 
         customerAccountBtn.setOnAction(event -> {
@@ -82,6 +103,7 @@ public class CustomerController implements Initializable {
                         FXMLLoader.load(WindowsManager.class.getResource("../view/CustomerAccount.fxml"))
                 );
                 stage.setScene(scene);
+                stage.show();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
                 alert.show();
@@ -96,6 +118,7 @@ public class CustomerController implements Initializable {
                         FXMLLoader.load(WindowsManager.class.getResource("../view/CustomerTransaction.fxml"))
                 );
                 stage.setScene(scene);
+                stage.show();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
                 alert.show();

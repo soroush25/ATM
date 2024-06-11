@@ -24,14 +24,14 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
-//todo: لطفا چک شود
+
 @Log4j
 public class AdminController implements Initializable {
     @FXML
-    private TextField adminSearchField, fnameField, lnameField, nidField, emailField, phoneField, addressField, UsernameField, PasswordField, IdField;
+    private TextField adminSearchField, idField, fnameField, lnameField, nidField, emailField, phoneField, addressField, usernameField, passwordField;
 
     @FXML
-    private Button exit, adminCreate, adminDelete, adminEdit, AdminCustomerBtn, AdminAccountBtn, AdminTransactionBtn, AdminSummeryBtn;
+    private Button exit, adminCreateBtn, adminDeleteBtn, adminEditBtn, AdminCustomerBtn, AdminAccountBtn, AdminTransactionBtn, AdminSummeryBtn;
 
     @FXML
     private RadioButton maletoggle, femaletoggle;
@@ -65,12 +65,12 @@ public class AdminController implements Initializable {
             alert.show();
         }
 
-        adminCreate.setOnAction(event -> {
+        adminCreateBtn.setOnAction(event -> {
             try {
                 RadioButton gender = (RadioButton) genderToggle.getSelectedToggle();
                 Customer customer = new Customer()
                         .builder()
-                        .id(Integer.parseInt(IdField.getText()))
+                        .id(Integer.parseInt(idField.getText()))
                         .firstName(Validator.nameValidator(fnameField.getText(), "Invalid First Name!"))
                         .lastName(Validator.nameValidator(lnameField.getText(), "Invalid Last Name!"))
                         .nationalId(Validator.nationalIDValidator(nidField.getText(), "Invalid National ID!"))
@@ -79,8 +79,8 @@ public class AdminController implements Initializable {
                         .email(Validator.emailValidator(emailField.getText(), "Invalid Email!"))
                         .phone(Validator.phoneValidator(phoneField.getText(), "Invalid Phone!"))
                         .address(Validator.addressValidator(addressField.getText(), "Invalid Address!"))
-                        .username(UsernameField.getText())
-                        .password(PasswordField.getText())
+                        .username(usernameField.getText())
+                        .password(passwordField.getText())
                         .city(City.valueOf(cityCmb.getSelectionModel().getSelectedItem()))
                         .build();
                 CustomerBl.getCustomerBl().save(customer);
@@ -93,12 +93,12 @@ public class AdminController implements Initializable {
             }
         });
 
-        adminEdit.setOnAction(event -> {
+        adminEditBtn.setOnAction(event -> {
             try {
                 RadioButton gender = (RadioButton) genderToggle.getSelectedToggle();
                 Customer customer = new Customer()
                         .builder()
-                        .id(Integer.parseInt(IdField.getText()))
+                        .id(Integer.parseInt(idField.getText()))
                         .firstName(Validator.nameValidator(fnameField.getText(), "Invalid First Name!"))
                         .lastName(Validator.nameValidator(lnameField.getText(), "Invalid Last Name!"))
                         .nationalId(Validator.nationalIDValidator(nidField.getText(), "Invalid National ID!"))
@@ -107,8 +107,8 @@ public class AdminController implements Initializable {
                         .email(Validator.emailValidator(emailField.getText(), "Invalid Email!"))
                         .phone(Validator.phoneValidator(phoneField.getText(), "Invalid Phone!"))
                         .address(Validator.addressValidator(addressField.getText(), "Invalid Address!"))
-                        .username(UsernameField.getText())
-                        .password(PasswordField.getText())
+                        .username(usernameField.getText())
+                        .password(passwordField.getText())
                         .city(City.valueOf(cityCmb.getSelectionModel().getSelectedItem()))
                         .build();
                 CustomerBl.getCustomerBl().edit(customer);
@@ -121,9 +121,9 @@ public class AdminController implements Initializable {
             }
         });
 
-        adminDelete.setOnAction(event -> {
+        adminDeleteBtn.setOnAction(event -> {
             try {
-                CustomerBl.getCustomerBl().remove(Integer.parseInt(IdField.getText()));
+                CustomerBl.getCustomerBl().remove(Integer.parseInt(idField.getText()));
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Deleted!");
                 alert.show();
                 resetForm();
@@ -212,7 +212,7 @@ public class AdminController implements Initializable {
 
         adminTable.setOnMouseClicked((event) -> {
             Admin admin = adminTable.getSelectionModel().getSelectedItem();
-            IdField.setText(String.valueOf(admin.getId()));
+            idField.setText(String.valueOf(admin.getId()));
             fnameField.setText(admin.getFirstName());
             lnameField.setText(admin.getLastName());
             nidField.setText(admin.getNationalId());
@@ -239,7 +239,7 @@ public class AdminController implements Initializable {
     }
 
     private void resetForm() throws Exception {
-        IdField.clear();
+        idField.clear();
         fnameField.clear();
         lnameField.clear();
         nidField.clear();
@@ -247,8 +247,8 @@ public class AdminController implements Initializable {
         emailField.clear();
         phoneField.clear();
         addressField.clear();
-        UsernameField.clear();
-        PasswordField.clear();
+        usernameField.clear();
+        passwordField.clear();
         birthDatePicker.setValue(null);
         cityCmb.getSelectionModel().select(0);
         showDataOnTable(AdminBl.getAdminBl().findAll());

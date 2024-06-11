@@ -31,8 +31,8 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="AdminBalanceField" editable="false" GridPane.columnIndex="1" />
-            <TextField fx:id="AdminTransactionsField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="adminBalanceField" editable="false" GridPane.columnIndex="1" />
+            <TextField fx:id="adminTransactionsField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Total Transactions" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
