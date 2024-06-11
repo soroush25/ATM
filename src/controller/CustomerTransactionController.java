@@ -11,12 +11,14 @@ import lombok.extern.log4j.Log4j;
 import src.model.bl.AccountBl;
 import src.model.bl.CustomerBl;
 import src.model.bl.TransactionBl;
+import src.model.entity.AppData;
 import src.model.entity.Customer;
 import src.model.entity.Transaction;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+
 //todo: لطفا چک شود
 @Log4j
 public class CustomerTransactionController implements Initializable {
@@ -49,13 +51,14 @@ public class CustomerTransactionController implements Initializable {
         customerDeposit.setOnAction(event -> {
             try {
                 //todo: واریز وجه
-                Transaction transaction = new Transaction()
-                        .builder()
-                        .amount(Integer.parseInt(amountField.getText()))
-                        .destinationAccount(accountField.getText())
-                        .build();
+                Transaction transaction =
+                        Transaction
+                                .builder()
+                                .amount(Integer.parseInt(amountField.getText()))
+                                .destinationAccount(AccountBl.getAccountBl().findByAccountNumber(Integer.parseInt(accountField.getText())))
+                                .build();
                 TransactionBl.getTransactionBl().save(transaction);
-                AccountBl.getAccountBl().edit(amountField);
+//                AccountBl.getAccountBl().edit(amountField);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Done!");
                 alert.show();
                 resetForm();
@@ -68,13 +71,15 @@ public class CustomerTransactionController implements Initializable {
         customerTransfer.setOnAction(event -> {
             try {
                 //todo: انتقال وجه
-                Transaction transaction = new Transaction()
-                        .builder()
-                        .amount(Integer.parseInt(amountField.getText()))
-                        .destinationAccount(accountField.getText())
-                        .build();
+                Transaction transaction =
+                        Transaction
+                                .builder()
+                                .amount(Integer.parseInt(amountField.getText()))
+                                .sourceAccount(AccountBl.getAccountBl().findByCustomerId(AppData.customer.getId()))
+                                .destinationAccount(AccountBl.getAccountBl().findByAccountNumber(Integer.parseInt(accountField.getText())))
+                                .build();
                 TransactionBl.getTransactionBl().save(transaction);
-                AccountBl.getAccountBl().edit(amountField);
+//                AccountBl.getAccountBl().edit(amountField);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Done!");
                 alert.show();
                 resetForm();
@@ -86,13 +91,14 @@ public class CustomerTransactionController implements Initializable {
         customerWithdrawal.setOnAction(event -> {
             try {
                 //todo: برداشت وجه
-                Transaction transaction = new Transaction()
-                        .builder()
-                        .amount(Integer.parseInt(amountField.getText()))
-                        .sourceAccount(accountField.getText())
-                        .build();
+                Transaction transaction =
+                        Transaction
+                                .builder()
+                                .amount(Integer.parseInt(amountField.getText()))
+                                .sourceAccount(AccountBl.getAccountBl().findByAccountNumber(Integer.parseInt(accountField.getText())))
+                                .build();
                 TransactionBl.getTransactionBl().save(transaction);
-                AccountBl.getAccountBl().edit(amountField);
+//                AccountBl.getAccountBl().edit(amountField);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Done!");
                 alert.show();
                 resetForm();
@@ -112,8 +118,8 @@ public class CustomerTransactionController implements Initializable {
 
         customerTable.setOnMouseClicked((event) -> {
             Customer customer = customerTable.getSelectionModel().getSelectedItem();
-            accountField.setText(String.valueOf(customer.getTransaction().getDestinationAccount()));
-            amountField.setText(String.valueOf(customer.getTransaction().getAmount()));
+//            accountField.setText(String.valueOf(customer.getTransaction().getDestinationAccount()));
+//            amountField.setText(String.valueOf(customer.getTransaction().getAmount()));
         });
     }
 

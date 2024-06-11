@@ -93,9 +93,9 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         return account;
     }
 
-    public Account findByCustomerId(String customer) throws Exception {
+    public Account findByCustomerId(int customer) throws Exception {
         preparedStatement = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE customer_id = ? ORDER BY accountNumber");
-        preparedStatement.setString(1, customer);
+        preparedStatement.setInt(1, customer);
         ResultSet resultSet = preparedStatement.executeQuery();
         Account account = null;
         if (resultSet.next()) {

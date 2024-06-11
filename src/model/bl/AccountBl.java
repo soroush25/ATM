@@ -77,7 +77,20 @@ public class AccountBl implements CRUD<Account> {
         }
     }
 
-    public Account findByCustomerId(String customer) throws Exception {
+    public Account findByAccountNumber(int accountNumber) throws Exception {
+        try (AccountDa accountDa = new AccountDa()) {
+            Account account = accountDa.findByAccountNumber(accountNumber);
+            if (account != null) {
+                account.setCustomer(CustomerBl.getCustomerBl().findById(account.getCustomer().getId()));
+                return account;
+            } else {
+                throw new NotFoundException();
+            }
+        }
+    }
+
+
+    public Account findByCustomerId(int customer) throws Exception {
         try (AccountDa accountDa = new AccountDa()) {
             Account account = accountDa.findByCustomerId(customer);
             if (account != null) {

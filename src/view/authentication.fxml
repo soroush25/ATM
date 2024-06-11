@@ -13,8 +13,8 @@
             <Font size="35.0" />
          </font>
       </Text>
+      <TextField fx:id="usernameField" alignment="CENTER" layoutX="219.0" layoutY="159.0" promptText="Username" />
       <TextField fx:id="passwordField" alignment="CENTER" layoutX="220.0" layoutY="200.0" promptText="Password" />
       <Button fx:id="loginBtn" layoutX="275.0" layoutY="272.0" mnemonicParsing="false" text="Login" />
-      <TextField fx:id="usernameField" alignment="CENTER" layoutX="219.0" layoutY="159.0" promptText="Username" />
    </children>
 </Pane>
