@@ -55,7 +55,7 @@
             <Label text="Address" GridPane.rowIndex="9" />
             <Label text="Username" GridPane.rowIndex="10" />
             <Label text="Password" GridPane.rowIndex="11" />
-            <TextField fx:id="idField" GridPane.columnIndex="1" />
+            <TextField fx:id="idField" editable="false" GridPane.columnIndex="1" />
             <TextField fx:id="fnameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="lnameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="nidField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
