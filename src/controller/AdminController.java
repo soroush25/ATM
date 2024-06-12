@@ -14,6 +14,7 @@ import lombok.extern.log4j.Log4j;
 import src.model.bl.AdminBl;
 import src.model.bl.CustomerBl;
 import src.model.entity.Admin;
+import src.model.entity.AppData;
 import src.model.entity.Customer;
 import src.model.entity.enums.City;
 import src.model.entity.enums.Gender;
@@ -27,6 +28,9 @@ import java.util.ResourceBundle;
 
 @Log4j
 public class AdminController implements Initializable {
+    @FXML
+    private Label welcomeLbl;
+
     @FXML
     private TextField adminSearchField, idField, fnameField, lnameField, nidField, emailField, phoneField, addressField, usernameField, passwordField;
 
@@ -49,7 +53,7 @@ public class AdminController implements Initializable {
     private ToggleGroup genderToggle;
 
     @FXML
-    private ComboBox<String> cityCmb;
+    private ComboBox<City> cityCmb;
 
     @FXML
     private DatePicker birthDatePicker;
@@ -58,12 +62,20 @@ public class AdminController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         log.info("Entered Admin");
+
+        for (City city : City.values()) {
+            cityCmb.getItems().add(city);
+        }
+
         try {
+            cityCmb.getSelectionModel().select(0);
             resetForm();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Admin Error\n" + e.getMessage());
             alert.show();
         }
+
+        welcomeLbl.setText("Welcome " + AppData.customer.getFirstName() + " " + AppData.customer.getLastName());
 
         adminCreateBtn.setOnAction(event -> {
             try {
@@ -78,10 +90,10 @@ public class AdminController implements Initializable {
                         .birthDate(birthDatePicker.getValue())
                         .email(Validator.emailValidator(emailField.getText(), "Invalid Email!"))
                         .phone(Validator.phoneValidator(phoneField.getText(), "Invalid Phone!"))
+                        .city(cityCmb.getSelectionModel().getSelectedItem())
                         .address(Validator.addressValidator(addressField.getText(), "Invalid Address!"))
                         .username(usernameField.getText())
                         .password(passwordField.getText())
-                        .city(City.valueOf(cityCmb.getSelectionModel().getSelectedItem()))
                         .build();
                 CustomerBl.getCustomerBl().save(customer);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Saved!");
@@ -106,10 +118,10 @@ public class AdminController implements Initializable {
                         .birthDate(birthDatePicker.getValue())
                         .email(Validator.emailValidator(emailField.getText(), "Invalid Email!"))
                         .phone(Validator.phoneValidator(phoneField.getText(), "Invalid Phone!"))
+                        .city(cityCmb.getSelectionModel().getSelectedItem())
                         .address(Validator.addressValidator(addressField.getText(), "Invalid Address!"))
                         .username(usernameField.getText())
                         .password(passwordField.getText())
-                        .city(City.valueOf(cityCmb.getSelectionModel().getSelectedItem()))
                         .build();
                 CustomerBl.getCustomerBl().edit(customer);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Saved!");
@@ -137,23 +149,25 @@ public class AdminController implements Initializable {
             try {
                 Stage stage = new Stage();
                 Scene scene = new Scene(
-                        FXMLLoader.load(WindowsManager.class.getResource("view/AdminCustomer.fxml"))
+                        FXMLLoader.load(WindowsManager.class.getResource("../view/AdminCustomer.fxml"))
                 );
                 stage.setScene(scene);
+                stage.show();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
                 alert.show();
                 log.error("AdminCustomer Error : " + e.getMessage());
             }
         });
-//todo: لطفا چک شود
+
         AdminAccountBtn.setOnAction(event -> {
             try {
                 Stage stage = new Stage();
                 Scene scene = new Scene(
-                        FXMLLoader.load(WindowsManager.class.getResource("view/AdminAccount.fxml"))
+                        FXMLLoader.load(WindowsManager.class.getResource("../view/AdminAccount.fxml"))
                 );
                 stage.setScene(scene);
+                stage.show();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
                 alert.show();
@@ -165,9 +179,10 @@ public class AdminController implements Initializable {
             try {
                 Stage stage = new Stage();
                 Scene scene = new Scene(
-                        FXMLLoader.load(WindowsManager.class.getResource("view/AdminTransaction.fxml"))
+                        FXMLLoader.load(WindowsManager.class.getResource("../view/AdminTransaction.fxml"))
                 );
                 stage.setScene(scene);
+                stage.show();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
                 alert.show();
@@ -179,9 +194,10 @@ public class AdminController implements Initializable {
             try {
                 Stage stage = new Stage();
                 Scene scene = new Scene(
-                        FXMLLoader.load(WindowsManager.class.getResource("view/AdminSummery.fxml"))
+                        FXMLLoader.load(WindowsManager.class.getResource("../view/AdminSummery.fxml"))
                 );
                 stage.setScene(scene);
+                stage.show();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
                 alert.show();
@@ -199,10 +215,10 @@ public class AdminController implements Initializable {
 
         adminSearchField.setOnKeyReleased((event) -> {
             try {
-                showDataOnTable(Collections.singletonList(AdminBl.getAdminBl().findById(Integer.parseInt(adminSearchField.getText()))));
+                showDataOnTable(AdminBl.getAdminBl().findById(Integer.parseInt(adminSearchField.getText())));
                 showDataOnTable(AdminBl.getAdminBl().findByFamily(adminSearchField.getText()));
-                showDataOnTable(Collections.singletonList(AdminBl.getAdminBl().findByNationalId(adminSearchField.getText())));
-                showDataOnTable(Collections.singletonList(AdminBl.getAdminBl().findByUsername(adminSearchField.getText())));
+                showDataOnTable(AdminBl.getAdminBl().findByNationalId(adminSearchField.getText()));
+                showDataOnTable(AdminBl.getAdminBl().findByUsername(adminSearchField.getText()));
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
                 alert.show();
@@ -226,9 +242,11 @@ public class AdminController implements Initializable {
             phoneField.setText(admin.getPhone());
             cityCmb.getSelectionModel().select(admin.getCity().ordinal());
             addressField.setText(admin.getAddress());
+            usernameField.setText(admin.getUsername());
+            passwordField.setText(admin.getPassword());
         });
     }
-
+//todo
     private void showDataOnTable(List<Admin> customerList) throws Exception {
         ObservableList<Admin> observableList = FXCollections.observableList(customerList);
         adminTableAccountNumber.setCellValueFactory(new PropertyValueFactory<>("accountNumber"));
@@ -251,6 +269,8 @@ public class AdminController implements Initializable {
         passwordField.clear();
         birthDatePicker.setValue(null);
         cityCmb.getSelectionModel().select(0);
+        usernameField.clear();
+        passwordField.clear();
         showDataOnTable(AdminBl.getAdminBl().findAll());
     }
 }

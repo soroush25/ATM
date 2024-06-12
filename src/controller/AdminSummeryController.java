@@ -8,11 +8,11 @@ import lombok.extern.log4j.Log4j;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-//todo: لطفا چک شود
+
 @Log4j
 public class AdminSummeryController implements Initializable {
     @FXML
-    private TextField AdminBalanceField, AdminTransactionsField;
+    private TextField adminBalanceField, adminTransactionsField;
 
     @FXML
     private Button exit;
@@ -23,8 +23,8 @@ public class AdminSummeryController implements Initializable {
         log.info("Entered AdminSummery");
         try { //todo: اشکال
             resetForm();
-            AdminBalanceField.setText("");
-            AdminTransactionsField.setText("");
+            adminBalanceField.setText("");
+            adminTransactionsField.setText("");
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "AdminSummery Error\n" + e.getMessage());
             alert.show();
@@ -40,7 +40,7 @@ public class AdminSummeryController implements Initializable {
     }
 
     private void resetForm() throws Exception {
-        AdminBalanceField.clear();
-        AdminTransactionsField.clear();
+        adminBalanceField.clear();
+        adminTransactionsField.clear();
     }
 }

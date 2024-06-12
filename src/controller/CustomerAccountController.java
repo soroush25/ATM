@@ -14,11 +14,11 @@ import src.model.entity.Customer;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-//todo: لطفا چک شود
+
 @Log4j
 public class CustomerAccountController implements Initializable {
     @FXML
-    private Button exit, customerBalance, customerReport;
+    private Button exit, customerBalanceBtn, customerReportBtn;
 
     @FXML
     private TableView<Customer> customerTable;
@@ -37,7 +37,7 @@ public class CustomerAccountController implements Initializable {
             alert.show();
         }
 
-        customerBalance.setOnAction(event -> {
+        customerBalanceBtn.setOnAction(event -> {
             try {
                 // todo: نشان دادن موجودی
                 customerTableBalance.setCellValueFactory(new PropertyValueFactory<>("balance"));
@@ -48,10 +48,9 @@ public class CustomerAccountController implements Initializable {
             }
         });
 
-        customerReport.setOnAction(event -> {
+        customerReportBtn.setOnAction(event -> {
             try {
                 //todo: نشان دادن تراکنش های اخیر در جدول
-                showDataOnTable((List<Customer>) customerReport);
                 resetForm();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());

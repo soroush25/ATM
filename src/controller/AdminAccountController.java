@@ -14,7 +14,7 @@ import src.model.entity.Admin;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-//todo: لطفا چک شود
+
 @Log4j
 public class AdminAccountController implements Initializable {
     @FXML
@@ -48,7 +48,7 @@ public class AdminAccountController implements Initializable {
             log.info("Quited");
         }));
     }
-
+//todo
     private void showDataOnTable(List<Admin> customerList) throws Exception {
         ObservableList<Admin> observableList = FXCollections.observableList(customerList);
         AccountNumberCol.setCellValueFactory(new PropertyValueFactory<>("accountNumber"));

@@ -26,7 +26,7 @@ public class CustomerTransactionController implements Initializable {
     private TextField amountField, accountField;
 
     @FXML
-    private Button exit, customerTransfer, customerWithdrawal, customerDeposit;
+    private Button exit, customerTransferBtn, customerWithdrawalBtn, customerDepositBtn;
 
     @FXML
     private TableView<Customer> customerTable;
@@ -48,7 +48,7 @@ public class CustomerTransactionController implements Initializable {
             alert.show();
         }
 
-        customerDeposit.setOnAction(event -> {
+        customerDepositBtn.setOnAction(event -> {
             try {
                 //todo: واریز وجه
                 Transaction transaction =
@@ -68,7 +68,7 @@ public class CustomerTransactionController implements Initializable {
             }
         });
 
-        customerTransfer.setOnAction(event -> {
+        customerTransferBtn.setOnAction(event -> {
             try {
                 //todo: انتقال وجه
                 Transaction transaction =
@@ -88,7 +88,7 @@ public class CustomerTransactionController implements Initializable {
                 alert.show();
             }
         });
-        customerWithdrawal.setOnAction(event -> {
+        customerWithdrawalBtn.setOnAction(event -> {
             try {
                 //todo: برداشت وجه
                 Transaction transaction =

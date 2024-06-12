@@ -14,7 +14,7 @@ import src.model.entity.Admin;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-//todo: لطفا چک شود
+
 @Log4j
 public class AdminCustomerController implements Initializable {
     @FXML
@@ -59,10 +59,10 @@ public class AdminCustomerController implements Initializable {
         birthDateCol.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
         emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
         phoneNumberCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        cityCol.setCellValueFactory(new PropertyValueFactory<>("city"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
         passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
-        cityCol.setCellValueFactory(new PropertyValueFactory<>("city"));
         AdminCustomersTbl.setItems(observableList);
     }
 

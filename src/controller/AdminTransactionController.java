@@ -14,14 +14,14 @@ import src.model.entity.Admin;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-//todo: لطفا چک شود
+
 @Log4j
 public class AdminTransactionController implements Initializable {
     @FXML
     private Button exit;
 
     @FXML
-    private TableView<Admin> AdminTransactionTbl;
+    private TableView<Admin> adminTransactionTbl;
 
     @FXML
     private TableColumn<Admin, Integer> idTransactionCol;
@@ -56,7 +56,7 @@ public class AdminTransactionController implements Initializable {
         destinationTransactionCol.setCellValueFactory(new PropertyValueFactory<>("destinationAccount"));
         timeTransactionCol.setCellValueFactory(new PropertyValueFactory<>("transactionDateTime"));
         typeTransactionCol.setCellValueFactory(new PropertyValueFactory<>("transactionType"));
-        AdminTransactionTbl.setItems(observableList);
+        adminTransactionTbl.setItems(observableList);
     }
 
     private void resetForm() throws Exception {
