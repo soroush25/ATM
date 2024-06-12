@@ -17,17 +17,15 @@ import java.util.ResourceBundle;
 
 @Log4j
 public class AdminAccountController implements Initializable {
-    @FXML
-    private Button exit;
 
     @FXML
     private TableView<Admin> AdminAccountTbl;
 
     @FXML
-    private TableColumn<Admin, Integer> AccountNumberCol;
+    private TableColumn<Admin, Integer> numberCol;
 
     @FXML
-    private TableColumn<Admin, String> AccountNameCol, AccountBalanceCol, AccountTypeCol;
+    private TableColumn<Admin, String> nameCol, balanceCol, typeCol;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -39,22 +37,14 @@ public class AdminAccountController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR, "AdminAccount Error\n" + e.getMessage());
             alert.show();
         }
-
-        exit.setOnAction((event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Quit?");
-            if (alert.showAndWait().get().equals(ButtonType.OK)) {
-                Platform.exit();
-            }
-            log.info("Quited");
-        }));
     }
 //todo
     private void showDataOnTable(List<Admin> customerList) throws Exception {
         ObservableList<Admin> observableList = FXCollections.observableList(customerList);
-        AccountNumberCol.setCellValueFactory(new PropertyValueFactory<>("accountNumber"));
-        AccountNameCol.setCellValueFactory(new PropertyValueFactory<>("lname"));
-        AccountBalanceCol.setCellValueFactory(new PropertyValueFactory<>("balance"));
-        AccountTypeCol.setCellValueFactory(new PropertyValueFactory<>("accountTypes"));
+        numberCol.setCellValueFactory(new PropertyValueFactory<>("accountNumber"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("lname"));
+        balanceCol.setCellValueFactory(new PropertyValueFactory<>("balance"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("accountTypes"));
         AdminAccountTbl.setItems(observableList);
     }
 

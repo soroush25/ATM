@@ -18,18 +18,22 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controller.AdminController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controller.AdminController">
    <children>
+      <Label fx:id="welcomeLbl" layoutX="9.0" layoutY="14.0" text="Welcome, ">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
       <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrator">
          <font>
             <Font size="30.0" />
          </font>
       </Text>
-      <Button fx:id="exit" layoutX="9.0" layoutY="466.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="55.0" text="Exit" textAlignment="CENTER" />
-      <Button fx:id="adminCreateBtn" layoutX="86.0" layoutY="466.0" mnemonicParsing="false" text="Create" textAlignment="CENTER" />
-      <Button fx:id="adminEditBtn" layoutX="163.0" layoutY="466.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="54.0" text="Edit" textAlignment="CENTER" />
-      <Button fx:id="adminDeleteBtn" layoutX="241.0" layoutY="466.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="54.0" text="Delete" textAlignment="CENTER" />
-      <TableView fx:id="adminTable" layoutX="297.0" layoutY="2.0" prefHeight="458.0" prefWidth="347.0">
+      <Button fx:id="adminCreateBtn" layoutX="110.0" layoutY="465.0" mnemonicParsing="false" text="Create" textAlignment="CENTER" />
+      <Button fx:id="adminEditBtn" layoutX="173.0" layoutY="465.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="55.0" text="Edit" textAlignment="CENTER" />
+      <Button fx:id="adminDeleteBtn" layoutX="236.0" layoutY="465.0" mnemonicParsing="false" text="Delete" textAlignment="CENTER" />
+      <TableView fx:id="adminTable" layoutX="297.0" layoutY="34.0" prefHeight="426.0" prefWidth="347.0">
         <columns>
           <TableColumn fx:id="adminTableAccountNumber" text="Number" />
           <TableColumn fx:id="adminTableAccountName" text="Name" />
@@ -40,31 +44,14 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <TextField fx:id="adminSearchField" layoutX="297.0" layoutY="466.0" prefHeight="27.0" prefWidth="347.0" promptText="Search" />
-      <Button fx:id="AdminSummeryBtn" layoutX="9.0" layoutY="502.0" mnemonicParsing="false" prefWidth="142.0" text="Summery">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Button>
-      <Button fx:id="AdminCustomerBtn" layoutX="171.0" layoutY="502.0" mnemonicParsing="false" prefWidth="142.0" text="Customers">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Button>
-      <Button fx:id="AdminAccountBtn" layoutX="336.0" layoutY="502.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="142.0" text="Accounts">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Button>
-      <Button fx:id="AdminTransactionBtn" layoutX="502.0" layoutY="502.0" mnemonicParsing="false" text="Transactions">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Button>
-      <GridPane layoutX="13.0" layoutY="37.0" prefHeight="421.0" prefWidth="277.0">
+      <Button fx:id="adminSummeryBtn" layoutX="297.0" layoutY="466.0" mnemonicParsing="false" text="Summery" />
+      <Button fx:id="adminCustomerBtn" layoutX="382.0" layoutY="466.0" mnemonicParsing="false" text="Customers" />
+      <Button fx:id="adminAccountBtn" layoutX="471.0" layoutY="466.0" mnemonicParsing="false" text="Accounts" />
+      <Button fx:id="adminTransactionBtn" layoutX="555.0" layoutY="466.0" mnemonicParsing="false" text="Transactions" />
+      <GridPane layoutX="13.0" layoutY="37.0" prefHeight="426.0" prefWidth="277.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="114.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.0" minWidth="10.0" prefWidth="193.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="97.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.0" minWidth="10.0" prefWidth="180.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -99,7 +86,7 @@
             <TextField fx:id="nidField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <HBox prefHeight="42.0" prefWidth="292.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <RadioButton fx:id="maletoggle" mnemonicParsing="false" selected="true" text="Male">
+                  <RadioButton fx:id="maleToggle" mnemonicParsing="false" selected="true" text="Male">
                      <toggleGroup>
                         <ToggleGroup fx:id="genderToggle" />
                      </toggleGroup>
@@ -123,5 +110,6 @@
             <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
          </children>
       </GridPane>
+      <Button fx:id="exit" layoutX="14.0" layoutY="465.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="70.0" text="Exit" textAlignment="CENTER" />
    </children>
 </Pane>

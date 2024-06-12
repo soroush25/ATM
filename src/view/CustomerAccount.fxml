@@ -14,24 +14,19 @@
             <Font size="37.0" />
          </font>
       </Label>
-      <TableView fx:id="customerTable" layoutX="95.0" layoutY="93.0" prefHeight="379.0" prefWidth="354.0">
+      <TableView fx:id="customerTable" layoutX="95.0" layoutY="93.0" prefHeight="413.0" prefWidth="354.0">
         <columns>
-          <TableColumn fx:id="customerTableNumber" prefWidth="142.0" text="Account Number" />
-          <TableColumn fx:id="customerTableBalance" minWidth="8.0" prefWidth="98.0" text="Balance" />
-            <TableColumn fx:id="customerTableType" prefWidth="113.0" text="Account Type" />
+          <TableColumn fx:id="numberCol" prefWidth="142.0" text="Account Number" />
+          <TableColumn fx:id="balanceCol" minWidth="8.0" prefWidth="98.0" text="Balance" />
+            <TableColumn fx:id="typeCol" prefWidth="113.0" text="Account Type" />
         </columns>
       </TableView>
-      <Button fx:id="customerBalanceBtn" layoutX="95.0" layoutY="480.0" mnemonicParsing="false" prefWidth="150.0" text="Balance" textAlignment="CENTER">
+      <Button fx:id="customerBalanceBtn" layoutX="95.0" layoutY="509.0" mnemonicParsing="false" prefWidth="150.0" text="Balance" textAlignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="customerReportBtn" layoutX="299.0" layoutY="480.0" mnemonicParsing="false" prefWidth="150.0" text="Report" textAlignment="CENTER">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="exit" layoutX="197.0" layoutY="522.0" mnemonicParsing="false" prefWidth="150.0" text="Exit" textAlignment="CENTER">
+      <Button fx:id="customerReportBtn" layoutX="299.0" layoutY="509.0" mnemonicParsing="false" prefWidth="150.0" text="Report" textAlignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>

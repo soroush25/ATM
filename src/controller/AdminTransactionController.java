@@ -18,9 +18,6 @@ import java.util.ResourceBundle;
 @Log4j
 public class AdminTransactionController implements Initializable {
     @FXML
-    private Button exit;
-
-    @FXML
     private TableView<Admin> adminTransactionTbl;
 
     @FXML
@@ -39,13 +36,6 @@ public class AdminTransactionController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR, "AdminTransaction Error\n" + e.getMessage());
             alert.show();
         }
-        exit.setOnAction((event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Quit?");
-            if (alert.showAndWait().get().equals(ButtonType.OK)) {
-                Platform.exit();
-            }
-            log.info("Quited");
-        }));
     }
 
     private void showDataOnTable(List<Admin> customerList) throws Exception {

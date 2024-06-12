@@ -28,7 +28,7 @@ public class CustomerController implements Initializable {
     private TextField idField, fnameField, lnameField, nidField, emailField, phoneField, addressField, usernameField, passwordField;
 
     @FXML
-    private RadioButton maletoggle, femaletoggle;
+    private RadioButton maleToggle, femaleToggle;
 
     @FXML
     private ComboBox<City> cityCmb;
@@ -58,9 +58,9 @@ public class CustomerController implements Initializable {
         lnameField.setText(AppData.customer.getLastName());
         nidField.setText(AppData.customer.getNationalId());
         if (AppData.customer.getGender().equals(Gender.Male)) {
-            maletoggle.setSelected(true);
+            maleToggle.setSelected(true);
         } else {
-            femaletoggle.setSelected(true);
+            femaleToggle.setSelected(true);
         }
         birthDatePicker.setValue(AppData.customer.getBirthDate());
         emailField.setText(AppData.customer.getEmail());

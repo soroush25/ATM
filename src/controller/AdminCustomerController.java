@@ -18,10 +18,7 @@ import java.util.ResourceBundle;
 @Log4j
 public class AdminCustomerController implements Initializable {
     @FXML
-    private Button exit;
-
-    @FXML
-    private TableView<Admin> AdminCustomersTbl;
+    private TableView<Admin> adminCustomersTbl;
 
     @FXML
     private TableColumn<Admin, Integer> idCol;
@@ -39,14 +36,6 @@ public class AdminCustomerController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR, "AdminCustomer Error\n" + e.getMessage());
             alert.show();
         }
-
-        exit.setOnAction((event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Quit?");
-            if (alert.showAndWait().get().equals(ButtonType.OK)) {
-                Platform.exit();
-            }
-            log.info("Quited");
-        }));
     }
 
     private void showDataOnTable(List<Admin> customerList) throws Exception {
@@ -63,7 +52,7 @@ public class AdminCustomerController implements Initializable {
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
         passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
-        AdminCustomersTbl.setItems(observableList);
+        adminCustomersTbl.setItems(observableList);
     }
 
     private void resetForm() throws Exception {

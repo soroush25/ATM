@@ -14,9 +14,6 @@ public class AdminSummeryController implements Initializable {
     @FXML
     private TextField adminBalanceField, adminTransactionsField;
 
-    @FXML
-    private Button exit;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -29,14 +26,6 @@ public class AdminSummeryController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR, "AdminSummery Error\n" + e.getMessage());
             alert.show();
         }
-
-        exit.setOnAction((event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Quit?");
-            if (alert.showAndWait().get().equals(ButtonType.OK)) {
-                Platform.exit();
-            }
-            log.info("Quited");
-        }));
     }
 
     private void resetForm() throws Exception {

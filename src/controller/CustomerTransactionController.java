@@ -26,16 +26,16 @@ public class CustomerTransactionController implements Initializable {
     private TextField amountField, accountField;
 
     @FXML
-    private Button exit, customerTransferBtn, customerWithdrawalBtn, customerDepositBtn;
+    private Button customerTransferBtn, customerWithdrawalBtn, customerDepositBtn;
 
     @FXML
     private TableView<Customer> customerTable;
 
     @FXML
-    private TableColumn<Customer, Integer> customerTableDst;
+    private TableColumn<Customer, Integer> destinationCol;
 
     @FXML
-    private TableColumn<Customer, String> customerTableAmount, customerTableBalance, customerTableType, customerTableDate;
+    private TableColumn<Customer, String> amountCol, balanceCol, typeCol, dateCol;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -125,11 +125,11 @@ public class CustomerTransactionController implements Initializable {
 
     private void showDataOnTable(List<Customer> customerList) throws Exception {
         ObservableList<Customer> observableList = FXCollections.observableList(customerList);
-        customerTableDst.setCellValueFactory(new PropertyValueFactory<>("account_dst"));
-        customerTableAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        customerTableDate.setCellValueFactory(new PropertyValueFactory<>("transactionDateTime"));
-        customerTableBalance.setCellValueFactory(new PropertyValueFactory<>("balance"));
-        customerTableType.setCellValueFactory(new PropertyValueFactory<>("transactionType"));
+        destinationCol.setCellValueFactory(new PropertyValueFactory<>("account_dst"));
+        amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("transactionDateTime"));
+        balanceCol.setCellValueFactory(new PropertyValueFactory<>("balance"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("transactionType"));
         customerTable.setItems(observableList);
     }
 

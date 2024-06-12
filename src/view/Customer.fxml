@@ -61,7 +61,7 @@
             <TextField fx:id="nidField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <HBox prefHeight="42.0" prefWidth="292.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <RadioButton fx:id="maletoggle" mnemonicParsing="false" selected="true" text="Male">
+                  <RadioButton fx:id="maleToggle" mnemonicParsing="false" selected="true" text="Male">
                      <toggleGroup>
                         <ToggleGroup fx:id="genderToggle" />
                      </toggleGroup>

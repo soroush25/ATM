@@ -22,7 +22,6 @@ import src.model.tools.Validator;
 import src.view.WindowsManager;
 
 import java.net.URL;
-import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -32,13 +31,13 @@ public class AdminController implements Initializable {
     private Label welcomeLbl;
 
     @FXML
-    private TextField adminSearchField, idField, fnameField, lnameField, nidField, emailField, phoneField, addressField, usernameField, passwordField;
+    private TextField idField, fnameField, lnameField, nidField, emailField, phoneField, addressField, usernameField, passwordField;
 
     @FXML
-    private Button exit, adminCreateBtn, adminDeleteBtn, adminEditBtn, AdminCustomerBtn, AdminAccountBtn, AdminTransactionBtn, AdminSummeryBtn;
+    private Button exit, adminCreateBtn, adminDeleteBtn, adminEditBtn, adminCustomerBtn, adminAccountBtn, adminTransactionBtn, adminSummeryBtn;
 
     @FXML
-    private RadioButton maletoggle, femaletoggle;
+    private RadioButton maleToggle, femaleToggle;
 
     @FXML
     private TableView<Admin> adminTable;
@@ -75,7 +74,7 @@ public class AdminController implements Initializable {
             alert.show();
         }
 
-        welcomeLbl.setText("Welcome " + AppData.customer.getFirstName() + " " + AppData.customer.getLastName());
+        welcomeLbl.setText("Welcome " + AppData.admin.getFirstName() + " " + AppData.admin.getLastName());
 
         adminCreateBtn.setOnAction(event -> {
             try {
@@ -145,7 +144,7 @@ public class AdminController implements Initializable {
             }
         });
 
-        AdminCustomerBtn.setOnAction(event -> {
+        adminCustomerBtn.setOnAction(event -> {
             try {
                 Stage stage = new Stage();
                 Scene scene = new Scene(
@@ -160,7 +159,7 @@ public class AdminController implements Initializable {
             }
         });
 
-        AdminAccountBtn.setOnAction(event -> {
+        adminAccountBtn.setOnAction(event -> {
             try {
                 Stage stage = new Stage();
                 Scene scene = new Scene(
@@ -175,7 +174,7 @@ public class AdminController implements Initializable {
             }
         });
 
-        AdminTransactionBtn.setOnAction(event -> {
+        adminTransactionBtn.setOnAction(event -> {
             try {
                 Stage stage = new Stage();
                 Scene scene = new Scene(
@@ -190,7 +189,7 @@ public class AdminController implements Initializable {
             }
         });
 
-        AdminSummeryBtn.setOnAction(event -> {
+        adminSummeryBtn.setOnAction(event -> {
             try {
                 Stage stage = new Stage();
                 Scene scene = new Scene(
@@ -213,19 +212,6 @@ public class AdminController implements Initializable {
             log.info("Quited");
         }));
 
-        adminSearchField.setOnKeyReleased((event) -> {
-            try {
-                showDataOnTable(AdminBl.getAdminBl().findById(Integer.parseInt(adminSearchField.getText())));
-                showDataOnTable(AdminBl.getAdminBl().findByFamily(adminSearchField.getText()));
-                showDataOnTable(AdminBl.getAdminBl().findByNationalId(adminSearchField.getText()));
-                showDataOnTable(AdminBl.getAdminBl().findByUsername(adminSearchField.getText()));
-            } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
-                alert.show();
-                log.error("Search Error: " + e.getMessage());
-            }
-        });
-
         adminTable.setOnMouseClicked((event) -> {
             Admin admin = adminTable.getSelectionModel().getSelectedItem();
             idField.setText(String.valueOf(admin.getId()));
@@ -233,9 +219,9 @@ public class AdminController implements Initializable {
             lnameField.setText(admin.getLastName());
             nidField.setText(admin.getNationalId());
             if (admin.getGender().equals(Gender.Male)) {
-                maletoggle.setSelected(true);
+                maleToggle.setSelected(true);
             } else {
-                femaletoggle.setSelected(true);
+                femaleToggle.setSelected(true);
             }
             birthDatePicker.setValue(admin.getBirthDate());
             emailField.setText(admin.getEmail());
@@ -261,7 +247,7 @@ public class AdminController implements Initializable {
         fnameField.clear();
         lnameField.clear();
         nidField.clear();
-        maletoggle.setSelected(true);
+        maleToggle.setSelected(true);
         emailField.clear();
         phoneField.clear();
         addressField.clear();

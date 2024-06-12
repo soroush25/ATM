@@ -18,13 +18,13 @@ import java.util.ResourceBundle;
 @Log4j
 public class CustomerAccountController implements Initializable {
     @FXML
-    private Button exit, customerBalanceBtn, customerReportBtn;
+    private Button customerBalanceBtn, customerReportBtn;
 
     @FXML
     private TableView<Customer> customerTable;
 
     @FXML
-    private TableColumn<Customer, String> customerTableNumber, customerTableBalance, customerTableType;
+    private TableColumn<Customer, String> numberCol, balanceCol, typeCol;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -40,7 +40,7 @@ public class CustomerAccountController implements Initializable {
         customerBalanceBtn.setOnAction(event -> {
             try {
                 // todo: نشان دادن موجودی
-                customerTableBalance.setCellValueFactory(new PropertyValueFactory<>("balance"));
+                balanceCol.setCellValueFactory(new PropertyValueFactory<>("balance"));
                 resetForm();
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
@@ -57,21 +57,13 @@ public class CustomerAccountController implements Initializable {
                 alert.show();
             }
         });
-
-        exit.setOnAction((event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Quit?");
-            if (alert.showAndWait().get().equals(ButtonType.OK)) {
-                Platform.exit();
-            }
-            log.info("Quited");
-        }));
     }
 
     private void showDataOnTable(List<Customer> customerList) throws Exception {
         ObservableList<Customer> observableList = FXCollections.observableList(customerList);
-        customerTableNumber.setCellValueFactory(new PropertyValueFactory<>("accountNumber"));
-        customerTableBalance.setCellValueFactory(new PropertyValueFactory<>("balance"));
-        customerTableType.setCellValueFactory(new PropertyValueFactory<>("transactionType"));
+        numberCol.setCellValueFactory(new PropertyValueFactory<>("accountNumber"));
+        balanceCol.setCellValueFactory(new PropertyValueFactory<>("balance"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("transactionType"));
         customerTable.setItems(observableList);
     }
 
