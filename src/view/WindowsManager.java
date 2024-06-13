@@ -10,7 +10,7 @@ public class WindowsManager {
     public static void showATMForm() throws IOException {
         Stage stage = new Stage();
         Scene scene = new Scene(
-                FXMLLoader.load(WindowsManager.class.getResource("authentication.fxml"))
+                FXMLLoader.load(WindowsManager.class.getResource("Authentication.fxml"))
         );
 
         stage.setScene(scene);

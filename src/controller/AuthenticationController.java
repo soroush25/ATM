@@ -52,7 +52,7 @@ public class AuthenticationController implements Initializable {
                     if (AppData.admin != null) {
                         Stage stage = new Stage();
                         Scene scene = new Scene(
-                                FXMLLoader.load(WindowsManager.class.getResource("../view/admin.fxml"))
+                                FXMLLoader.load(WindowsManager.class.getResource("../view/Admin.fxml"))
                         );
                         stage.setScene(scene);
                         stage.show();

@@ -28,9 +28,6 @@ import java.util.ResourceBundle;
 @Log4j
 public class AdminController implements Initializable {
     @FXML
-    private Label welcomeLbl;
-
-    @FXML
     private TextField idField, fnameField, lnameField, nidField, emailField, phoneField, addressField, usernameField, passwordField;
 
     @FXML
@@ -73,8 +70,6 @@ public class AdminController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Admin Error\n" + e.getMessage());
             alert.show();
         }
-
-        welcomeLbl.setText("Welcome " + AppData.admin.getFirstName() + " " + AppData.admin.getLastName());
 
         adminCreateBtn.setOnAction(event -> {
             try {
