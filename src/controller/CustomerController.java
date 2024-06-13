@@ -67,6 +67,9 @@ public class CustomerController implements Initializable {
         phoneField.setText(AppData.customer.getPhone());
         cityCmb.getSelectionModel().select(AppData.customer.getCity().ordinal());
         addressField.setText(AppData.customer.getAddress());
+        usernameField.setText(AppData.customer.getUsername());
+        passwordField.setText(AppData.customer.getPassword());
+
 
         editBtn.setOnAction(event->{
             try {

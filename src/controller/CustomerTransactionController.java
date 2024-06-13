@@ -108,14 +108,6 @@ public class CustomerTransactionController implements Initializable {
             }
         });
 
-        exit.setOnAction((event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Quit?");
-            if (alert.showAndWait().get().equals(ButtonType.OK)) {
-                Platform.exit();
-            }
-            log.info("Quited");
-        }));
-
         customerTable.setOnMouseClicked((event) -> {
             Customer customer = customerTable.getSelectionModel().getSelectedItem();
 //            accountField.setText(String.valueOf(customer.getTransaction().getDestinationAccount()));
