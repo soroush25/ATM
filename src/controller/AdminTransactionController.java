@@ -1,6 +1,5 @@
 package src.controller;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,7 +23,7 @@ public class AdminTransactionController implements Initializable {
     private TableColumn<Admin, Integer> idTransactionCol;
 
     @FXML
-    private TableColumn<Admin, String> ammountTransactionCol, sourceTransactionCol, destinationTransactionCol, timeTransactionCol, typeTransactionCol;
+    private TableColumn<Admin, String> amountTransactionCol, sourceTransactionCol, destinationTransactionCol, timeTransactionCol, typeTransactionCol;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -41,7 +40,7 @@ public class AdminTransactionController implements Initializable {
     private void showDataOnTable(List<Admin> customerList) throws Exception {
         ObservableList<Admin> observableList = FXCollections.observableList(customerList);
         idTransactionCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        ammountTransactionCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        amountTransactionCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
         sourceTransactionCol.setCellValueFactory(new PropertyValueFactory<>("sourceAccount"));
         destinationTransactionCol.setCellValueFactory(new PropertyValueFactory<>("destinationAccount"));
         timeTransactionCol.setCellValueFactory(new PropertyValueFactory<>("transactionDateTime"));

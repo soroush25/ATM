@@ -16,7 +16,7 @@
       <TableView fx:id="adminTransactionTbl" layoutX="6.0" layoutY="52.0">
         <columns>
           <TableColumn fx:id="idTransactionCol" prefWidth="64.0" text="ID" />
-          <TableColumn fx:id="ammountTransactionCol" prefWidth="86.0" text="Amount" />
+          <TableColumn fx:id="amountTransactionCol" prefWidth="86.0" text="Amount" />
             <TableColumn fx:id="sourceTransactionCol" prefWidth="137.0" text="Source Account" />
             <TableColumn fx:id="destinationTransactionCol" prefWidth="151.0" text="Destination Account" />
             <TableColumn fx:id="timeTransactionCol" minWidth="0.0" prefWidth="108.0" text="Time" />

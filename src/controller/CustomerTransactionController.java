@@ -1,6 +1,5 @@
 package src.controller;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -51,12 +50,11 @@ public class CustomerTransactionController implements Initializable {
         customerDepositBtn.setOnAction(event -> {
             try {
                 //todo: واریز وجه
-                Transaction transaction =
-                        Transaction
-                                .builder()
-                                .amount(Integer.parseInt(amountField.getText()))
-                                .destinationAccount(AccountBl.getAccountBl().findByAccountNumber(Integer.parseInt(accountField.getText())))
-                                .build();
+                Transaction transaction = Transaction
+                        .builder()
+                        .amount(Integer.parseInt(amountField.getText()))
+                        .destinationAccount(AccountBl.getAccountBl().findByAccountNumber(Integer.parseInt(accountField.getText())))
+                        .build();
                 TransactionBl.getTransactionBl().save(transaction);
 //                AccountBl.getAccountBl().edit(amountField);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Done!");
@@ -71,13 +69,12 @@ public class CustomerTransactionController implements Initializable {
         customerTransferBtn.setOnAction(event -> {
             try {
                 //todo: انتقال وجه
-                Transaction transaction =
-                        Transaction
-                                .builder()
-                                .amount(Integer.parseInt(amountField.getText()))
-                                .sourceAccount(AccountBl.getAccountBl().findByCustomerId(AppData.customer.getId()))
-                                .destinationAccount(AccountBl.getAccountBl().findByAccountNumber(Integer.parseInt(accountField.getText())))
-                                .build();
+                Transaction transaction = Transaction
+                        .builder()
+                        .amount(Integer.parseInt(amountField.getText()))
+                        .sourceAccount(AccountBl.getAccountBl().findByCustomerId(AppData.customer.getId()))
+                        .destinationAccount(AccountBl.getAccountBl().findByAccountNumber(Integer.parseInt(accountField.getText())))
+                        .build();
                 TransactionBl.getTransactionBl().save(transaction);
 //                AccountBl.getAccountBl().edit(amountField);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Done!");
@@ -91,12 +88,11 @@ public class CustomerTransactionController implements Initializable {
         customerWithdrawalBtn.setOnAction(event -> {
             try {
                 //todo: برداشت وجه
-                Transaction transaction =
-                        Transaction
-                                .builder()
-                                .amount(Integer.parseInt(amountField.getText()))
-                                .sourceAccount(AccountBl.getAccountBl().findByAccountNumber(Integer.parseInt(accountField.getText())))
-                                .build();
+                Transaction transaction = Transaction
+                        .builder()
+                        .amount(Integer.parseInt(amountField.getText()))
+                        .sourceAccount(AccountBl.getAccountBl().findByAccountNumber(Integer.parseInt(accountField.getText())))
+                        .build();
                 TransactionBl.getTransactionBl().save(transaction);
 //                AccountBl.getAccountBl().edit(amountField);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Done!");
