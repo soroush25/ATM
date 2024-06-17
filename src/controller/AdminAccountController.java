@@ -43,7 +43,7 @@ public class AdminAccountController implements Initializable {
         numberCol.setCellValueFactory(new PropertyValueFactory<>("accountNumber"));
         customerCol.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
         balanceCol.setCellValueFactory(new PropertyValueFactory<>("balance"));
-        typeCol.setCellValueFactory(new PropertyValueFactory<>("accountTypes"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("accountType"));
         AdminAccountTbl.setItems(observableList);
     }
 

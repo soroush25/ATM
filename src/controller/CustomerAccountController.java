@@ -40,7 +40,7 @@ public class CustomerAccountController implements Initializable {
         ObservableList<Account> observableList = FXCollections.observableList(accountList);
         numberCol.setCellValueFactory(new PropertyValueFactory<>("accountNumber"));
         balanceCol.setCellValueFactory(new PropertyValueFactory<>("balance"));
-        typeCol.setCellValueFactory(new PropertyValueFactory<>("transactionType"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("accountType"));
         customerTable.setItems(observableList);
     }
 

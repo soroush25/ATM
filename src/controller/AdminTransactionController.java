@@ -43,8 +43,8 @@ public class AdminTransactionController implements Initializable {
         ObservableList<Transaction> observableList = FXCollections.observableList(transactionList);
         idTransactionCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         amountTransactionCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        sourceTransactionCol.setCellValueFactory(new PropertyValueFactory<>("sourceAccount"));
-        destinationTransactionCol.setCellValueFactory(new PropertyValueFactory<>("destinationAccount"));
+        sourceTransactionCol.setCellValueFactory(new PropertyValueFactory<>("account_src"));
+        destinationTransactionCol.setCellValueFactory(new PropertyValueFactory<>("account_dst"));
         timeTransactionCol.setCellValueFactory(new PropertyValueFactory<>("transactionDateTime"));
         typeTransactionCol.setCellValueFactory(new PropertyValueFactory<>("transactionType"));
         adminTransactionTbl.setItems(observableList);
