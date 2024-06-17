@@ -28,7 +28,7 @@ public class CustomerTransactionController implements Initializable {
     private Button customerTransferBtn, customerWithdrawalBtn, customerDepositBtn;
 
     @FXML
-    private TableView<Customer> customerTable;
+    private TableView<Transaction> customerTable;
 
     @FXML
     private TableColumn<Customer, Integer> destinationCol;
@@ -103,16 +103,10 @@ public class CustomerTransactionController implements Initializable {
                 alert.show();
             }
         });
-
-        customerTable.setOnMouseClicked((event) -> {
-            Customer customer = customerTable.getSelectionModel().getSelectedItem();
-//            accountField.setText(String.valueOf(customer.getTransaction().getDestinationAccount()));
-//            amountField.setText(String.valueOf(customer.getTransaction().getAmount()));
-        });
     }
 
-    private void showDataOnTable(List<Customer> customerList) throws Exception {
-        ObservableList<Customer> observableList = FXCollections.observableList(customerList);
+    private void showDataOnTable(List<Transaction> transactionList) throws Exception {
+        ObservableList<Transaction> observableList = FXCollections.observableList(transactionList);
         destinationCol.setCellValueFactory(new PropertyValueFactory<>("account_dst"));
         amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("transactionDateTime"));
@@ -124,6 +118,6 @@ public class CustomerTransactionController implements Initializable {
     private void resetForm() throws Exception {
         accountField.clear();
         amountField.clear();
-        showDataOnTable(CustomerBl.getCustomerBl().findAll());
+        showDataOnTable(TransactionBl.getTransactionBl().findAll());
     }
 }
