@@ -184,14 +184,7 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
     public Transaction transactionSum () throws Exception {
         preparedStatement = connection.prepareStatement("SELECT SUM(AMOUNT) FROM TRANSACTION");
         ResultSet resultSet = preparedStatement.executeQuery();
-        Transaction transaction = null;
-        if (resultSet.next()) {
-            transaction = Transaction
-                    .builder()
-                    .amount(resultSet.getInt("Amount"))
-                    .build();
-        }
-        return transaction;
+        return (Transaction) resultSet;
     }
 
     public List<Transaction> findByDateTimeRangeReport(Timestamp start, Timestamp end) throws Exception {
