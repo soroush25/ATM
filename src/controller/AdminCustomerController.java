@@ -7,8 +7,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.extern.log4j.Log4j;
-import src.model.bl.AdminBl;
+import src.model.bl.CustomerBl;
 import src.model.entity.Admin;
+import src.model.entity.Customer;
 
 import java.net.URL;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.ResourceBundle;
 @Log4j
 public class AdminCustomerController implements Initializable {
     @FXML
-    private TableView<Admin> adminCustomersTbl;
+    private TableView<Customer> adminCustomersTbl;
 
     @FXML
     private TableColumn<Admin, Integer> idCol;
@@ -37,8 +38,8 @@ public class AdminCustomerController implements Initializable {
         }
     }
 
-    private void showDataOnTable(List<Admin> customerList) throws Exception {
-        ObservableList<Admin> observableList = FXCollections.observableList(customerList);
+    private void showDataOnTable(List<Customer> customerList) throws Exception {
+        ObservableList<Customer> observableList = FXCollections.observableList(customerList);
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         familyCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -55,6 +56,6 @@ public class AdminCustomerController implements Initializable {
     }
 
     private void resetForm() throws Exception {
-        showDataOnTable(AdminBl.getAdminBl().findAll());
+        showDataOnTable(CustomerBl.getCustomerBl().findAll());
     }
 }

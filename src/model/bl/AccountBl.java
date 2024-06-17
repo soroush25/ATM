@@ -89,6 +89,17 @@ public class AccountBl implements CRUD<Account> {
         }
     }
 
+    public Account balanceSum () throws Exception {
+        try (AccountDa accountDa = new AccountDa()) {
+            Account account = accountDa.balanceSum();
+            if (account != null) {
+                return account;
+            } else {
+                throw new NotFoundException();
+            }
+        }
+    }
+
 
     public Account findByCustomerId(int customer) throws Exception {
         try (AccountDa accountDa = new AccountDa()) {

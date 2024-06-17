@@ -40,10 +40,10 @@ public class AdminController implements Initializable {
     private TableView<Admin> adminTable;
 
     @FXML
-    private TableColumn<Admin, Integer> adminTableAccountNumber;
+    private TableColumn<Admin, Integer> adminTableID;
 
     @FXML
-    private TableColumn<Admin, String> adminTableAccountName, adminTableAccountBalance, adminTableAccountType;
+    private TableColumn<Admin, String> adminTableName, adminTableUsername, adminTablePassword;
 
     @FXML
     private ToggleGroup genderToggle;
@@ -230,13 +230,13 @@ public class AdminController implements Initializable {
             passwordField.setText(admin.getPassword());
         });
     }
-//todo
-    private void showDataOnTable(List<Admin> customerList) throws Exception {
-        ObservableList<Admin> observableList = FXCollections.observableList(customerList);
-        adminTableAccountNumber.setCellValueFactory(new PropertyValueFactory<>("accountNumber"));
-        adminTableAccountName.setCellValueFactory(new PropertyValueFactory<>("lname"));
-        adminTableAccountBalance.setCellValueFactory(new PropertyValueFactory<>("balance"));
-        adminTableAccountType.setCellValueFactory(new PropertyValueFactory<>("accountType"));
+
+    private void showDataOnTable(List<Admin> adminList) throws Exception {
+        ObservableList<Admin> observableList = FXCollections.observableList(adminList);
+        adminTableID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        adminTableName.setCellValueFactory(new PropertyValueFactory<>("lname"));
+        adminTableUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
+        adminTablePassword.setCellValueFactory(new PropertyValueFactory<>("password"));
         adminTable.setItems(observableList);
     }
 

@@ -166,8 +166,8 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
         preparedStatement.setTimestamp(1, Timestamp.valueOf(start.toLocalDateTime()));
         preparedStatement.setTimestamp(2, Timestamp.valueOf(end.toLocalDateTime()));
         ResultSet resultSet = preparedStatement.executeQuery();
-        Transaction transaction = new Transaction();
-        while (resultSet.next()) {
+        Transaction transaction = null;
+        if (resultSet.next()) {
             transaction = Transaction
                     .builder()
                     .id(resultSet.getInt("ID"))
@@ -176,6 +176,19 @@ public class TransactionDa implements AutoCloseable, CRUD<Transaction> {
                     .destinationAccount(Account.builder().accountNumber(resultSet.getInt("Account_dst")).build())
                     .transactionDateTime(resultSet.getTimestamp("TransactionDateTime"))
                     .transactionType(TransactionTypes.valueOf(resultSet.getString("TransactionType")))
+                    .build();
+        }
+        return transaction;
+    }
+
+    public Transaction transactionSum () throws Exception {
+        preparedStatement = connection.prepareStatement("SELECT SUM(AMOUNT) FROM TRANSACTION");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Transaction transaction = null;
+        if (resultSet.next()) {
+            transaction = Transaction
+                    .builder()
+                    .amount(resultSet.getInt("Amount"))
                     .build();
         }
         return transaction;

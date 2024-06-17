@@ -145,6 +145,19 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         return account;
     }
 
+    public Account balanceSum () throws Exception {
+        preparedStatement = connection.prepareStatement("SELECT SUM(BALANCE) FROM ACCOUNT");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Account account = null;
+        if (resultSet.next()) {
+            account = Account
+                    .builder()
+                    .balance(resultSet.getInt("Balance"))
+                    .build();
+        }
+        return account;
+    }
+
 
     @Override
     public void close() throws Exception {

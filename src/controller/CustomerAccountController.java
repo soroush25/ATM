@@ -7,7 +7,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.extern.log4j.Log4j;
+import src.model.bl.AccountBl;
 import src.model.bl.CustomerBl;
+import src.model.entity.Account;
 import src.model.entity.Customer;
 
 import java.net.URL;
@@ -17,10 +19,7 @@ import java.util.ResourceBundle;
 @Log4j
 public class CustomerAccountController implements Initializable {
     @FXML
-    private Button customerBalanceBtn, customerReportBtn;
-
-    @FXML
-    private TableView<Customer> customerTable;
+    private TableView<Account> customerTable;
 
     @FXML
     private TableColumn<Customer, String> numberCol, balanceCol, typeCol;
@@ -35,31 +34,10 @@ public class CustomerAccountController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Customer Error\n" + e.getMessage());
             alert.show();
         }
-
-        customerBalanceBtn.setOnAction(event -> {
-            try {
-                // todo: نشان دادن موجودی
-                balanceCol.setCellValueFactory(new PropertyValueFactory<>("balance"));
-                resetForm();
-            } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
-                alert.show();
-            }
-        });
-
-        customerReportBtn.setOnAction(event -> {
-            try {
-                //todo: نشان دادن تراکنش های اخیر در جدول
-                resetForm();
-            } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
-                alert.show();
-            }
-        });
     }
 
-    private void showDataOnTable(List<Customer> customerList) throws Exception {
-        ObservableList<Customer> observableList = FXCollections.observableList(customerList);
+    private void showDataOnTable(List<Account> accountList) throws Exception {
+        ObservableList<Account> observableList = FXCollections.observableList(accountList);
         numberCol.setCellValueFactory(new PropertyValueFactory<>("accountNumber"));
         balanceCol.setCellValueFactory(new PropertyValueFactory<>("balance"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("transactionType"));
@@ -67,6 +45,6 @@ public class CustomerAccountController implements Initializable {
     }
 
     private void resetForm() throws Exception {
-        showDataOnTable(CustomerBl.getCustomerBl().findAll());
+        showDataOnTable(AccountBl.getAccountBl().findAll());
     }
 }
