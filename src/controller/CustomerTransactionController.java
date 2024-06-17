@@ -91,7 +91,7 @@ public class CustomerTransactionController implements Initializable {
                 Transaction transaction = Transaction
                         .builder()
                         .amount(Integer.parseInt(amountField.getText()))
-                        .sourceAccount(AccountBl.getAccountBl().findByAccountNumber(Integer.parseInt(accountField.getText())))
+                        .sourceAccount(AccountBl.getAccountBl().findByCustomerId(AppData.customer.getId()))
                         .build();
                 TransactionBl.getTransactionBl().save(transaction);
 //                AccountBl.getAccountBl().edit(amountField);
