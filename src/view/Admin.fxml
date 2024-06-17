@@ -26,9 +26,9 @@
          </font>
       </Text>
       <Button fx:id="adminCreateBtn" layoutX="110.0" layoutY="465.0" mnemonicParsing="false" text="Create" textAlignment="CENTER" />
-      <Button fx:id="adminEditBtn" layoutX="173.0" layoutY="465.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="55.0" text="Edit" textAlignment="CENTER" />
+      <Button fx:id="adminEditBtn" layoutX="173.0" layoutY="465.0" mnemonicParsing="false" prefWidth="55.0" text="Edit" textAlignment="CENTER" />
       <Button fx:id="adminDeleteBtn" layoutX="236.0" layoutY="465.0" mnemonicParsing="false" text="Delete" textAlignment="CENTER" />
-      <TableView fx:id="adminTable" layoutX="297.0" layoutY="34.0" prefHeight="426.0" prefWidth="347.0">
+      <TableView fx:id="adminTable" layoutX="297.0" layoutY="6.0" prefHeight="454.0" prefWidth="347.0">
         <columns>
           <TableColumn fx:id="adminTableAccountNumber" text="Number" />
           <TableColumn fx:id="adminTableAccountName" text="Name" />
@@ -105,6 +105,6 @@
             <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="11" />
          </children>
       </GridPane>
-      <Button fx:id="exit" layoutX="14.0" layoutY="465.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="70.0" text="Exit" textAlignment="CENTER" />
+      <Button fx:id="exit" layoutX="14.0" layoutY="465.0" mnemonicParsing="false" prefWidth="70.0" text="Exit" textAlignment="CENTER" />
    </children>
 </Pane>
