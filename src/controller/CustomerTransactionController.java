@@ -11,7 +11,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import lombok.extern.log4j.Log4j;
 import src.model.bl.AccountBl;
-import src.model.bl.CustomerBl;
 import src.model.bl.TransactionBl;
 import src.model.entity.AppData;
 import src.model.entity.Customer;

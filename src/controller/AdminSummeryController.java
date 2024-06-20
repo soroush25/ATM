@@ -6,8 +6,6 @@ import javafx.scene.control.*;
 import lombok.extern.log4j.Log4j;
 import src.model.bl.AccountBl;
 import src.model.bl.TransactionBl;
-import src.model.da.AccountDa;
-import src.model.entity.Account;
 
 import java.net.URL;
 import java.util.ResourceBundle;

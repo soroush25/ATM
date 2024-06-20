@@ -8,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.extern.log4j.Log4j;
 import src.model.bl.AccountBl;
-import src.model.bl.CustomerBl;
 import src.model.entity.Account;
 import src.model.entity.Customer;
 
