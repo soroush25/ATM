@@ -21,7 +21,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-//todo: لطفا چک شود
 @Log4j
 public class CustomerTransactionController implements Initializable {
     @FXML
@@ -52,11 +51,10 @@ public class CustomerTransactionController implements Initializable {
 
         customerDepositBtn.setOnAction(event -> {
             try {
-                //todo: واریز وجه
                 Transaction transaction = Transaction
                         .builder()
                         .amount(Integer.parseInt(amountField.getText()))
-                        .destinationAccount(AccountBl.getAccountBl().findByAccountNumber(Integer.parseInt(accountField.getText())))
+                        .destinationAccount(AccountBl.getAccountBl().findByAccountNumber(AppData.customer.getId()))
                         .build();
                 TransactionBl.getTransactionBl().save(transaction);
 //                AccountBl.getAccountBl().edit(amountField);
@@ -71,7 +69,6 @@ public class CustomerTransactionController implements Initializable {
 
         customerTransferBtn.setOnAction(event -> {
             try {
-                //todo: انتقال وجه
                 Transaction transaction = Transaction
                         .builder()
                         .amount(Integer.parseInt(amountField.getText()))
@@ -91,7 +88,6 @@ public class CustomerTransactionController implements Initializable {
 
         customerWithdrawalBtn.setOnAction(event -> {
             try {
-                //todo: برداشت وجه
                 Transaction transaction = Transaction
                         .builder()
                         .amount(Integer.parseInt(amountField.getText()))
@@ -119,7 +115,7 @@ public class CustomerTransactionController implements Initializable {
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
                 alert.show();
-                log.error("ReceiptPanel Error : " + e.getMessage());
+                log.error("ReceiptPanel Error: " + e.getMessage());
             }
         });
     }
