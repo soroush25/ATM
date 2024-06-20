@@ -16,7 +16,7 @@ public class Account {
     private int accountNumber;
     private int balance;
     private Customer customer;
-    private AccountType accountTypes;
+    private AccountType accountType;
 
     @Override
     public String toString() {

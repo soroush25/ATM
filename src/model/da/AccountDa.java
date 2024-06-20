@@ -29,7 +29,7 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         preparedStatement.setInt(1, account.getAccountNumber());
         preparedStatement.setInt(2, account.getBalance());
         preparedStatement.setInt(3, account.getCustomer().getId());
-        preparedStatement.setString(4, String.valueOf(account.getAccountTypes()));
+        preparedStatement.setString(4, String.valueOf(account.getAccountType()));
         preparedStatement.execute();
         return account;
     }
@@ -41,7 +41,7 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         );
         preparedStatement.setInt(1, account.getBalance());
         preparedStatement.setInt(2, account.getCustomer().getId());
-        preparedStatement.setString(3, String.valueOf(account.getAccountTypes()));
+        preparedStatement.setString(3, String.valueOf(account.getAccountType()));
         preparedStatement.setInt(4, account.getAccountNumber());
         preparedStatement.execute();
         return account;
@@ -65,10 +65,10 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         while (resultSet.next()) {
             Account account = Account
                     .builder()
-                    .accountNumber(resultSet.getInt("AccountNumber"))
-                    .balance(resultSet.getInt("Balance"))
-                    .customer(Customer.builder().id(resultSet.getInt("Customer_id")).build())
-                    .accountTypes(AccountType.valueOf(resultSet.getString("AccountTypes")))
+                    .accountNumber(resultSet.getInt("accountNumber"))
+                    .balance(resultSet.getInt("balance"))
+                    .customer(Customer.builder().id(resultSet.getInt("customer_id")).build())
+                    .accountType(AccountType.valueOf(resultSet.getString("accountType")))
                     .build();
             accountList.add(account);
         }
@@ -84,10 +84,10 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         if (resultSet.next()) {
             account = Account
                     .builder()
-                    .accountNumber(resultSet.getInt("AccountNumber"))
-                    .balance(resultSet.getInt("Balance"))
-                    .customer(Customer.builder().id(resultSet.getInt("Customer_id")).build())
-                    .accountTypes(AccountType.valueOf(resultSet.getString("AccountTypes")))
+                    .accountNumber(resultSet.getInt("accountNumber"))
+                    .balance(resultSet.getInt("balance"))
+                    .customer(Customer.builder().id(resultSet.getInt("customer_id")).build())
+                    .accountType(AccountType.valueOf(resultSet.getString("accountType")))
                     .build();
         }
         return account;
@@ -101,10 +101,10 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         if (resultSet.next()) {
             account = Account
                     .builder()
-                    .accountNumber(resultSet.getInt("AccountNumber"))
-                    .balance(resultSet.getInt("Balance"))
-                    .customer(Customer.builder().id(resultSet.getInt("Customer_id")).build())
-                    .accountTypes(AccountType.valueOf(resultSet.getString("AccountTypes")))
+                    .accountNumber(resultSet.getInt("accountNumber"))
+                    .balance(resultSet.getInt("balance"))
+                    .customer(Customer.builder().id(resultSet.getInt("customer_id")).build())
+                    .accountType(AccountType.valueOf(resultSet.getString("accountType")))
                     .build();
         }
         return account;
@@ -118,10 +118,10 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         while (resultSet.next()) {
             Account account = Account
                     .builder()
-                    .accountNumber(resultSet.getInt("AccountNumber"))
-                    .balance(resultSet.getInt("Balance"))
-                    .customer(Customer.builder().id(resultSet.getInt("Customer_id")).build())
-                    .accountTypes(AccountType.valueOf(resultSet.getString("AccountTypes")))
+                    .accountNumber(resultSet.getInt("accountNumber"))
+                    .balance(resultSet.getInt("balance"))
+                    .customer(Customer.builder().id(resultSet.getInt("customer_id")).build())
+                    .accountType(AccountType.valueOf(resultSet.getString("accountType")))
                     .build();
             accountList.add(account);
         }
@@ -136,10 +136,10 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         if (resultSet.next()) {
             account = Account
                     .builder()
-                    .accountNumber(resultSet.getInt("AccountNumber"))
-                    .balance(resultSet.getInt("Balance"))
-                    .customer(Customer.builder().id(resultSet.getInt("Customer_id")).build())
-                    .accountTypes(AccountType.valueOf(resultSet.getString("AccountTypes")))
+                    .accountNumber(resultSet.getInt("accountNumber"))
+                    .balance(resultSet.getInt("balance"))
+                    .customer(Customer.builder().id(resultSet.getInt("customer_id")).build())
+                    .accountType(AccountType.valueOf(resultSet.getString("accountType")))
                     .build();
         }
         return account;
@@ -150,7 +150,6 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         ResultSet resultSet = preparedStatement.executeQuery();
         return (Account) resultSet;
     }
-
 
     @Override
     public void close() throws Exception {

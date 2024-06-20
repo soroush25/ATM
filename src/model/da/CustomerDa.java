@@ -252,7 +252,6 @@ public class CustomerDa implements AutoCloseable, CRUD<Customer> {
         return customer;
     }
 
-
     @Override
     public void close() throws Exception {
         preparedStatement.close();

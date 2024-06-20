@@ -217,7 +217,6 @@ public class AdminDa implements AutoCloseable, CRUD<Admin> {
         return admin;
     }
 
-
     @Override
     public void close() throws Exception {
         preparedStatement.close();

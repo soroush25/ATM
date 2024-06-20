@@ -55,8 +55,8 @@ public class TransactionBl implements CRUD<Transaction> {
             List<Transaction> transactionList = transactionDa.findAll();
             if (!transactionList.isEmpty()) {
                 for (Transaction transaction : transactionList) {
-                    transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
-                    transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
+                    transaction.setSourceAccount(AccountBl.getAccountBl().findByAccountNumber(transaction.getSourceAccount().getAccountNumber()));
+                    transaction.setDestinationAccount(AccountBl.getAccountBl().findByAccountNumber(transaction.getDestinationAccount().getAccountNumber()));
                 }
                 return transactionList;
             } else {
@@ -70,8 +70,8 @@ public class TransactionBl implements CRUD<Transaction> {
         try (TransactionDa transactionDa = new TransactionDa()) {
             Transaction transaction = transactionDa.findById(id);
             if (transaction != null) {
-                transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
-                transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
+                transaction.setSourceAccount(AccountBl.getAccountBl().findByAccountNumber(transaction.getSourceAccount().getAccountNumber()));
+                transaction.setDestinationAccount(AccountBl.getAccountBl().findByAccountNumber(transaction.getDestinationAccount().getAccountNumber()));
                 return transaction;
             } else {
                 throw new NotFoundException();
@@ -84,8 +84,8 @@ public class TransactionBl implements CRUD<Transaction> {
             List<Transaction> transactionList = transactionDa.findBySourceAccountId(sourceAccountId);
             if (!transactionList.isEmpty()) {
                 for (Transaction transaction : transactionList) {
-                    transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
-                    transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
+                    transaction.setSourceAccount(AccountBl.getAccountBl().findByAccountNumber(transaction.getSourceAccount().getAccountNumber()));
+                    transaction.setDestinationAccount(AccountBl.getAccountBl().findByAccountNumber(transaction.getDestinationAccount().getAccountNumber()));
                 }
                 return transactionList;
             } else {
@@ -99,8 +99,8 @@ public class TransactionBl implements CRUD<Transaction> {
             List<Transaction> transactionList = transactionDa.findBySourceAccountId(destinationAccountId);
             if (!transactionList.isEmpty()) {
                 for (Transaction transaction : transactionList) {
-                    transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
-                    transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
+                    transaction.setSourceAccount(AccountBl.getAccountBl().findByAccountNumber(transaction.getSourceAccount().getAccountNumber()));
+                    transaction.setDestinationAccount(AccountBl.getAccountBl().findByAccountNumber(transaction.getDestinationAccount().getAccountNumber()));
                 }
                 return transactionList;
             } else {
@@ -114,8 +114,8 @@ public class TransactionBl implements CRUD<Transaction> {
             List<Transaction> transactionList = transactionDa.findByDateTime(transactionDateTime);
             if (!transactionList.isEmpty()) {
                 for (Transaction transaction : transactionList) {
-                    transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
-                    transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
+                    transaction.setSourceAccount(AccountBl.getAccountBl().findByAccountNumber(transaction.getSourceAccount().getAccountNumber()));
+                    transaction.setDestinationAccount(AccountBl.getAccountBl().findByAccountNumber(transaction.getDestinationAccount().getAccountNumber()));
                 }
                 return transactionList;
             } else {
@@ -128,8 +128,8 @@ public class TransactionBl implements CRUD<Transaction> {
         try (TransactionDa transactionDa = new TransactionDa()) {
             Transaction transaction = transactionDa.findByDateTimeRange(start, end);
             if (transaction != null) {
-                transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
-                transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
+                transaction.setSourceAccount(AccountBl.getAccountBl().findByAccountNumber(transaction.getSourceAccount().getAccountNumber()));
+                transaction.setDestinationAccount(AccountBl.getAccountBl().findByAccountNumber(transaction.getDestinationAccount().getAccountNumber()));
                 return transaction;
             } else {
                 throw new NotFoundException();
@@ -153,8 +153,8 @@ public class TransactionBl implements CRUD<Transaction> {
             List<Transaction> transactionList = transactionDa.findByDateTimeRangeReport(start, end);
             if (!transactionList.isEmpty()) {
                 for (Transaction transaction : transactionList) {
-                    transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
-                    transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
+                    transaction.setSourceAccount(AccountBl.getAccountBl().findByAccountNumber(transaction.getSourceAccount().getAccountNumber()));
+                    transaction.setDestinationAccount(AccountBl.getAccountBl().findByAccountNumber(transaction.getDestinationAccount().getAccountNumber()));
                 }
                 return transactionList;
             } else {
@@ -168,8 +168,8 @@ public class TransactionBl implements CRUD<Transaction> {
             List<Transaction> transactionList = transactionDa.findByTransactionType(transactionType);
             if (!transactionList.isEmpty()) {
                 for (Transaction transaction : transactionList) {
-                    transaction.setSourceAccount(AccountBl.getAccountBl().findById(transaction.getSourceAccount().getAccountNumber()));
-                    transaction.setDestinationAccount(AccountBl.getAccountBl().findById(transaction.getDestinationAccount().getAccountNumber()));
+                    transaction.setSourceAccount(AccountBl.getAccountBl().findByAccountNumber(transaction.getSourceAccount().getAccountNumber()));
+                    transaction.setDestinationAccount(AccountBl.getAccountBl().findByAccountNumber(transaction.getDestinationAccount().getAccountNumber()));
                 }
                 return transactionList;
             } else {

@@ -15,7 +15,7 @@ public class TransactionTest {
                         .accountNumber(1)
                         .balance(100)
                         .customer(null)
-                        .accountTypes(null)
+                        .accountType(null)
                         .build();
 
         Timestamp now = Timestamp.valueOf(LocalDateTime.now());

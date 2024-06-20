@@ -31,7 +31,7 @@ public class AdminController implements Initializable {
     private TextField idField, fnameField, lnameField, nidField, emailField, phoneField, addressField, usernameField, passwordField;
 
     @FXML
-    private Button exit, adminCreateBtn, adminDeleteBtn, adminEditBtn, adminCustomerBtn, adminAccountBtn, adminTransactionBtn, adminSummeryBtn;
+    private Button exit, adminCreateBtn, adminDeleteBtn, adminEditBtn, adminCustomerBtn, adminAccountBtn, adminTransactionBtn, adminSummeryBtn, adminCardBtn, adminBillBtn, adminLoanBtn;
 
     @FXML
     private RadioButton maleToggle, femaleToggle;
@@ -192,6 +192,51 @@ public class AdminController implements Initializable {
                 Stage stage = new Stage();
                 Scene scene = new Scene(
                         FXMLLoader.load(WindowsManager.class.getResource("../view/AdminSummery.fxml"))
+                );
+                stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
+                alert.show();
+                log.error("AdminSummery Error : " + e.getMessage());
+            }
+        });
+
+        adminCardBtn.setOnAction(event -> {
+            try {
+                Stage stage = new Stage();
+                Scene scene = new Scene(
+                        FXMLLoader.load(WindowsManager.class.getResource("../view/CardPanel.fxml"))
+                );
+                stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
+                alert.show();
+                log.error("CardPanel Error : " + e.getMessage());
+            }
+        });
+
+        adminBillBtn.setOnAction(event -> {
+            try {
+                Stage stage = new Stage();
+                Scene scene = new Scene(
+                        FXMLLoader.load(WindowsManager.class.getResource("../view/BillPanel.fxml"))
+                );
+                stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
+                alert.show();
+                log.error("BillPanel Error : " + e.getMessage());
+            }
+        });
+
+        adminLoanBtn.setOnAction(event -> {
+            try {
+                Stage stage = new Stage();
+                Scene scene = new Scene(
+                        FXMLLoader.load(WindowsManager.class.getResource("../view/LoanPanel.fxml"))
                 );
                 stage.setScene(scene);
                 stage.show();

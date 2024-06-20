@@ -28,7 +28,7 @@ public class AccountTest {
                 .builder()
                 .balance(200)
                 .customer(customer)
-                .accountTypes(AccountType.Saving)
+                .accountType(AccountType.Saving)
                 .accountNumber(1)
                 .build();
         //System.out.println(AccountBl.getAccountBl().save(account));
