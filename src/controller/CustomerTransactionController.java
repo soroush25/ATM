@@ -27,7 +27,7 @@ public class CustomerTransactionController implements Initializable {
     private TextField amountField, accountField;
 
     @FXML
-    private Button customerTransferBtn, customerWithdrawalBtn, customerDepositBtn, customerReceiptBtn;
+    private Button customerTransferBtn, customerWithdrawalBtn, customerDepositBtn;
 
     @FXML
     private TableView<Transaction> customerTable;
@@ -101,21 +101,6 @@ public class CustomerTransactionController implements Initializable {
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
                 alert.show();
-            }
-        });
-
-        customerReceiptBtn.setOnAction(event -> {
-            try {
-                Stage stage = new Stage();
-                Scene scene = new Scene(
-                        FXMLLoader.load(WindowsManager.class.getResource("../view/ReceiptPanel.fxml"))
-                );
-                stage.setScene(scene);
-                stage.show();
-            } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Error: \n" + e.getMessage());
-                alert.show();
-                log.error("ReceiptPanel Error: " + e.getMessage());
             }
         });
     }
