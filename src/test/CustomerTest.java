@@ -20,10 +20,9 @@ public class CustomerTest {
 //                .birthDate(LocalDate.now())
 //                .city(City.Tabriz)
 //                .build();
-        //System.out.println(CustomerBl.getCustomerBl().save(customer));
-        //System.out.println(CustomerBl.getCustomerBl().findByPhone("+989123456789"));
-
-        System.out.println(CustomerBl.getCustomerBl().findByUsernameAndPassword("ahmad", "ahmad123"));
+//        System.out.println(CustomerBl.getCustomerBl().save(customer));
+//        System.out.println(CustomerBl.getCustomerBl().findByPhone("+989123456789"));
+//        System.out.println(CustomerBl.getCustomerBl().findByUsernameAndPassword("ahmad", "ahmad123"));
     }
 }
 
