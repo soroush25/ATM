@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import lombok.extern.log4j.Log4j;
-import src.model.bl.AdminBl;
 import src.model.bl.CustomerBl;
 import src.model.entity.Admin;
 import src.model.entity.AppData;
@@ -211,23 +210,23 @@ public class AdminController implements Initializable {
         }));
 
         adminTable.setOnMouseClicked((event) -> {
-            Admin admin = adminTable.getSelectionModel().getSelectedItem();
-            idField.setText(String.valueOf(admin.getId()));
-            fnameField.setText(admin.getFirstName());
-            lnameField.setText(admin.getLastName());
-            nidField.setText(admin.getNationalId());
-            if (admin.getGender().equals(Gender.Male)) {
+            Customer customer = adminTable.getSelectionModel().getSelectedItem();
+            idField.setText(String.valueOf(customer.getId()));
+            fnameField.setText(customer.getFirstName());
+            lnameField.setText(customer.getLastName());
+            nidField.setText(customer.getNationalId());
+            if (customer.getGender().equals(Gender.Male)) {
                 maleToggle.setSelected(true);
             } else {
                 femaleToggle.setSelected(true);
             }
-            birthDatePicker.setValue(admin.getBirthDate());
-            emailField.setText(admin.getEmail());
-            phoneField.setText(admin.getPhone());
-            cityCmb.getSelectionModel().select(admin.getCity().ordinal());
-            addressField.setText(admin.getAddress());
-            usernameField.setText(admin.getUsername());
-            passwordField.setText(admin.getPassword());
+            birthDatePicker.setValue(customer.getBirthDate());
+            emailField.setText(customer.getEmail());
+            phoneField.setText(customer.getPhone());
+            cityCmb.getSelectionModel().select(customer.getCity().ordinal());
+            addressField.setText(customer.getAddress());
+            usernameField.setText(customer.getUsername());
+            passwordField.setText(customer.getPassword());
         });
     }
 
