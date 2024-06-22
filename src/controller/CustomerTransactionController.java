@@ -32,7 +32,7 @@ public class CustomerTransactionController implements Initializable {
     private TableView<Transaction> customerTable;
 
     @FXML
-    private TableColumn<Customer, Integer> accountCol;
+    private TableColumn<Customer, Integer> destinationCol;
 
     @FXML
     private TableColumn<Customer, String> amountCol, typeCol, dateCol;
@@ -119,7 +119,7 @@ public class CustomerTransactionController implements Initializable {
         ObservableList<Transaction> observableList = FXCollections.observableList(transactionList);
         amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("transactionDateTime"));
-        accountCol.setCellValueFactory(new PropertyValueFactory<>("destinationAccount"));
+        destinationCol.setCellValueFactory(new PropertyValueFactory<>("destinationAccount"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("transactionType"));
         customerTable.setItems(observableList);
     }
