@@ -32,7 +32,10 @@ public class CustomerTransactionController implements Initializable {
     private TableView<Transaction> customerTable;
 
     @FXML
-    private TableColumn<Customer, String> destinationCol, amountCol, typeCol, dateCol;
+    private TableColumn<Transaction, Integer> destinationCol;
+
+    @FXML
+    private TableColumn<Transaction, String> amountCol, typeCol, dateCol;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
