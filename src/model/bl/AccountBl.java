@@ -6,7 +6,6 @@ import src.model.da.AccountDa;
 import src.model.entity.Account;
 import src.model.tools.CRUD;
 
-import java.sql.ResultSet;
 import java.util.List;
 
 public class AccountBl implements CRUD<Account> {

@@ -10,7 +10,6 @@ import lombok.extern.log4j.Log4j;
 import src.model.bl.AccountBl;
 import src.model.bl.TransactionBl;
 import src.model.entity.AppData;
-import src.model.entity.Customer;
 import src.model.entity.Transaction;
 import src.model.entity.enums.TransactionTypes;
 
