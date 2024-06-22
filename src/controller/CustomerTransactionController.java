@@ -35,7 +35,7 @@ public class CustomerTransactionController implements Initializable {
     private TableColumn<Customer, Integer> destinationCol;
 
     @FXML
-    private TableColumn<Customer, String> amountCol, balanceCol, typeCol, dateCol;
+    private TableColumn<Customer, String> amountCol, typeCol, dateCol;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -117,10 +117,9 @@ public class CustomerTransactionController implements Initializable {
 
     private void showDataOnTable(List<Transaction> transactionList) throws Exception {
         ObservableList<Transaction> observableList = FXCollections.observableList(transactionList);
-        destinationCol.setCellValueFactory(new PropertyValueFactory<>("account_dst"));
         amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("transactionDateTime"));
-        balanceCol.setCellValueFactory(new PropertyValueFactory<>("balance"));
+        destinationCol.setCellValueFactory(new PropertyValueFactory<>("account_dst"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("transactionType"));
         customerTable.setItems(observableList);
     }
