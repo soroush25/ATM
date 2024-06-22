@@ -91,8 +91,7 @@ public class AccountBl implements CRUD<Account> {
 
     public String balanceSum () throws Exception {
         try (AccountDa accountDa = new AccountDa()) {
-            String sum = accountDa.balanceSum();
-            return sum;
+            return accountDa.balanceSum();
         }
     }
 

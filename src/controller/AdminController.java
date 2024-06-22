@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import lombok.extern.log4j.Log4j;
 import src.model.bl.CustomerBl;
 import src.model.entity.Admin;
-import src.model.entity.AppData;
 import src.model.entity.Customer;
 import src.model.entity.enums.City;
 import src.model.entity.enums.Gender;

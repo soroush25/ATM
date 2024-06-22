@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lombok.extern.log4j.Log4j;
-import src.model.bl.AdminBl;
 import src.model.bl.TransactionBl;
 import src.model.entity.Admin;
 import src.model.entity.Transaction;

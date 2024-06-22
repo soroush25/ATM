@@ -8,21 +8,21 @@ import src.model.entity.enums.City;
 public class AccountTest {
     public static void main(String[] args) throws Exception {
 
-//        Customer customer =
-//                Customer.builder()
-//                        .id(1)
-//                        .firstName(null)
-//                        .lastName(null)
-//                        .nationalId(null)
-//                        .birthDate(null)
-//                        .gender(null)
-//                        .username(null)
-//                        .password(null)
-//                        .address(null)
-//                        .phone(null)
-//                        .email(null)
-//                        .city(City.Tehran)
-//                        .build();
+//        Customer customer = Customer
+//                .builder()
+//                .id(1)
+//                .firstName(null)
+//                .lastName(null)
+//                .nationalId(null)
+//                .birthDate(null)
+//                .gender(null)
+//                .username(null)
+//                .password(null)
+//                .address(null)
+//                .phone(null)
+//                .email(null)
+//                .city(City.Tehran)
+//                .build();
 //
 //        Account account = Account
 //                .builder()

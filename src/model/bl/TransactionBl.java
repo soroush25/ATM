@@ -140,8 +140,7 @@ public class TransactionBl implements CRUD<Transaction> {
 
     public String transactionSum () throws Exception {
         try (AccountDa accountDa = new AccountDa()) {
-            String sum = accountDa.balanceSum();
-            return sum;
+            return accountDa.balanceSum();
         }
     }
 

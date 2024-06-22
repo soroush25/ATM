@@ -1,7 +1,5 @@
 package src.model.tools;
 
-import src.model.entity.Account;
-
 import java.util.List;
 
 public interface CRUD<T> {
