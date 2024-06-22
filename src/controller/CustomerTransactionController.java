@@ -119,7 +119,7 @@ public class CustomerTransactionController implements Initializable {
         ObservableList<Transaction> observableList = FXCollections.observableList(transactionList);
         amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("transactionDateTime"));
-        destinationCol.setCellValueFactory(new PropertyValueFactory<>("account_dst"));
+        destinationCol.setCellValueFactory(new PropertyValueFactory<>("destinationAccount"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("transactionType"));
         customerTable.setItems(observableList);
     }
