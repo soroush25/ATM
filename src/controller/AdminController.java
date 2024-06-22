@@ -104,7 +104,7 @@ public class AdminController implements Initializable {
                 RadioButton gender = (RadioButton) genderToggle.getSelectedToggle();
                 Customer customer = Customer
                         .builder()
-                        .id(AppData.customer.getId())
+                        .id(Integer.parseInt(idField.getText()))
                         .firstName(Validator.nameValidator(fnameField.getText(), "Invalid First Name!"))
                         .lastName(Validator.nameValidator(lnameField.getText(), "Invalid Last Name!"))
                         .nationalId(Validator.nationalIDValidator(nidField.getText(), "Invalid National ID!"))
@@ -121,6 +121,8 @@ public class AdminController implements Initializable {
                 CustomerBl.getCustomerBl().edit(customer);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Edited!");
                 alert.show();
+                resetForm();
+
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
                 alert.show();
