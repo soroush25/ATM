@@ -12,6 +12,7 @@ import src.model.bl.TransactionBl;
 import src.model.entity.AppData;
 import src.model.entity.Customer;
 import src.model.entity.Transaction;
+import src.model.entity.enums.Gender;
 import src.model.entity.enums.TransactionTypes;
 
 import java.net.URL;
@@ -112,6 +113,11 @@ public class CustomerTransactionController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
                 alert.show();
             }
+        });
+        customerTable.setOnMouseClicked((event) -> {
+            Transaction transaction = customerTable.getSelectionModel().getSelectedItem();
+            amountField.setText(String.valueOf(transaction.getAmount()));
+            accountField.setText(String.valueOf(transaction.getDestinationAccount()));
         });
     }
 
