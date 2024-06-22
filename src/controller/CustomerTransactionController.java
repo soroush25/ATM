@@ -12,7 +12,6 @@ import src.model.bl.TransactionBl;
 import src.model.entity.AppData;
 import src.model.entity.Customer;
 import src.model.entity.Transaction;
-import src.model.entity.enums.Gender;
 import src.model.entity.enums.TransactionTypes;
 
 import java.net.URL;
@@ -33,10 +32,10 @@ public class CustomerTransactionController implements Initializable {
     private TableView<Transaction> customerTable;
 
     @FXML
-    private TableColumn<Customer, Integer> accountCol;
+    private TableColumn<Transaction, Integer> accountCol;
 
     @FXML
-    private TableColumn<Customer, String> amountCol, typeCol, dateCol;
+    private TableColumn<Transaction, String> amountCol, typeCol, dateCol;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
