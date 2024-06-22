@@ -145,10 +145,10 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         return account;
     }
 
-    public Account balanceSum () throws Exception {
+    public ResultSet balanceSum () throws Exception {
         preparedStatement = connection.prepareStatement("SELECT SUM(balance) FROM ACCOUNT");
         ResultSet resultSet = preparedStatement.executeQuery();
-        return (Account) resultSet;
+        return resultSet;
     }
 
     @Override
