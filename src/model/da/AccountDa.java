@@ -152,7 +152,10 @@ public class AccountDa implements AutoCloseable, CRUD<Account> {
         if (resultSet.next()) {
             account = Account
                     .builder()
+                    .accountNumber(resultSet.getInt("accountNumber"))
                     .balance(resultSet.getInt("balance"))
+                    .customer(Customer.builder().id(resultSet.getInt("customer_id")).build())
+                    .accountType(AccountType.valueOf(resultSet.getString("accountType")))
                     .build();
         }
         return account;
