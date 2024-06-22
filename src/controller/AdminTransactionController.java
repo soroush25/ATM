@@ -44,8 +44,8 @@ public class AdminTransactionController implements Initializable {
         idTransactionCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         amountTransactionCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
         timeTransactionCol.setCellValueFactory(new PropertyValueFactory<>("transactionDateTime"));
-        sourceTransactionCol.setCellValueFactory(new PropertyValueFactory<>("account_src"));
-        destinationTransactionCol.setCellValueFactory(new PropertyValueFactory<>("account_dst"));
+        sourceTransactionCol.setCellValueFactory(new PropertyValueFactory<>("sourceAccount"));
+        destinationTransactionCol.setCellValueFactory(new PropertyValueFactory<>("destinationAccount"));
         typeTransactionCol.setCellValueFactory(new PropertyValueFactory<>("transactionType"));
         adminTransactionTbl.setItems(observableList);
     }
