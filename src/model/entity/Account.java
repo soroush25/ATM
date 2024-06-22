@@ -16,7 +16,6 @@ public class Account {
     private int accountNumber;
     private int balance;
     private Customer customer;
-    private Admin admin;
     private AccountType accountType;
 
     @Override

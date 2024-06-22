@@ -21,7 +21,6 @@ public class Transaction {
     private Account destinationAccount;
     private Timestamp transactionDateTime;
     private TransactionTypes transactionType;
-    private Admin admin;
 
     @Override
     public String toString() {

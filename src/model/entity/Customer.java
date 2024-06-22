@@ -28,7 +28,6 @@ public class Customer {
     private String username;
     private String password;
     private City city;
-    private Admin admin;
 
     @Override
     public String toString() {
