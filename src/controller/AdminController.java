@@ -121,8 +121,6 @@ public class AdminController implements Initializable {
                 CustomerBl.getCustomerBl().edit(customer);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Edited!");
                 alert.show();
-                resetForm();
-
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Error!\n" + e.getMessage());
                 alert.show();
