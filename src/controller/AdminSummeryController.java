@@ -22,7 +22,7 @@ public class AdminSummeryController implements Initializable {
         try {
             resetForm();
             adminBalanceField.setText(String.valueOf(AccountBl.getAccountBl().balanceSum()));
-            //adminTransactionsField.setText(String.valueOf(TransactionBl.getTransactionBl().transactionSum()));
+            adminTransactionsField.setText(String.valueOf(TransactionBl.getTransactionBl().transactionSum()));
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "AdminSummery Error\n" + e.getMessage());
             alert.show();

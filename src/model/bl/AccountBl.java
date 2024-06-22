@@ -6,6 +6,7 @@ import src.model.da.AccountDa;
 import src.model.entity.Account;
 import src.model.tools.CRUD;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 public class AccountBl implements CRUD<Account> {
@@ -89,10 +90,14 @@ public class AccountBl implements CRUD<Account> {
         }
     }
 
-    public String balanceSum () throws Exception {
+    public ResultSet balanceSum () throws Exception {
         try (AccountDa accountDa = new AccountDa()) {
-            String balanceSum = accountDa.balanceSum();
+            ResultSet balanceSum = accountDa.balanceSum();
+            if (balanceSum != null) {
                 return balanceSum;
+            } else {
+                throw new NotFoundException();
+            }
         }
     }
 
