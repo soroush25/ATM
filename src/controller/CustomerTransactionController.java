@@ -12,8 +12,11 @@ import src.model.bl.TransactionBl;
 import src.model.entity.AppData;
 import src.model.entity.Customer;
 import src.model.entity.Transaction;
+import src.model.entity.enums.TransactionTypes;
 
 import java.net.URL;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -49,8 +52,12 @@ public class CustomerTransactionController implements Initializable {
             try {
                 Transaction transaction = Transaction
                         .builder()
+                        .id(0)
                         .amount(Integer.parseInt(amountField.getText()))
+                        .sourceAccount(null)
                         .destinationAccount(AccountBl.getAccountBl().findByAccountNumber(AppData.customer.getId()))
+                        .transactionDateTime(Timestamp.valueOf(LocalDateTime.now()))
+                        .transactionType(TransactionTypes.Deposit)
                         .build();
                 TransactionBl.getTransactionBl().save(transaction);
 //                AccountBl.getAccountBl().edit(amountField);
@@ -67,9 +74,12 @@ public class CustomerTransactionController implements Initializable {
             try {
                 Transaction transaction = Transaction
                         .builder()
+                        .id(0)
                         .amount(Integer.parseInt(amountField.getText()))
                         .sourceAccount(AccountBl.getAccountBl().findByCustomerId(AppData.customer.getId()))
                         .destinationAccount(AccountBl.getAccountBl().findByAccountNumber(Integer.parseInt(accountField.getText())))
+                        .transactionDateTime(Timestamp.valueOf(LocalDateTime.now()))
+                        .transactionType(TransactionTypes.Transfer)
                         .build();
                 TransactionBl.getTransactionBl().save(transaction);
 //                AccountBl.getAccountBl().edit(amountField);
@@ -86,8 +96,12 @@ public class CustomerTransactionController implements Initializable {
             try {
                 Transaction transaction = Transaction
                         .builder()
+                        .id(0)
                         .amount(Integer.parseInt(amountField.getText()))
                         .sourceAccount(AccountBl.getAccountBl().findByCustomerId(AppData.customer.getId()))
+                        .destinationAccount(null)
+                        .transactionDateTime(Timestamp.valueOf(LocalDateTime.now()))
+                        .transactionType(TransactionTypes.Withdrawal)
                         .build();
                 TransactionBl.getTransactionBl().save(transaction);
 //                AccountBl.getAccountBl().edit(amountField);
