@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controller.AuthenticationController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controller.AuthenticationController">
    <children>
-      <Text layoutX="258.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+      <Text layoutX="260.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
          <font>
             <Font size="35.0" />
          </font>
       </Text>
-      <TextField fx:id="usernameField" alignment="CENTER" layoutX="219.0" layoutY="159.0" promptText="Username" />
-      <TextField fx:id="passwordField" alignment="CENTER" layoutX="220.0" layoutY="200.0" promptText="Password" />
-      <Button fx:id="loginBtn" layoutX="275.0" layoutY="272.0" mnemonicParsing="false" text="Login" />
+      <Button fx:id="customerBtn" layoutX="187.0" layoutY="272.0" mnemonicParsing="false" text="Customer" />
+      <Button fx:id="adminBtn" layoutX="340.0" layoutY="272.0" mnemonicParsing="false" text="Admin" />
    </children>
 </Pane>
