@@ -2,6 +2,7 @@ package src.model.bl;
 
 import lombok.Getter;
 import src.controller.exceptions.NotFoundException;
+import src.model.da.AccountDa;
 import src.model.da.TransactionDa;
 import src.model.entity.Transaction;
 import src.model.tools.CRUD;
@@ -137,14 +138,10 @@ public class TransactionBl implements CRUD<Transaction> {
         }
     }
 
-    public Transaction transactionSum () throws Exception {
-        try (TransactionDa transactionDa = new TransactionDa()) {
-            Transaction transaction = transactionDa.transactionSum();
-            if (transaction != null) {
-                return transaction;
-            } else {
-                throw new NotFoundException();
-            }
+    public String transactionSum () throws Exception {
+        try (AccountDa accountDa = new AccountDa()) {
+            String sum = accountDa.balanceSum();
+            return sum;
         }
     }
 
