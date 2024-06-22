@@ -90,9 +90,9 @@ public class AccountBl implements CRUD<Account> {
         }
     }
 
-    public ResultSet balanceSum () throws Exception {
+    public String balanceSum () throws Exception {
         try (AccountDa accountDa = new AccountDa()) {
-            ResultSet sum = accountDa.balanceSum();
+            String sum = accountDa.balanceSum();
             return sum;
         }
     }
