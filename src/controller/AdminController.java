@@ -37,7 +37,7 @@ public class AdminController implements Initializable {
     private RadioButton maleToggle, femaleToggle;
 
     @FXML
-    private TableView<Admin> adminTable;
+    private TableView<Customer> adminTable;
 
     @FXML
     private TableColumn<Admin, Integer> adminTableID;
@@ -231,8 +231,8 @@ public class AdminController implements Initializable {
         });
     }
 
-    private void showDataOnTable(List<Admin> adminList) throws Exception {
-        ObservableList<Admin> observableList = FXCollections.observableList(adminList);
+    private void showDataOnTable(List<Customer> customerList) throws Exception {
+        ObservableList<Customer> observableList = FXCollections.observableList(customerList);
         adminTableID.setCellValueFactory(new PropertyValueFactory<>("id"));
         adminTableName.setCellValueFactory(new PropertyValueFactory<>("lname"));
         adminTableUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -255,6 +255,6 @@ public class AdminController implements Initializable {
         cityCmb.getSelectionModel().select(0);
         usernameField.clear();
         passwordField.clear();
-        showDataOnTable(AdminBl.getAdminBl().findAll());
+        showDataOnTable(CustomerBl.getCustomerBl().findAll());
     }
 }
