@@ -54,7 +54,7 @@ public class CustomerTransactionController implements Initializable {
                         .builder()
                         .id(0)
                         .amount(Integer.parseInt(amountField.getText()))
-                        .sourceAccount(null)
+                        .sourceAccount(AccountBl.getAccountBl().findByAccountNumber(AppData.customer.getId()))
                         .destinationAccount(AccountBl.getAccountBl().findByAccountNumber(AppData.customer.getId()))
                         .transactionDateTime(Timestamp.valueOf(LocalDateTime.now()))
                         .transactionType(TransactionTypes.Deposit)
@@ -99,7 +99,7 @@ public class CustomerTransactionController implements Initializable {
                         .id(0)
                         .amount(Integer.parseInt(amountField.getText()))
                         .sourceAccount(AccountBl.getAccountBl().findByCustomerId(AppData.customer.getId()))
-                        .destinationAccount(null)
+                        .destinationAccount(AccountBl.getAccountBl().findByCustomerId(AppData.customer.getId()))
                         .transactionDateTime(Timestamp.valueOf(LocalDateTime.now()))
                         .transactionType(TransactionTypes.Withdrawal)
                         .build();
