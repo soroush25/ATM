@@ -233,7 +233,7 @@ public class AdminController implements Initializable {
     private void showDataOnTable(List<Customer> customerList) throws Exception {
         ObservableList<Customer> observableList = FXCollections.observableList(customerList);
         adminTableID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        adminTableName.setCellValueFactory(new PropertyValueFactory<>("lname"));
+        adminTableName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         adminTableUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
         adminTablePassword.setCellValueFactory(new PropertyValueFactory<>("password"));
         adminTable.setItems(observableList);

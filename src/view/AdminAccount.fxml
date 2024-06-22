@@ -6,7 +6,7 @@
 
 <Pane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.controller.AdminAccountController">
    <children>
-      <Label layoutX="54.0" layoutY="14.0" text="Account Panel">
+      <Label layoutX="17.0" layoutY="14.0" text="Account Panel">
          <font>
             <Font size="36.0" />
          </font>
@@ -14,7 +14,6 @@
       <TableView fx:id="AdminAccountTbl" layoutX="3.0" layoutY="78.0">
          <columns>
             <TableColumn fx:id="numberCol" text="Number" />
-            <TableColumn fx:id="customerCol" text="Customer" />
             <TableColumn fx:id="balanceCol" text="Balance" />
             <TableColumn fx:id="typeCol" text="Type" />
          </columns>
