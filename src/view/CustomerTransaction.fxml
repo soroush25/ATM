@@ -59,7 +59,7 @@
       </Button>
       <TableView fx:id="customerTable" layoutX="216.0" layoutY="6.0">
         <columns>
-          <TableColumn fx:id="destinationCol" text="Destination" />
+          <TableColumn fx:id="accountCol" text="Account" />
           <TableColumn fx:id="amountCol" text="Amount" />
             <TableColumn fx:id="typeCol" text="Type" />
             <TableColumn fx:id="dateCol" text="Date" />
